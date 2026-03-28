@@ -162,6 +162,21 @@
   .family-table .mine { color: var(--primary); font-weight:700; }
   .family-table .other { color: var(--orange); font-weight:700; }
   .family-table .call { color: var(--purple); font-weight:700; }
+  .fam-pron {
+    font-size:0.72rem; color:#9B5DE5; font-style:italic;
+    margin-top:3px; display:none;
+  }
+  .fam-pron.show { display:block; }
+  .adj-pron {
+    font-size:0.72rem; color:#9B5DE5; font-style:italic;
+    margin-top:2px; display:none;
+  }
+  .adj-pron.show { display:block; }
+  .vocab-pron-text {
+    font-size:0.78rem; color:#9B5DE5; font-style:italic;
+    margin-top:3px; display:none;
+  }
+  .vocab-pron-text.show { display:block; }
 
   /* ── 형용사 ── */
   .adj-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
@@ -491,7 +506,9 @@
 <!-- ═══ 2. 가족 호칭 ═══ -->
 <div class="section" id="sec-family">
   <div class="card">
-    <div class="card-title"><span>👨‍👩‍👧</span> 가족 호칭 비교표</div>
+    <div class="card-title"><span>👨‍👩‍👧</span> 가족 호칭 비교표
+      <button class="mode-btn" id="pron-toggle-btn" onclick="toggleFamilyPron()" style="margin-left:auto;font-size:0.78rem;padding:5px 12px;">🔊 발음 보기</button>
+    </div>
     <div style="overflow-x:auto;">
       <table class="family-table">
         <thead>
@@ -503,12 +520,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td class="kr-col">아버지</td><td class="mine">ちち</td><td class="other">おとうさん</td><td class="call">おとうさん</td></tr>
-          <tr><td class="kr-col">어머니</td><td class="mine">はは</td><td class="other">おかあさん</td><td class="call">おかあさん</td></tr>
-          <tr><td class="kr-col">오빠·형</td><td class="mine">あに</td><td class="other">おにいさん</td><td class="call">おにいちゃん</td></tr>
-          <tr><td class="kr-col">언니·누나</td><td class="mine">あね</td><td class="other">おねえさん</td><td class="call">おねえちゃん</td></tr>
-          <tr><td class="kr-col">남동생</td><td class="mine">おとうと</td><td class="other">おとうとさん</td><td class="call">이름</td></tr>
-          <tr><td class="kr-col">여동생</td><td class="mine">いもうと</td><td class="other">いもうとさん</td><td class="call">이름</td></tr>
+          <tr><td class="kr-col">아버지</td><td class="mine">ちち<div class="fam-pron">치치</div></td><td class="other">おとうさん<div class="fam-pron">오토-상</div></td><td class="call">おとうさん<div class="fam-pron">오토-상</div></td></tr>
+          <tr><td class="kr-col">어머니</td><td class="mine">はは<div class="fam-pron">하하</div></td><td class="other">おかあさん<div class="fam-pron">오카-상</div></td><td class="call">おかあさん<div class="fam-pron">오카-상</div></td></tr>
+          <tr><td class="kr-col">오빠·형</td><td class="mine">あに<div class="fam-pron">아니</div></td><td class="other">おにいさん<div class="fam-pron">오니-상</div></td><td class="call">おにいちゃん<div class="fam-pron">오니-챵</div></td></tr>
+          <tr><td class="kr-col">언니·누나</td><td class="mine">あね<div class="fam-pron">아네</div></td><td class="other">おねえさん<div class="fam-pron">오네-상</div></td><td class="call">おねえちゃん<div class="fam-pron">오네-챵</div></td></tr>
+          <tr><td class="kr-col">남동생</td><td class="mine">おとうと<div class="fam-pron">오토-토</div></td><td class="other">おとうとさん<div class="fam-pron">오토-토상</div></td><td class="call">이름<div class="fam-pron" style="visibility:hidden;">-</div></td></tr>
+          <tr><td class="kr-col">여동생</td><td class="mine">いもうと<div class="fam-pron">이모-토</div></td><td class="other">いもうとさん<div class="fam-pron">이모-토상</div></td><td class="call">이름<div class="fam-pron" style="visibility:hidden;">-</div></td></tr>
         </tbody>
       </table>
     </div>
@@ -550,26 +567,28 @@
 <!-- ═══ 3. 형용사 ═══ -->
 <div class="section" id="sec-adj">
   <div class="card">
-    <div class="card-title"><span>✨</span> い형용사 vs な형용사</div>
+    <div class="card-title"><span>✨</span> い형용사 vs な형용사
+      <button class="mode-btn" id="adj-pron-btn" onclick="toggleAdjPron()" style="margin-left:auto;font-size:0.78rem;padding:5px 12px;">🔊 발음 보기</button>
+    </div>
     <div class="adj-grid">
       <div class="adj-block i-adj">
         <div class="adj-block-title" style="color:#9B5DE5;">🔵 い형용사</div>
         <div style="font-size:0.82rem;color:var(--text-light);margin-bottom:12px;">기본형이 い로 끝나요</div>
         <div class="adj-pattern">
-          <span>まるい</span><span class="adj-arrow">→</span>
-          <span>まる<strong class="adj-result">いです</strong></span>
+          <span>まるい<div class="adj-pron">마루이</div></span><span class="adj-arrow">→</span>
+          <span>まる<strong class="adj-result">いです</strong><div class="adj-pron">마루이데스</div></span>
         </div>
         <div class="adj-pattern">
-          <span>かわいい</span><span class="adj-arrow">→</span>
-          <span>かわい<strong class="adj-result">いです</strong></span>
+          <span>かわいい<div class="adj-pron">카와이-</div></span><span class="adj-arrow">→</span>
+          <span>かわい<strong class="adj-result">いです</strong><div class="adj-pron">카와이-데스</div></span>
         </div>
         <div class="adj-pattern">
-          <span>おもしろい</span><span class="adj-arrow">→</span>
-          <span>おもしろ<strong class="adj-result">いです</strong></span>
+          <span>おもしろい<div class="adj-pron">오모시로이</div></span><span class="adj-arrow">→</span>
+          <span>おもしろ<strong class="adj-result">いです</strong><div class="adj-pron">오모시로이데스</div></span>
         </div>
         <div class="adj-pattern">
-          <span>あおい</span><span class="adj-arrow">→</span>
-          <span>あお<strong class="adj-result">いです</strong></span>
+          <span>あおい<div class="adj-pron">아오이</div></span><span class="adj-arrow">→</span>
+          <span>あお<strong class="adj-result">いです</strong><div class="adj-pron">아오이데스</div></span>
         </div>
         <div class="adj-note">수식: まるい かお (둥근 얼굴)</div>
       </div>
@@ -577,20 +596,20 @@
         <div class="adj-block-title" style="color:#FF7BAC;">🩷 な형용사</div>
         <div style="font-size:0.82rem;color:var(--text-light);margin-bottom:12px;">기본형이 だ로 끝나요</div>
         <div class="adj-pattern">
-          <span>すきだ</span><span class="adj-arrow">→</span>
-          <span>すき<strong class="adj-result">です</strong></span>
+          <span>すきだ<div class="adj-pron">스키다</div></span><span class="adj-arrow">→</span>
+          <span>すき<strong class="adj-result">です</strong><div class="adj-pron">스키데스</div></span>
         </div>
         <div class="adj-pattern">
-          <span>きれいだ</span><span class="adj-arrow">→</span>
-          <span>きれい<strong class="adj-result">です</strong></span>
+          <span>きれいだ<div class="adj-pron">키레이다</div></span><span class="adj-arrow">→</span>
+          <span>きれい<strong class="adj-result">です</strong><div class="adj-pron">키레이데스</div></span>
         </div>
         <div class="adj-pattern">
-          <span>じょうずだ</span><span class="adj-arrow">→</span>
-          <span>じょうず<strong class="adj-result">です</strong></span>
+          <span>じょうずだ<div class="adj-pron">죠-즈다</div></span><span class="adj-arrow">→</span>
+          <span>じょうず<strong class="adj-result">です</strong><div class="adj-pron">죠-즈데스</div></span>
         </div>
         <div class="adj-pattern">
-          <span>ゆうめいだ</span><span class="adj-arrow">→</span>
-          <span>ゆうめい<strong class="adj-result">です</strong></span>
+          <span>ゆうめいだ<div class="adj-pron">유-메-다</div></span><span class="adj-arrow">→</span>
+          <span>ゆうめい<strong class="adj-result">です</strong><div class="adj-pron">유-메-데스</div></span>
         </div>
         <div class="adj-note">수식: きれい<strong>な</strong> へや (예쁜 방)</div>
       </div>
@@ -630,8 +649,9 @@
 
 <!-- ═══ 4. 어휘 ═══ -->
 <div class="section" id="sec-vocab">
-  <div class="show-all-wrap">
+  <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
     <button class="toggle-all-btn" id="vocab-toggle" onclick="toggleVocabAll()">🔍 뜻 모두 보기</button>
+    <button class="toggle-all-btn" id="vocab-pron-btn" onclick="toggleVocabPron()" style="background:var(--purple);box-shadow:0 3px 12px rgba(155,93,229,0.25);">🔊 발음 모두 보기</button>
   </div>
   <div class="vocab-grid" id="vocab-grid"></div>
 </div>
@@ -1069,7 +1089,7 @@ const vocabulary = [
   {jp:'すきだ',reading:'스키다',kr:'좋아하다',cat:'adj-na'},
   {jp:'きれいだ',reading:'키레이다',kr:'예쁘다/깨끗하다',cat:'adj-na'},
   {jp:'じょうずだ',reading:'죠-즈다',kr:'잘하다',cat:'adj-na'},
-  {jp:'ゆうめいだ',reading:'유-메이다',kr:'유명하다',cat:'adj-na'},
+  {jp:'ゆうめいだ',reading:'유-메-다',kr:'유명하다',cat:'adj-na'},
   {jp:'まんが',reading:'망가',kr:'만화',cat:'other'},
   {jp:'ねこ',reading:'네코',kr:'고양이',cat:'other'},
   {jp:'かお',reading:'카오',kr:'얼굴',cat:'other'},
@@ -1097,9 +1117,25 @@ function renderVocab(){
     <div class="vocab-card" onclick="toggleVocab(this)">
       <span class="vocab-cat ${catClass[v.cat]||'cat-other'}">${catLabel[v.cat]||v.cat}</span>
       <div class="vocab-jp">${v.jp}</div>
-      <div class="vocab-reading">${v.reading}</div>
+      <div class="vocab-pron-text">${v.reading}</div>
+      <div class="vocab-reading" style="display:none;">${v.reading}</div>
       <div class="vocab-kr">${v.kr}</div>
     </div>`).join('');
+}
+
+let adjPronShow = false;
+function toggleAdjPron(){
+  adjPronShow = !adjPronShow;
+  document.querySelectorAll('#sec-adj .adj-pron').forEach(el => el.classList.toggle('show', adjPronShow));
+  document.getElementById('adj-pron-btn').textContent = adjPronShow ? '🙈 발음 숨기기' : '🔊 발음 보기';
+  document.getElementById('adj-pron-btn').classList.toggle('active', adjPronShow);
+}
+
+let vocabPronShow = false;
+function toggleVocabPron(){
+  vocabPronShow = !vocabPronShow;
+  document.querySelectorAll('.vocab-pron-text').forEach(el => el.classList.toggle('show', vocabPronShow));
+  document.getElementById('vocab-pron-btn').textContent = vocabPronShow ? '🙈 발음 모두 숨기기' : '🔊 발음 모두 보기';
 }
 
 function switchTab(id,btn){
@@ -1279,6 +1315,14 @@ function pickChip(i,chosen,ans){
       document.getElementById('fill-msg').textContent=m;
     },600);
   }
+}
+
+let famPronShow = false;
+function toggleFamilyPron(){
+  famPronShow = !famPronShow;
+  document.querySelectorAll('.fam-pron').forEach(el => el.classList.toggle('show', famPronShow));
+  document.getElementById('pron-toggle-btn').textContent = famPronShow ? '🙈 발음 숨기기' : '🔊 발음 보기';
+  document.getElementById('pron-toggle-btn').classList.toggle('active', famPronShow);
 }
 
 renderVocab();
