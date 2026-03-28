@@ -25,6 +25,10 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* ── FURIGANA ── */
+  ruby { ruby-align: center; }
+  rt { font-size: 0.55em; color: var(--text-light); font-family: 'Noto Sans JP', sans-serif; font-weight: 400; }
+
   body {
     font-family: 'Noto Sans KR', 'Noto Sans JP', sans-serif;
     background: var(--bg);
@@ -825,18 +829,18 @@
   </div>
 
   <div class="card">
-    <div class="card-title"><span>🛒</span> 가격 묻고 답하기 — クリックして읽기 확인</div>
+    <div class="card-title"><span>🛒</span> 가격 묻고 답하기 — <ruby>クリック<rt>くりっく</rt></ruby>して읽기 확인</div>
 
     <div style="background:linear-gradient(135deg,#EEF3FF,#FFF0F6);border-radius:14px;padding:16px 18px;margin-bottom:16px;">
       <div style="display:flex;gap:16px;flex-wrap:wrap;">
         <div style="flex:1;min-width:180px;">
           <div style="font-size:0.8rem;color:var(--text-light);margin-bottom:6px;">A 질문</div>
-          <div style="font-family:'Noto Sans JP',sans-serif;font-size:1.05rem;">すみません。<span style="color:var(--secondary);font-weight:600;">ペン</span>は いくらですか。</div>
+          <div style="font-family:'Noto Sans JP',sans-serif;font-size:1.05rem;">すみません。<span style="color:var(--secondary);font-weight:600;"><ruby>ペン<rt>ぺん</rt></ruby></span>は いくらですか。</div>
           <div style="font-size:0.82rem;color:var(--text-light);margin-top:4px;">저기요. 펜은 얼마입니까?</div>
         </div>
         <div style="flex:1;min-width:180px;">
           <div style="font-size:0.8rem;color:var(--text-light);margin-bottom:6px;">B 대답</div>
-          <div style="font-family:'Noto Sans JP',sans-serif;font-size:1.05rem;"><span style="color:var(--primary);font-weight:600;">３００円</span>です。</div>
+          <div style="font-family:'Noto Sans JP',sans-serif;font-size:1.05rem;"><span style="color:var(--primary);font-weight:600;">３００<ruby>円<rt>えん</rt></ruby></span>です。</div>
           <div style="font-size:0.82rem;color:var(--text-light);margin-top:4px;">300엔입니다.</div>
         </div>
       </div>
@@ -879,7 +883,7 @@
       <div class="compare-a">B: いちごの ほうが いいです。<br><span style="font-size:0.82rem;color:#aaa;">딸기와 말차 중 어느 쪽이 좋습니까? / 딸기 쪽이 더 좋습니다.</span></div>
     </div>
     <div class="compare-example" onclick="toggleCompare(this)">
-      <div class="compare-q">A: ラーメンと うどんと どちらが いいですか。</div>
+      <div class="compare-q">A: <ruby>ラーメン<rt>らーめん</rt></ruby>と うどんと どちらが いいですか。</div>
       <div class="compare-a">B: うどんの ほうが いいです。<br><span style="font-size:0.82rem;color:#aaa;">라멘과 우동 중 어느 쪽이 좋습니까? / 우동 쪽이 더 좋습니다.</span></div>
     </div>
     <div class="compare-example" onclick="toggleCompare(this)">
@@ -922,9 +926,9 @@
           </tr>
           <tr>
             <td rowspan="3" style="font-weight:700;color:var(--purple);background:#F5F0FF;">な형용사</td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">元気<span class="highlight">だ</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">元気<span class="highlight">です</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">元気<span class="highlight2">でした</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>元気<rt>げんき</rt></ruby><span class="highlight">だ</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>元気<rt>げんき</rt></ruby><span class="highlight">です</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>元気<rt>げんき</rt></ruby><span class="highlight2">でした</span></td>
           </tr>
           <tr>
             <td style="font-family:'Noto Sans JP',sans-serif;">たいへん<span class="highlight">だ</span></td>
@@ -1038,7 +1042,7 @@
         <div class="ex-kr">매우 힘들었습니다.</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">元気でした。</div>
+        <div class="ex-jp"><ruby>元気<rt>げんき</rt></ruby>でした。</div>
         <div class="ex-kr">건강했습니다.</div>
       </div>
     </div>
@@ -1056,7 +1060,7 @@
         <div class="ex-kr">저기요. 이것 얼마입니까?</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">６００円です。</div>
+        <div class="ex-jp">６００<ruby>円<rt>えん</rt></ruby>です。</div>
         <div class="ex-kr">600엔입니다.</div>
       </div>
     </div>
@@ -1097,12 +1101,12 @@
       <div class="r-num">①</div>
       <div class="speaker-chip sp-somi">소미</div>
       <div class="r-body">
-        <div class="line-jp">りこちゃんへ。元気ですか。たんじょうび おめでとう！ソミより</div>
+        <div class="line-jp">りこちゃんへ。<ruby>元気<rt>げんき</rt></ruby>ですか。たんじょうび おめでとう！ソミより</div>
         <div class="r-pron">리코챵에. 겡키데스카. 탄조-비 오메데토-! 소미요리</div>
         <div class="r-kr">리코에게. 잘 지내? 생일 축하해! 소미로부터</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～へ</span><span class="vc2-kr">~에게</span></div>
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">元気ですか</span><span class="vc2-kr">잘 지내요?</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp"><ruby>元気<rt>げんき</rt></ruby>ですか</span><span class="vc2-kr">잘 지내요?</span></div>
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～より</span><span class="vc2-kr">~로부터</span></div>
         </div>
       </div>
@@ -1215,7 +1219,7 @@
       <div class="r-num">⑨</div>
       <div class="speaker-chip sp-clerk">점원</div>
       <div class="r-body">
-        <div class="line-jp">６００円です。</div>
+        <div class="line-jp">６００<ruby>円<rt>えん</rt></ruby>です。</div>
         <div class="r-pron">롭퍄쿠엔데스.</div>
         <div class="r-kr">600엔입니다.</div>
         <div class="r-vocab">
@@ -1256,13 +1260,13 @@
       <div class="r-num">⑫</div>
       <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
-        <div class="line-jp">たんじょうびの プレゼント、ありがとう！とても うれしかったです。これは 日本の 有名な おかしです。</div>
+        <div class="line-jp">たんじょうびの プレゼント、ありがとう！とても うれしかったです。これは <ruby>日本<rt>にほん</rt></ruby>の <ruby>有名<rt>ゆうめい</rt></ruby>な おかしです。</div>
         <div class="r-pron">탄조-비노 푸레젠토, 아리가토-! 토테모 우레시캇타데스. 코레와 니혼노 유-메-나 오카시데스.</div>
         <div class="r-kr">생일 선물, 고마워! 매우 기뻤어. 이것은 일본의 유명한 과자야.</div>
         <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">プレゼント</span><span class="vc2-kr">선물</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp"><ruby>プレゼント<rt>ぷれぜんと</rt></ruby></span><span class="vc2-kr">선물</span></div>
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">うれしかったです</span><span class="vc2-kr">기뻤습니다</span></div>
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">有名な</span><span class="vc2-kr">유명한</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp"><ruby>有名<rt>ゆうめい</rt></ruby>な</span><span class="vc2-kr">유명한</span></div>
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">おかし</span><span class="vc2-kr">과자</span></div>
         </div>
       </div>
@@ -1284,7 +1288,7 @@
 
     <div class="comp-q-item" onclick="this.querySelector('.comp-ans2').classList.toggle('show')">
       <div class="comp-q-text2"><span class="comp-num">3</span>리코가 산 과자는 얼마입니까?</div>
-      <div class="comp-ans2"><span style="font-family:'Noto Sans JP',sans-serif;font-weight:600;">６００円</span>입니다. — 대화 ⑨에서 점원이 알려줬어요.</div>
+      <div class="comp-ans2"><span style="font-family:'Noto Sans JP',sans-serif;font-weight:600;">６００<ruby>円<rt>えん</rt></ruby></span>입니다. — 대화 ⑨에서 점원이 알려줬어요.</div>
     </div>
 
     <div class="comp-q-item" onclick="this.querySelector('.comp-ans2').classList.toggle('show')">
@@ -1377,7 +1381,7 @@ const vocabulary = [
   {jp:'ありがとう',reading:'아리가토우',kr:'고마워',cat:'thanks'},
   {jp:'ありがとうございます',reading:'아리가토우 고자이마스',kr:'감사합니다',cat:'thanks'},
   {jp:'すみません',reading:'스미마셍',kr:'실례합니다/죄송합니다/여기요',cat:'thanks'},
-  {jp:'プレゼント',reading:'푸레젠토',kr:'선물',cat:'thanks'},
+  {jp:'<ruby>プレゼント<rt>ぷれぜんと</rt></ruby>',reading:'푸레젠토',kr:'선물',cat:'thanks'},
   // 숫자·개수
   {jp:'ひとつ',reading:'히토츠',kr:'한 개',cat:'number'},
   {jp:'ふたつ',reading:'후타츠',kr:'두 개',cat:'number'},
@@ -1393,7 +1397,7 @@ const vocabulary = [
   {jp:'ほう',reading:'호우',kr:'쪽',cat:'compare'},
   {jp:'いちご',reading:'이치고',kr:'딸기',cat:'compare'},
   {jp:'まっちゃ',reading:'맛챠',kr:'말차',cat:'compare'},
-  {jp:'ラーメン',reading:'라아멘',kr:'라멘',cat:'compare'},
+  {jp:'<ruby>ラーメン<rt>らーめん</rt></ruby>',reading:'라아멘',kr:'라멘',cat:'compare'},
   {jp:'うどん',reading:'우동',kr:'우동',cat:'compare'},
   // 형용사
   {jp:'うれしい',reading:'우레시이',kr:'기쁘다',cat:'adj'},
@@ -1401,13 +1405,13 @@ const vocabulary = [
   {jp:'おいしい',reading:'오이시이',kr:'맛있다',cat:'adj'},
   {jp:'にぎやかだ',reading:'니기야카다',kr:'번화하다, 북적이다',cat:'adj'},
   {jp:'たいへんだ',reading:'타이헨다',kr:'힘들다, 큰일이다',cat:'adj'},
-  {jp:'元気だ',reading:'겡키다',kr:'건강하다',cat:'adj'},
+  {jp:'<ruby>元気<rt>げんき</rt></ruby>だ',reading:'겡키다',kr:'건강하다',cat:'adj'},
   // 물건
   {jp:'おかし',reading:'오카시',kr:'과자',cat:'object'},
-  {jp:'ペン',reading:'펜',kr:'펜',cat:'object'},
+  {jp:'<ruby>ペン<rt>ぺん</rt></ruby>',reading:'펜',kr:'펜',cat:'object'},
   {jp:'はし',reading:'하시',kr:'젓가락',cat:'object'},
   {jp:'ぼうし',reading:'보우시',kr:'모자',cat:'object'},
-  {jp:'本（ほん）',reading:'혼',kr:'책',cat:'object'},
+  {jp:'<ruby>本<rt>ほん</rt></ruby>',reading:'혼',kr:'책',cat:'object'},
   {jp:'もも',reading:'모모',kr:'복숭아',cat:'object'},
   {jp:'りんご',reading:'링고',kr:'사과',cat:'object'},
   {jp:'みかん',reading:'미칸',kr:'귤',cat:'object'},
@@ -1437,12 +1441,12 @@ const countData = [
 ];
 
 const priceItems = [
-  {name:'はし',reading:'하시',yen:600,yenReading:'ろっぴゃく円'},
-  {name:'本',reading:'혼',yen:800,yenReading:'はっぴゃく円'},
-  {name:'ぼうし',reading:'보우시',yen:1500,yenReading:'せんごひゃく円'},
-  {name:'ペン',reading:'펜',yen:300,yenReading:'さんびゃく円'},
-  {name:'おかし',reading:'오카시',yen:600,yenReading:'ろっぴゃく円'},
-  {name:'コーヒー',reading:'코오히이',yen:400,yenReading:'よんひゃく円'},
+  {name:'はし',reading:'하시',yen:600,yenReading:'ろっぴゃく<ruby>円<rt>えん</rt></ruby>'},
+  {name:'<ruby>本<rt>ほん</rt></ruby>',reading:'혼',yen:800,yenReading:'はっぴゃく<ruby>円<rt>えん</rt></ruby>'},
+  {name:'ぼうし',reading:'보우시',yen:1500,yenReading:'せんごひゃく<ruby>円<rt>えん</rt></ruby>'},
+  {name:'<ruby>ペン<rt>ぺん</rt></ruby>',reading:'펜',yen:300,yenReading:'さんびゃく<ruby>円<rt>えん</rt></ruby>'},
+  {name:'おかし',reading:'오카시',yen:600,yenReading:'ろっぴゃく<ruby>円<rt>えん</rt></ruby>'},
+  {name:'<ruby>コーヒー<rt>こーひー</rt></ruby>',reading:'코오히이',yen:400,yenReading:'よんひゃく<ruby>円<rt>えん</rt></ruby>'},
 ];
 
 const fillData = [
