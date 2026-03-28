@@ -598,12 +598,19 @@
   .r-kr {
     font-size:0.86rem; color:var(--text-light);
     background:#f0f4ff; border-left:3px solid var(--primary);
-    padding:0 12px; border-radius:0 8px 8px 0;
-    max-height:0; opacity:0; overflow:hidden;
-    transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.25s ease, margin 0.25s ease;
-    margin-top:0;
+    padding:6px 12px; border-radius:0 8px 8px 0;
+    margin-top:6px; line-height:1.6;
+    display:none;
   }
-  .r-kr.show { max-height:80px; opacity:1; padding:6px 12px; margin-top:6px; }
+  .r-kr.show { display:block; }
+  .r-pron {
+    font-size:0.84rem; color:#9B5DE5;
+    background:#F5F0FF; border-left:3px solid #9B5DE5;
+    padding:6px 12px; border-radius:0 8px 8px 0;
+    margin-top:6px; line-height:1.6;
+    display:none; font-style:italic;
+  }
+  .r-pron.show { display:block; }
   .r-vocab { display:none; flex-wrap:wrap; gap:6px; margin-top:8px; }
   .r-vocab.show { display:flex; }
   .vocab-chip2 {
@@ -652,7 +659,7 @@
 <!-- HEADER -->
 <div class="header">
   <div class="header-emoji-row">🌸 🏫 ✈️ 🎵 🌸</div>
-  <div class="header-badge">2단원 · 일본어 I</div>
+  <div class="header-badge">일본어 2단원</div>
   <div class="header-title">はじめまして</div>
   <div class="header-sub">처음 뵙겠습니다 — 만남·인사·자기소개·취미·숫자</div>
 </div>
@@ -830,91 +837,6 @@
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-title"><span>🎞️</span> 대화 읽기 <small style="font-weight:400;color:#aaa;margin-left:6px;">클릭하면 번역 표시</small></div>
-
-    <button class="toggle-all-btn" id="dial-toggle" onclick="toggleDialAll()">🔍 번역 모두 보기</button>
-
-    <div id="dial-wrap">
-      <div class="dialogue-line" onclick="toggleLine(this)">
-        <div class="speaker-chip sp-somi">소미</div>
-        <div class="line-content">
-          <div class="line-jp"><span class="line-num">①</span>こんにちは。</div>
-          <div class="line-kr">안녕하세요.</div>
-        </div>
-      </div>
-      <div class="dialogue-line" onclick="toggleLine(this)">
-        <div class="speaker-chip sp-somi">소미</div>
-        <div class="line-content">
-          <div class="line-jp"><span class="line-num">②</span>はじめまして。わたしは ソウルこうこうの キム・ソミです。</div>
-          <div class="line-kr">처음 뵙겠습니다. 저는 서울고등학교의 김소미입니다.</div>
-        </div>
-      </div>
-      <div class="dialogue-line" onclick="toggleLine(this)">
-        <div class="speaker-chip sp-jiho">지호</div>
-        <div class="line-content">
-          <div class="line-jp"><span class="line-num">③</span>わたしは イ・ジホです。</div>
-          <div class="line-kr">저는 이지호입니다.</div>
-        </div>
-      </div>
-      <div class="dialogue-line" onclick="toggleLine(this)">
-        <div class="speaker-chip sp-riko">리코</div>
-        <div class="line-content">
-          <div class="line-jp"><span class="line-num">④</span>わたしは やまだ りこです。２ねんせいです。</div>
-          <div class="line-kr">저는 야마다 리코입니다. 2학년입니다.</div>
-        </div>
-      </div>
-      <div class="dialogue-line" onclick="toggleLine(this)">
-        <div class="speaker-chip sp-leo">레오</div>
-        <div class="line-content">
-          <div class="line-jp"><span class="line-num">⑤</span>ぼくは レオ・スミスです。アメリカから きました。３ねんせいです。</div>
-          <div class="line-kr">나는 레오 스미스입니다. 미국에서 왔습니다. 3학년입니다.</div>
-        </div>
-      </div>
-      <div class="dialogue-line" onclick="toggleLine(this)">
-        <div class="speaker-chip sp-haruto">하루토</div>
-        <div class="line-content">
-          <div class="line-jp"><span class="line-num">⑥⑦</span>こちらは すずきさんです。すずき はるとです。しゅみは ピアノです。みなさん、しゅみは なんですか。</div>
-          <div class="line-kr">이쪽은 스즈키 씨입니다. 스즈키 하루토입니다. 취미는 피아노입니다. 여러분, 취미는 무엇입니까?</div>
-        </div>
-      </div>
-      <div class="dialogue-line" onclick="toggleLine(this)">
-        <div class="speaker-chip sp-riko">리코</div>
-        <div class="line-content">
-          <div class="line-jp"><span class="line-num">⑧</span>わたしの しゅみは りょうりです。</div>
-          <div class="line-kr">저의 취미는 요리입니다.</div>
-        </div>
-      </div>
-      <div class="dialogue-line" onclick="toggleLine(this)">
-        <div class="speaker-chip sp-jiho">지호</div>
-        <div class="line-content">
-          <div class="line-jp"><span class="line-num">⑨</span>へえ、すごい！</div>
-          <div class="line-kr">우와, 대단하다!</div>
-        </div>
-      </div>
-      <div class="dialogue-line" onclick="toggleLine(this)">
-        <div class="speaker-chip sp-somi">소미</div>
-        <div class="line-content">
-          <div class="line-jp"><span class="line-num">⑩</span>これから よろしく おねがいします。</div>
-          <div class="line-kr">앞으로 잘 부탁합니다.</div>
-        </div>
-      </div>
-      <div class="dialogue-line" onclick="toggleLine(this)">
-        <div class="speaker-chip sp-haruto">하루토</div>
-        <div class="line-content">
-          <div class="line-jp"><span class="line-num">⑪</span>こちらこそ どうぞ よろしく おねがいします。</div>
-          <div class="line-kr">저야말로 아무쪼록 잘 부탁합니다.</div>
-        </div>
-      </div>
-      <div class="dialogue-line" onclick="toggleLine(this)">
-        <div class="speaker-chip sp-riko">리코</div>
-        <div class="line-content">
-          <div class="line-jp"><span class="line-num">⑫</span>またね〜！</div>
-          <div class="line-kr">또 봐〜!</div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- ═════════════════ 3. 숫자 ═════════════════ -->
@@ -1075,6 +997,7 @@
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
       <div style="display:flex;gap:8px;">
         <button class="mode-btn active" id="rmode-read" onclick="setRMode('read')">📖 읽기</button>
+        <button class="mode-btn" id="rmode-pron" onclick="setRMode('pron')">🔊 발음</button>
         <button class="mode-btn" id="rmode-vocab" onclick="setRMode('vocab')">📌 어휘</button>
       </div>
       <button class="toggle-all-btn" id="read-reveal-btn" onclick="toggleReadAll()" style="margin:0;">🔍 번역 모두 보기</button>
@@ -1091,6 +1014,7 @@
       <div class="speaker-chip sp-somi">소미</div>
       <div class="r-body">
         <div class="line-jp">こんにちは。</div>
+        <div class="r-pron">콘니치와.</div>
         <div class="r-kr">안녕하세요.</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">こんにちは</span><span class="vc2-kr">안녕하세요(낮)</span></div>
@@ -1103,6 +1027,7 @@
       <div class="speaker-chip sp-somi">소미</div>
       <div class="r-body">
         <div class="line-jp">はじめまして。わたしは ソウルこうこうの キム・ソミです。</div>
+        <div class="r-pron">하지메마시테. 와타시와 소우루코-코-노 키무·소미데스.</div>
         <div class="r-kr">처음 뵙겠습니다. 저는 서울고등학교의 김소미입니다.</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">はじめまして</span><span class="vc2-kr">처음 뵙겠습니다</span></div>
@@ -1118,6 +1043,7 @@
       <div class="speaker-chip sp-jiho">지호</div>
       <div class="r-body">
         <div class="line-jp">わたしは イ・ジホです。</div>
+        <div class="r-pron">와타시와 이·지호데스.</div>
         <div class="r-kr">저는 이지호입니다.</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">わたし</span><span class="vc2-kr">나, 저</span></div>
@@ -1131,6 +1057,7 @@
       <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
         <div class="line-jp">わたしは やまだ りこです。２ねんせいです。</div>
+        <div class="r-pron">와타시와 야마다 리코데스. 니넨세이데스.</div>
         <div class="r-kr">저는 야마다 리코입니다. 2학년입니다.</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">ねんせい</span><span class="vc2-kr">학년</span></div>
@@ -1143,6 +1070,7 @@
       <div class="speaker-chip sp-leo">레오</div>
       <div class="r-body">
         <div class="line-jp">ぼくは レオ・スミスです。アメリカから きました。３ねんせいです。</div>
+        <div class="r-pron">보쿠와 레오·스미스데스. 아메리카카라 키마시타. 산넨세이데스.</div>
         <div class="r-kr">나는 레오 스미스입니다. 미국에서 왔습니다. 3학년입니다.</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">ぼく</span><span class="vc2-kr">나(남성어)</span></div>
@@ -1160,6 +1088,7 @@
       <div class="speaker-chip sp-haruto">하루토</div>
       <div class="r-body">
         <div class="line-jp">こちらは すずきさんです。</div>
+        <div class="r-pron">코치라와 스즈키상데스.</div>
         <div class="r-kr">이쪽은 스즈키 씨입니다.</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">こちら</span><span class="vc2-kr">이쪽</span></div>
@@ -1173,6 +1102,7 @@
       <div class="speaker-chip sp-haruto">하루토</div>
       <div class="r-body">
         <div class="line-jp">すずき はるとです。しゅみは ピアノです。みなさん、しゅみは なんですか。</div>
+        <div class="r-pron">스즈키 하루토데스. 슈미와 피아노데스. 미나상, 슈미와 난데스카.</div>
         <div class="r-kr">스즈키 하루토입니다. 취미는 피아노입니다. 여러분, 취미는 무엇입니까?</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">しゅみ</span><span class="vc2-kr">취미</span></div>
@@ -1187,6 +1117,7 @@
       <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
         <div class="line-jp">わたしの しゅみは りょうりです。</div>
+        <div class="r-pron">와타시노 슈미와 료-리데스.</div>
         <div class="r-kr">저의 취미는 요리입니다.</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">りょうり</span><span class="vc2-kr">요리</span></div>
@@ -1199,6 +1130,7 @@
       <div class="speaker-chip sp-jiho">지호</div>
       <div class="r-body">
         <div class="line-jp">へえ、すごい！</div>
+        <div class="r-pron">헤에, 스고이!</div>
         <div class="r-kr">우와, 대단하다!</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">へえ</span><span class="vc2-kr">우와(감탄)</span></div>
@@ -1215,6 +1147,7 @@
       <div class="speaker-chip sp-somi">소미</div>
       <div class="r-body">
         <div class="line-jp">これから よろしく おねがいします。</div>
+        <div class="r-pron">코레카라 요로시쿠 오네가이시마스.</div>
         <div class="r-kr">앞으로 잘 부탁합니다.</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">これから</span><span class="vc2-kr">앞으로</span></div>
@@ -1228,6 +1161,7 @@
       <div class="speaker-chip sp-haruto">하루토</div>
       <div class="r-body">
         <div class="line-jp">こちらこそ どうぞ よろしく おねがいします。</div>
+        <div class="r-pron">코치라코소 도-조 요로시쿠 오네가이시마스.</div>
         <div class="r-kr">저야말로 아무쪼록 잘 부탁합니다.</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">こちらこそ</span><span class="vc2-kr">저야말로</span></div>
@@ -1241,6 +1175,7 @@
       <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
         <div class="line-jp">またね〜！</div>
+        <div class="r-pron">마타네~!</div>
         <div class="r-kr">또 봐〜!</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">またね</span><span class="vc2-kr">또 만나(반말)</span></div>
@@ -1632,8 +1567,10 @@ function updateReadProg(){
 }
 function setRMode(mode){
   document.getElementById('rmode-read').classList.toggle('active', mode==='read');
+  document.getElementById('rmode-pron').classList.toggle('active', mode==='pron');
   document.getElementById('rmode-vocab').classList.toggle('active', mode==='vocab');
   document.querySelectorAll('#sec-reading .r-vocab').forEach(v => v.classList.toggle('show', mode==='vocab'));
+  document.querySelectorAll('#sec-reading .r-pron').forEach(v => v.classList.toggle('show', mode==='pron'));
 }
 function toggleVc2(e, el){
   e.stopPropagation();
