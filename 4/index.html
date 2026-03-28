@@ -804,22 +804,25 @@
   </div>
 
   <div class="card">
-    <div class="card-title"><span>💴</span> 숫자 읽기 (100~10,000)</div>
+    <div class="card-title">
+      <span>💴</span> 숫자 읽기 (100~10,000)
+      <button class="mode-btn" id="num-pron-btn" onclick="toggleNumPron()" style="margin-left:auto;font-size:0.78rem;padding:5px 12px;">🔊 발음 보기</button>
+    </div>
     <div style="overflow-x:auto;">
       <table class="conj-table" style="min-width:500px;">
         <thead>
           <tr>
-            <th>숫자</th><th>읽기</th><th>숫자</th><th>읽기</th>
+            <th>숫자</th><th>읽기</th><th class="num-pron-col" style="display:none;">발음</th><th>숫자</th><th>읽기</th><th class="num-pron-col" style="display:none;">발음</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>100</td><td>ひゃく</td><td>200</td><td>にひゃく</td></tr>
-          <tr><td class="highlight">300</td><td class="highlight">さんびゃく</td><td>400</td><td>よんひゃく</td></tr>
-          <tr><td>500</td><td>ごひゃく</td><td class="highlight">600</td><td class="highlight">ろっぴゃく</td></tr>
-          <tr><td>700</td><td>ななひゃく</td><td class="highlight">800</td><td class="highlight">はっぴゃく</td></tr>
-          <tr><td>900</td><td>きゅうひゃく</td><td>1,000</td><td>せん</td></tr>
-          <tr><td class="highlight">3,000</td><td class="highlight">さんぜん</td><td class="highlight">8,000</td><td class="highlight">はっせん</td></tr>
-          <tr><td>10,000</td><td>いちまん</td><td></td><td></td></tr>
+          <tr><td>100</td><td>ひゃく</td><td class="num-pron-col" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">햐쿠</td><td>200</td><td>にひゃく</td><td class="num-pron-col" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">니햐쿠</td></tr>
+          <tr><td class="highlight">300</td><td class="highlight">さんびゃく</td><td class="num-pron-col highlight" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">삼뱌쿠</td><td>400</td><td>よんひゃく</td><td class="num-pron-col" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">용햐쿠</td></tr>
+          <tr><td>500</td><td>ごひゃく</td><td class="num-pron-col" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">고햐쿠</td><td class="highlight">600</td><td class="highlight">ろっぴゃく</td><td class="num-pron-col highlight" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">롭퍄쿠</td></tr>
+          <tr><td>700</td><td>ななひゃく</td><td class="num-pron-col" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">나나햐쿠</td><td class="highlight">800</td><td class="highlight">はっぴゃく</td><td class="num-pron-col highlight" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">합퍄쿠</td></tr>
+          <tr><td>900</td><td>きゅうひゃく</td><td class="num-pron-col" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">큐-햐쿠</td><td>1,000</td><td>せん</td><td class="num-pron-col" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">센</td></tr>
+          <tr><td class="highlight">3,000</td><td class="highlight">さんぜん</td><td class="num-pron-col highlight" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">산젠</td><td>6,000</td><td>ろくせん</td><td class="num-pron-col" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">로쿠센</td></tr>
+          <tr><td class="highlight">8,000</td><td class="highlight">はっせん</td><td class="num-pron-col highlight" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">핫센</td><td>10,000</td><td>いちまん</td><td class="num-pron-col" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">이치만</td></tr>
         </tbody>
       </table>
     </div>
@@ -829,7 +832,7 @@
   </div>
 
   <div class="card">
-    <div class="card-title"><span>🛒</span> 가격 묻고 답하기 — <ruby>クリック<rt>くりっく</rt></ruby>して읽기 확인</div>
+    <div class="card-title"><span>🛒</span> 가격 묻고 답하기 — 클릭하면 읽기 확인</div>
 
     <div style="background:linear-gradient(135deg,#EEF3FF,#FFF0F6);border-radius:14px;padding:16px 18px;margin-bottom:16px;">
       <div style="display:flex;gap:16px;flex-wrap:wrap;">
@@ -1101,7 +1104,7 @@
       <div class="r-num">①</div>
       <div class="speaker-chip sp-somi">소미</div>
       <div class="r-body">
-        <div class="line-jp">りこちゃんへ。<ruby>元気<rt>げんき</rt></ruby>ですか。たんじょうび おめでとう！ソミより</div>
+        <div class="line-jp">りこちゃんへ。<ruby>元気<rt>げんき</rt></ruby>ですか。たんじょうび おめでとう！<ruby>ソミ<rt>そみ</rt></ruby>より</div>
         <div class="r-pron">리코챵에. 겡키데스카. 탄조-비 오메데토-! 소미요리</div>
         <div class="r-kr">리코에게. 잘 지내? 생일 축하해! 소미로부터</div>
         <div class="r-vocab">
@@ -1260,7 +1263,7 @@
       <div class="r-num">⑫</div>
       <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
-        <div class="line-jp">たんじょうびの プレゼント、ありがとう！とても うれしかったです。これは <ruby>日本<rt>にほん</rt></ruby>の <ruby>有名<rt>ゆうめい</rt></ruby>な おかしです。</div>
+        <div class="line-jp">たんじょうびの <ruby>プレゼント<rt>ぷれぜんと</rt></ruby>、ありがとう！とても うれしかったです。これは <ruby>日本<rt>にほん</rt></ruby>の <ruby>有名<rt>ゆうめい</rt></ruby>な おかしです。</div>
         <div class="r-pron">탄조-비노 푸레젠토, 아리가토-! 토테모 우레시캇타데스. 코레와 니혼노 유-메-나 오카시데스.</div>
         <div class="r-kr">생일 선물, 고마워! 매우 기뻤어. 이것은 일본의 유명한 과자야.</div>
         <div class="r-vocab">
@@ -1372,14 +1375,14 @@
 // ── DATA ──
 const vocabulary = [
   // 축하·감사
-  {jp:'おめでとう',reading:'오메데토우',kr:'축하해',cat:'celebrate'},
-  {jp:'おめでとうございます',reading:'오메데토우 고자이마스',kr:'축하합니다',cat:'celebrate'},
-  {jp:'たんじょうび',reading:'탄조우비',kr:'생일',cat:'celebrate'},
-  {jp:'にゅうがく',reading:'뉴우가쿠',kr:'입학',cat:'celebrate'},
-  {jp:'ごうかく',reading:'고우카쿠',kr:'합격',cat:'celebrate'},
-  {jp:'そつぎょう',reading:'소츠교우',kr:'졸업',cat:'celebrate'},
-  {jp:'ありがとう',reading:'아리가토우',kr:'고마워',cat:'thanks'},
-  {jp:'ありがとうございます',reading:'아리가토우 고자이마스',kr:'감사합니다',cat:'thanks'},
+  {jp:'おめでとう',reading:'오메데토-',kr:'축하해',cat:'celebrate'},
+  {jp:'おめでとうございます',reading:'오메데토- 고자이마스',kr:'축하합니다',cat:'celebrate'},
+  {jp:'たんじょうび',reading:'탄죠-비',kr:'생일',cat:'celebrate'},
+  {jp:'にゅうがく',reading:'뉴-가쿠',kr:'입학',cat:'celebrate'},
+  {jp:'ごうかく',reading:'고-카쿠',kr:'합격',cat:'celebrate'},
+  {jp:'そつぎょう',reading:'소츠교-',kr:'졸업',cat:'celebrate'},
+  {jp:'ありがとう',reading:'아리가토-',kr:'고마워',cat:'thanks'},
+  {jp:'ありがとうございます',reading:'아리가토- 고자이마스',kr:'감사합니다',cat:'thanks'},
   {jp:'すみません',reading:'스미마셍',kr:'실례합니다/죄송합니다/여기요',cat:'thanks'},
   {jp:'<ruby>プレゼント<rt>ぷれぜんと</rt></ruby>',reading:'푸레젠토',kr:'선물',cat:'thanks'},
   // 숫자·개수
@@ -1397,12 +1400,12 @@ const vocabulary = [
   {jp:'ほう',reading:'호우',kr:'쪽',cat:'compare'},
   {jp:'いちご',reading:'이치고',kr:'딸기',cat:'compare'},
   {jp:'まっちゃ',reading:'맛챠',kr:'말차',cat:'compare'},
-  {jp:'<ruby>ラーメン<rt>らーめん</rt></ruby>',reading:'라아멘',kr:'라멘',cat:'compare'},
+  {jp:'<ruby>ラーメン<rt>らーめん</rt></ruby>',reading:'라-멘',kr:'라멘',cat:'compare'},
   {jp:'うどん',reading:'우동',kr:'우동',cat:'compare'},
   // 형용사
-  {jp:'うれしい',reading:'우레시이',kr:'기쁘다',cat:'adj'},
+  {jp:'うれしい',reading:'우레시-',kr:'기쁘다',cat:'adj'},
   {jp:'こわい',reading:'코와이',kr:'무섭다',cat:'adj'},
-  {jp:'おいしい',reading:'오이시이',kr:'맛있다',cat:'adj'},
+  {jp:'おいしい',reading:'오이시-',kr:'맛있다',cat:'adj'},
   {jp:'にぎやかだ',reading:'니기야카다',kr:'번화하다, 북적이다',cat:'adj'},
   {jp:'たいへんだ',reading:'타이헨다',kr:'힘들다, 큰일이다',cat:'adj'},
   {jp:'<ruby>元気<rt>げんき</rt></ruby>だ',reading:'겡키다',kr:'건강하다',cat:'adj'},
@@ -1410,7 +1413,7 @@ const vocabulary = [
   {jp:'おかし',reading:'오카시',kr:'과자',cat:'object'},
   {jp:'<ruby>ペン<rt>ぺん</rt></ruby>',reading:'펜',kr:'펜',cat:'object'},
   {jp:'はし',reading:'하시',kr:'젓가락',cat:'object'},
-  {jp:'ぼうし',reading:'보우시',kr:'모자',cat:'object'},
+  {jp:'ぼうし',reading:'보-시',kr:'모자',cat:'object'},
   {jp:'<ruby>本<rt>ほん</rt></ruby>',reading:'혼',kr:'책',cat:'object'},
   {jp:'もも',reading:'모모',kr:'복숭아',cat:'object'},
   {jp:'りんご',reading:'링고',kr:'사과',cat:'object'},
@@ -1421,7 +1424,7 @@ const vocabulary = [
   {jp:'どんな',reading:'돈나',kr:'어떤',cat:'thanks'},
   {jp:'～かな',reading:'카나',kr:'~일까, ~인 것 같아',cat:'particle'},
   {jp:'～ね',reading:'네',kr:'~군, ~네 (동의/감탄)',cat:'particle'},
-  {jp:'あのう',reading:'아노우',kr:'저기요 (말걸기)',cat:'particle'},
+  {jp:'あのう',reading:'아노-',kr:'저기요 (말걸기)',cat:'particle'},
   {jp:'これ',reading:'코레',kr:'이것',cat:'object'},
   {jp:'～へ',reading:'에',kr:'~에게',cat:'particle'},
   {jp:'～より',reading:'요리',kr:'~로부터',cat:'particle'},
@@ -1696,6 +1699,14 @@ function pickChip(i,chosen,ans){
       document.getElementById('fill-msg').textContent=m;
     },600);
   }
+}
+
+let numPronShow = false;
+function toggleNumPron(){
+  numPronShow = !numPronShow;
+  document.querySelectorAll('.num-pron-col').forEach(el => el.style.display = numPronShow ? '' : 'none');
+  document.getElementById('num-pron-btn').textContent = numPronShow ? '🙈 발음 숨기기' : '🔊 발음 보기';
+  document.getElementById('num-pron-btn').classList.toggle('active', numPronShow);
 }
 
 // ── INIT ──
