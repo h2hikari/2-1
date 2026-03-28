@@ -3,253 +3,654 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>いただきます - 5단원 일본어 수업</title>
+<title>ありがとう - 4단원 일본어 수업</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Nunito:wght@600;700;800;900&display=swap');
 
   :root {
-    --bg: #FFF8F0;
+    --bg: #F0F4FF;
     --card: #FFFFFF;
-    --primary: #FF8C42;
-    --primary-light: #FFF0E0;
-    --secondary: #06B86F;
+    --primary: #5B8DEF;
+    --primary-light: #EEF3FF;
+    --secondary: #FF7BAC;
     --accent: #FFD166;
     --green: #06D6A0;
     --purple: #9B5DE5;
-    --blue: #5B8DEF;
     --text: #1E2A45;
     --text-light: #6B7A99;
-    --border: #FFD9B8;
-    --shadow: 0 4px 20px rgba(255,140,66,0.10);
-    --shadow-hover: 0 8px 32px rgba(255,140,66,0.18);
+    --border: #DDE5F4;
+    --shadow: 0 4px 20px rgba(91,141,239,0.10);
+    --shadow-hover: 0 8px 32px rgba(91,141,239,0.18);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Sans KR','Noto Sans JP',sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-  /* HEADER */
+  /* ── FURIGANA ── */
+  ruby { ruby-align: center; }
+  rt { font-size: 0.55em; color: var(--text-light); font-family: 'Noto Sans JP', sans-serif; font-weight: 400; }
+
+  body {
+    font-family: 'Noto Sans KR', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
   .header {
-    background: linear-gradient(135deg, #FF8C42 0%, #FFB347 55%, #06B86F 100%);
-    padding: 32px 20px 28px; text-align: center; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #FF7BAC 0%, #FFD166 60%, #FF9A3C 100%);
+    padding: 32px 20px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
   }
   .header::before {
-    content:''; position:absolute; inset:0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/svg%3E") repeat;
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
   }
-  .header-emoji-row { font-size:1.4rem; letter-spacing:6px; opacity:0.6; margin-bottom:10px; position:relative; }
+  .header-emoji-row {
+    font-size: 1.4rem;
+    letter-spacing: 6px;
+    opacity: 0.6;
+    margin-bottom: 10px;
+  }
   .header-badge {
-    display:inline-block; background:rgba(255,255,255,0.22); border:1.5px solid rgba(255,255,255,0.4);
-    border-radius:20px; padding:3px 14px; font-size:0.78rem; color:white;
-    font-family:'Nunito',sans-serif; font-weight:700; margin-bottom:10px; position:relative;
+    display: inline-block;
+    background: rgba(255,255,255,0.22);
+    border: 1.5px solid rgba(255,255,255,0.4);
+    border-radius: 20px;
+    padding: 3px 14px;
+    font-size: 0.8rem;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
   }
-  .header-title { font-family:'Noto Sans JP',sans-serif; font-size:3rem; font-weight:700; color:white; text-shadow:0 3px 12px rgba(0,0,0,0.15); letter-spacing:4px; position:relative; }
-  .header-sub { color:rgba(255,255,255,0.85); margin-top:8px; font-size:0.95rem; font-weight:500; position:relative; }
+  .header-title {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 3px 12px rgba(0,0,0,0.2);
+    letter-spacing: 6px;
+  }
+  .header-sub {
+    color: rgba(255,255,255,0.85);
+    margin-top: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
 
-  /* NAV */
-  .nav-wrap { background:white; border-bottom:2px solid var(--border); position:sticky; top:0; z-index:100; box-shadow:0 2px 16px rgba(255,140,66,0.10); }
-  .nav-tabs { display:flex; justify-content:center; gap:4px; padding:14px 16px 0; flex-wrap:wrap; max-width:960px; margin:0 auto; }
+  /* ── NAV ── */
+  .nav-wrap {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(91,141,239,0.10);
+  }
+  .nav-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    padding: 14px 16px 0;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
+  }
   .tab-btn {
-    padding:9px 14px; border:none; border-radius:12px 12px 0 0;
-    font-family:'Nunito','Noto Sans KR',sans-serif; font-size:0.83rem; font-weight:700;
-    cursor:pointer; transition:all 0.18s; background:#fff8f0; color:var(--text-light); position:relative; bottom:-2px;
+    padding: 9px 18px;
+    border: none;
+    border-radius: 12px 12px 0 0;
+    font-family: 'Nunito', 'Noto Sans KR', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.18s;
+    background: #f0f4ff;
+    color: var(--text-light);
+    position: relative; bottom: -2px;
   }
-  .tab-btn.active { background:var(--primary); color:white; bottom:0; }
-  .tab-btn:hover:not(.active) { background:#ffe5cc; color:var(--primary); }
+  .tab-btn.active { background: var(--primary); color: white; bottom: 0; }
+  .tab-btn:hover:not(.active) { background: #dde8ff; color: var(--primary); }
 
-  /* SECTIONS */
-  .section { display:none; padding:28px 16px; max-width:960px; margin:0 auto; }
-  .section.active { display:block; }
+  /* ── SECTIONS ── */
+  .section { display: none; padding: 28px 16px; max-width: 900px; margin: 0 auto; }
+  .section.active { display: block; }
 
-  /* CARD */
-  .card { background:var(--card); border-radius:20px; padding:24px; margin-bottom:20px; box-shadow:var(--shadow); border:1.5px solid var(--border); }
-  .card-title { font-family:'Nunito',sans-serif; font-size:1rem; font-weight:800; color:var(--primary); margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+  /* ── CARD ── */
+  .card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    border: 1.5px solid var(--border);
+  }
+  .card-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card-title span { font-size: 1.2rem; }
 
-  /* TIP BOX */
-  .tip-box { background:linear-gradient(135deg,#FFF9E0,#FFFDF5); border:2px solid var(--accent); border-radius:14px; padding:14px 18px; font-size:0.9rem; margin-bottom:20px; display:flex; gap:10px; align-items:flex-start; }
-  .tip-icon { font-size:1.3rem; flex-shrink:0; }
-  .tip-body { line-height:1.7; }
-  .tip-body strong { color:var(--primary); }
+  /* ── TIP BOX ── */
+  .tip-box {
+    background: linear-gradient(135deg,#FFF9E0,#FFFDF5);
+    border: 2px solid var(--accent);
+    border-radius: 14px;
+    padding: 14px 18px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .tip-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .tip-body { line-height: 1.7; }
+  .tip-body strong { color: var(--primary); }
 
-  /* TOGGLE BTN */
+  /* ── TOGGLE ALL BTN ── */
   .toggle-all-btn {
-    background:var(--primary); color:white; border:none; border-radius:12px;
-    padding:9px 22px; font-size:0.88rem; cursor:pointer;
-    font-family:'Nunito','Noto Sans KR',sans-serif; font-weight:700; margin-bottom:16px;
-    transition:all 0.18s; box-shadow:0 3px 12px rgba(255,140,66,0.25);
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 9px 22px;
+    font-family: 'Nunito','Noto Sans KR',sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+    margin-bottom: 16px;
+    transition: all 0.18s;
+    box-shadow: 0 3px 12px rgba(91,141,239,0.3);
   }
-  .toggle-all-btn:hover { transform:translateY(-1px); box-shadow:0 5px 18px rgba(255,140,66,0.35); }
-  .show-all-wrap { margin-bottom:14px; }
+  .toggle-all-btn:hover { transform: translateY(-1px); box-shadow: 0 5px 18px rgba(91,141,239,0.4); }
+  .show-all-wrap { margin-bottom: 14px; }
 
-  /* 위치 그리드 */
-  .position-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
-  @media(max-width:560px){ .position-grid { grid-template-columns:repeat(2,1fr); } }
-  .pos-card {
-    background:white; border:2px solid var(--border); border-radius:16px;
-    padding:16px 10px; text-align:center; cursor:pointer; transition:all 0.18s;
-    position:relative;
+  /* ── GREETING GRID (축하·감사 표현) ── */
+  .greeting-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
   }
-  .pos-card:hover { border-color:var(--primary); transform:translateY(-3px); box-shadow:var(--shadow-hover); }
-  .pos-emoji { font-size:1.8rem; margin-bottom:8px; }
-  .pos-jp { font-family:'Noto Sans JP',sans-serif; font-size:1rem; font-weight:600; }
-  .pos-pron { font-size:0.74rem; color:#9B5DE5; font-style:italic; margin-top:3px; }
-  .pos-kr { font-size:0.82rem; color:var(--text-light); margin-top:4px; display:none; }
-  .pos-kr.show { display:block; }
-  .pos-card:nth-child(1) { border-color:#5B8DEF; }
-  .pos-card:nth-child(2) { border-color:#FF7BAC; }
-  .pos-card:nth-child(3) { border-color:#06D6A0; }
-  .pos-card:nth-child(4) { border-color:#FFD166; }
-  .pos-card:nth-child(5) { border-color:#9B5DE5; }
-  .pos-card:nth-child(6) { border-color:#FF8C42; }
-  .pos-card:nth-child(7) { border-color:#06B86F; }
-  .pos-card:nth-child(8) { border-color:#c0392b; }
+  @media(max-width:560px) { .greeting-grid { grid-template-columns: 1fr; } }
+  .greeting-group {
+    border-radius: 16px;
+    padding: 18px;
+    border: 2px solid transparent;
+  }
+  .greeting-group.celebrate { background: linear-gradient(135deg,#FFF0F6,#FFEBF5); border-color: #FF7BAC; }
+  .greeting-group.thanks    { background: linear-gradient(135deg,#FFF9E0,#FFFBF0); border-color: #FFD166; }
+  .greeting-group.sorry     { background: linear-gradient(135deg,#E8F4FF,#F0F8FF); border-color: #5B8DEF; }
+  .greeting-group.formal    { background: linear-gradient(135deg,#F0E8FF,#F8F0FF); border-color: #9B5DE5; }
+  .group-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    opacity: 0.7;
+  }
+  .greeting-item {
+    display: flex; align-items: baseline; gap: 8px;
+    padding: 7px 8px;
+    border-bottom: 1px dashed rgba(0,0,0,0.07);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.15s;
+  }
+  .greeting-item:last-child { border-bottom: none; }
+  .greeting-item:hover { background: rgba(255,255,255,0.7); }
+  .jp-main {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text);
+    flex: 1;
+  }
+  .kr-hint {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    display: none;
+    width: 100%;
+    padding-top: 2px;
+  }
+  .kr-hint.show { display: block; }
+  .formal-tag {
+    font-size: 0.68rem;
+    background: #5B8DEF;
+    color: white;
+    border-radius: 6px;
+    padding: 1px 6px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .casual-tag {
+    font-size: 0.68rem;
+    background: #FF7BAC;
+    color: white;
+    border-radius: 6px;
+    padding: 1px 6px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
 
-  /* 존재 표현 */
-  .exist-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-  @media(max-width:560px){ .exist-grid { grid-template-columns:1fr; } }
-  .exist-block { border-radius:16px; padding:20px; border:2px solid transparent; }
-  .exist-block.arimasu { background:linear-gradient(135deg,#FFF0E0,#FFF8F0); border-color:var(--primary); }
-  .exist-block.imasu   { background:linear-gradient(135deg,#E8FFF5,#F0FFF8); border-color:var(--secondary); }
-  .exist-title { font-family:'Noto Sans JP',sans-serif; font-size:1.3rem; font-weight:700; margin-bottom:6px; }
-  .exist-title.a { color:var(--primary); }
-  .exist-title.i { color:var(--secondary); }
-  .exist-sub { font-size:0.82rem; color:var(--text-light); margin-bottom:14px; }
-  .exist-example { background:rgba(255,255,255,0.7); border-radius:10px; padding:10px 12px; margin-bottom:8px; font-family:'Noto Sans JP',sans-serif; font-size:0.95rem; cursor:pointer; transition:background 0.15s; }
-  .exist-example:hover { background:white; }
-  .exist-kr { font-size:0.82rem; color:var(--text-light); margin-top:4px; display:none; }
-  .exist-kr.show { display:block; }
+  /* ── NUMBER / COUNT GRID ── */
+  .num-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+  @media(max-width:460px){ .num-grid { grid-template-columns: repeat(3,1fr); } }
+  .num-card {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 8px;
+    text-align: center;
+    transition: all 0.18s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .num-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    opacity: 0;
+    transition: opacity 0.18s;
+  }
+  .num-card:nth-child(1)::before  { background: linear-gradient(135deg,#FFF0F6,#FFD6E7); }
+  .num-card:nth-child(2)::before  { background: linear-gradient(135deg,#FFF9E0,#FFF2B3); }
+  .num-card:nth-child(3)::before  { background: linear-gradient(135deg,#E8FFF5,#C8F7E8); }
+  .num-card:nth-child(4)::before  { background: linear-gradient(135deg,#EEF3FF,#D0E4FF); }
+  .num-card:nth-child(5)::before  { background: linear-gradient(135deg,#F5F0FF,#E8D8FF); }
+  .num-card:nth-child(6)::before  { background: linear-gradient(135deg,#FFF0F6,#FFD6E7); }
+  .num-card:nth-child(7)::before  { background: linear-gradient(135deg,#FFF9E0,#FFF2B3); }
+  .num-card:nth-child(8)::before  { background: linear-gradient(135deg,#E8FFF5,#C8F7E8); }
+  .num-card:nth-child(9)::before  { background: linear-gradient(135deg,#EEF3FF,#D0E4FF); }
+  .num-card:nth-child(10)::before { background: linear-gradient(135deg,#F5F0FF,#E8D8FF); }
+  .num-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); border-color: var(--primary); }
+  .num-card:hover::before { opacity: 1; }
+  .num-num  { font-family:'Nunito',sans-serif; font-size:1.4rem; font-weight:900; color:var(--primary); position:relative; z-index:1; }
+  .num-jp   { font-family:'Noto Sans JP',sans-serif; font-size:0.9rem; font-weight:500; margin-top:4px; position:relative; z-index:1; color:var(--text); }
+  .num-alt  { font-size:0.72rem; color:var(--text-light); margin-top:2px; position:relative; z-index:1; }
 
-  /* 선택 표현 */
-  .select-box { background:linear-gradient(135deg,#FFF0E0,#FFF8F0); border:2px solid var(--primary); border-radius:18px; padding:20px 22px; margin-bottom:16px; }
-  .select-pattern { font-family:'Noto Sans JP',sans-serif; font-size:1.2rem; font-weight:700; color:var(--primary); margin-bottom:8px; }
-  .select-kr { font-size:0.88rem; color:var(--text-light); margin-bottom:14px; }
-  .select-example { background:white; border-radius:12px; padding:14px 16px; margin-bottom:8px; border:1px solid var(--border); cursor:pointer; transition:background 0.15s; }
-  .select-example:hover { background:var(--primary-light); }
-  .sel-q { font-family:'Noto Sans JP',sans-serif; font-size:1rem; }
-  .sel-a { font-family:'Noto Sans JP',sans-serif; font-size:0.95rem; color:var(--primary); font-weight:600; margin-top:4px; display:none; }
-  .sel-a.show { display:block; }
+  /* ── 가격 연습 ── */
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px,1fr));
+    gap: 12px;
+  }
+  .price-card {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .price-card:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .price-item-name { font-family:'Noto Sans JP',sans-serif; font-size:1rem; font-weight:500; margin-bottom:6px; }
+  .price-yen { font-family:'Nunito',sans-serif; font-size:1.5rem; font-weight:900; color:var(--secondary); }
+  .price-reading { font-size:0.75rem; color:var(--text-light); margin-top:4px; display:none; }
+  .price-reading.show { display:block; }
 
-  /* 형용사 활용표 */
-  .adj-table { width:100%; border-collapse:collapse; font-size:0.9rem; margin-top:10px; }
-  .adj-table th { background:var(--primary); color:white; padding:10px 12px; font-family:'Nunito',sans-serif; font-weight:700; font-size:0.8rem; border:1px solid var(--border); }
-  .adj-table td { padding:10px 12px; border:1px solid var(--border); font-family:'Noto Sans JP',sans-serif; text-align:center; }
-  .adj-table tr:nth-child(even) td { background:#fff8f0; }
-  .adj-table .hl  { color:var(--primary); font-weight:700; }
-  .adj-table .hl2 { color:var(--purple); font-weight:700; }
-  .adj-table .hl3 { color:#e74c3c; font-weight:700; }
+  /* ── 비교 표현 ── */
+  .compare-box {
+    background: linear-gradient(135deg,#EEF3FF,#F5F0FF);
+    border: 2px solid var(--primary);
+    border-radius: 18px;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+  }
+  .compare-pattern {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  .compare-kr {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    margin-bottom: 14px;
+  }
+  .compare-example {
+    background: white;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .compare-example:hover { background: var(--primary-light); }
+  .compare-q { font-family:'Noto Sans JP',sans-serif; font-size:1rem; color:var(--text); }
+  .compare-a { font-family:'Noto Sans JP',sans-serif; font-size:0.95rem; color:var(--primary); font-weight:600; margin-top:4px; display:none; }
+  .compare-a.show { display:block; }
 
-  /* VOCAB */
-  .vocab-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; }
-  .vocab-card { background:white; border-radius:14px; padding:14px 16px; border:2px solid var(--border); cursor:pointer; transition:all 0.18s; position:relative; }
-  .vocab-card:hover { border-color:var(--primary); transform:translateY(-2px); box-shadow:var(--shadow-hover); }
+  /* ── VOCABULARY ── */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+    gap: 12px;
+  }
+  .vocab-card {
+    background: white;
+    border-radius: 14px;
+    padding: 14px 16px;
+    border: 2px solid var(--border);
+    cursor: pointer;
+    transition: all 0.18s;
+    position: relative;
+  }
+  .vocab-card:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow-hover); }
   .vocab-jp { font-family:'Noto Sans JP',sans-serif; font-size:1.05rem; font-weight:500; }
-  .vocab-pron-text { font-size:0.78rem; color:#9B5DE5; font-style:italic; margin-top:3px; display:none; }
-  .vocab-pron-text.show { display:block; }
+  .vocab-reading { font-size:0.78rem; color:var(--text-light); margin-top:3px; }
   .vocab-kr { font-size:0.88rem; color:var(--primary); font-weight:600; margin-top:6px; display:none; }
   .vocab-kr.show { display:block; }
-  .vocab-cat { position:absolute; top:10px; right:10px; font-size:0.68rem; font-weight:700; padding:2px 6px; border-radius:6px; }
-  .cat-position { background:#EEF3FF; color:#5B8DEF; }
-  .cat-exist    { background:#E8FFF5; color:#06B86F; }
-  .cat-food     { background:#FFF0E0; color:#FF8C42; }
-  .cat-adj-i    { background:#F5F0FF; color:#9B5DE5; }
-  .cat-adj-na   { background:#FFF0F6; color:#FF7BAC; }
-  .cat-particle { background:#FFF9E0; color:#c8860a; }
-  .cat-other    { background:#f0f0f0; color:#666; }
+  .vocab-pron-text { font-size:0.78rem; color:#9B5DE5; font-style:italic; margin-top:3px; display:none; }
+  .vocab-pron-text.show { display:block; }
+  .vocab-cat {
+    position: absolute; top:10px; right:10px;
+    font-size:0.68rem; font-weight:700; padding:2px 6px; border-radius:6px;
+  }
+  .cat-celebrate { background:#FFF0F6; color:#FF7BAC; }
+  .cat-thanks    { background:#FFF9E0; color:#c8860a; }
+  .cat-number    { background:#EEF3FF; color:#5B8DEF; }
+  .cat-compare   { background:#F5F0FF; color:#9B5DE5; }
+  .cat-particle  { background:#E8FFF5; color:#06D6A0; }
+  .cat-adj       { background:#F0F8FF; color:#2980b9; }
+  .cat-object    { background:#FFF5F0; color:#e67e22; }
 
-  /* GRAMMAR */
-  .grammar-block { background:white; border-radius:18px; padding:22px; margin-bottom:16px; border-left:5px solid var(--primary); box-shadow:var(--shadow); }
-  .grammar-pattern { font-family:'Noto Sans JP',sans-serif; font-size:1.1rem; font-weight:700; color:var(--primary); background:var(--primary-light); display:inline-block; padding:6px 16px; border-radius:10px; margin-bottom:12px; letter-spacing:1px; }
+  /* ── GRAMMAR ── */
+  .grammar-block {
+    background: white; border-radius:18px; padding:22px;
+    margin-bottom:16px; border-left: 5px solid var(--primary);
+    box-shadow: var(--shadow);
+  }
+  .grammar-pattern {
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:1.15rem; font-weight:700;
+    color:var(--primary);
+    background:var(--primary-light);
+    display:inline-block;
+    padding: 6px 16px; border-radius:10px;
+    margin-bottom:12px;
+    letter-spacing:1px;
+  }
   .grammar-desc { font-size:0.92rem; line-height:1.8; color:var(--text); margin-bottom:14px; }
   .example-list { display:flex; flex-direction:column; gap:8px; }
-  .example-item { display:flex; gap:10px; align-items:baseline; padding:10px 14px; border-radius:12px; background:#fff8f0; border:1px solid var(--border); cursor:pointer; transition:background 0.15s; flex-wrap:wrap; }
+  .example-item {
+    display:flex; gap:10px; align-items:baseline;
+    padding:10px 14px; border-radius:12px;
+    background:#f8f9ff; border:1px solid var(--border);
+    cursor:pointer; transition:background 0.15s;
+    flex-wrap: wrap;
+  }
   .example-item:hover { background:var(--primary-light); }
   .ex-jp { font-family:'Noto Sans JP',sans-serif; font-size:1rem; flex:1; min-width:200px; }
   .ex-kr { font-size:0.82rem; color:var(--text-light); display:none; width:100%; }
   .ex-kr.show { display:block; }
 
-  /* READING */
-  .scene-label { text-align:center; font-size:0.78rem; color:var(--text-light); font-weight:700; letter-spacing:1px; margin:14px 0 10px; display:flex; align-items:center; gap:8px; }
-  .scene-label::before,.scene-label::after { content:''; flex:1; height:1px; background:var(--border); }
-  .r-line { display:flex; gap:10px; padding:10px 12px; border-radius:12px; cursor:pointer; transition:background 0.15s; margin-bottom:4px; }
+  /* ── 형용사 활용표 ── */
+  .conj-table {
+    width:100%; border-collapse:collapse; font-size:0.92rem;
+    margin-top: 10px;
+  }
+  .conj-table th {
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: 10px 14px;
+    font-family:'Nunito',sans-serif;
+    font-weight:800;
+    font-size:0.8rem;
+    border: 1px solid var(--border);
+  }
+  .conj-table td {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    font-family:'Noto Sans JP',sans-serif;
+    text-align:center;
+  }
+  .conj-table tr:nth-child(even) td { background: #f8f9ff; }
+  .conj-table .highlight { color: var(--secondary); font-weight:700; }
+  .conj-table .highlight2 { color: var(--purple); font-weight:700; }
+
+  /* ── DIALOGUE ── */
+  .dialogue-line {
+    display: flex; gap: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-bottom: 4px;
+    border-bottom: 1px dashed var(--border);
+  }
+  .dialogue-line:hover { background: var(--primary-light); }
+  .speaker-chip {
+    min-width: 68px; max-width: 68px;
+    font-weight: 700; font-size: 0.82rem;
+    padding: 4px 8px;
+    border-radius: 20px;
+    text-align: center;
+    height: fit-content;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .sp-somi   { background:#D0E4FF; color:#1a4fa0; }
+  .sp-jiho   { background:#FFD6E7; color:#a01a4f; }
+  .sp-riko   { background:#C8F7E8; color:#0d6e4f; }
+  .sp-leo    { background:#FFF2B3; color:#7a5c00; }
+  .sp-haruto { background:#E8D8FF; color:#5a1aa0; }
+  .sp-clerk  { background:#FFE0CC; color:#7a3300; }
+  .line-content { flex: 1; }
+  .line-jp { font-family:'Noto Sans JP',sans-serif; font-size:1.05rem; line-height:1.9; }
+  .line-num { font-size:0.7rem; color:#bbb; margin-right:6px; }
+  .line-kr {
+    font-size:0.85rem; color:var(--text-light);
+    padding: 5px 10px; background:#f8f9ff;
+    border-radius:8px; margin-top:4px; display:none;
+  }
+  .line-kr.show { display:block; }
+
+  /* ── READING TAB ── */
+  .scene-label {
+    text-align:center; font-size:0.78rem; color:var(--text-light);
+    font-weight:700; letter-spacing:1px;
+    margin:14px 0 10px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .scene-label::before, .scene-label::after {
+    content:''; flex:1; height:1px; background:var(--border);
+  }
+  .r-line {
+    display:flex; gap:10px;
+    padding:10px 12px; border-radius:12px;
+    cursor:pointer; transition:background 0.15s;
+    margin-bottom:4px;
+  }
   .r-line:hover { background:var(--primary-light); }
-  .r-num { min-width:26px; height:26px; border-radius:50%; background:var(--primary-light); color:var(--primary); font-family:'Nunito',sans-serif; font-weight:900; font-size:0.72rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:4px; }
+  .r-num {
+    min-width:26px; height:26px; border-radius:50%;
+    background:var(--primary-light); color:var(--primary);
+    font-family:'Nunito',sans-serif; font-weight:900; font-size:0.72rem;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; margin-top:4px;
+  }
   .r-body { flex:1; }
-  .line-jp { font-family:'Noto Sans JP',sans-serif; font-size:1.08rem; line-height:1.9; }
-  .r-kr { font-size:0.86rem; color:var(--text-light); background:#fff8f0; border-left:3px solid var(--primary); padding:0 12px; border-radius:0 8px 8px 0; max-height:0; opacity:0; overflow:hidden; transition:max-height 0.3s ease,opacity 0.25s ease,padding 0.25s ease,margin 0.25s ease; margin-top:0; }
+  .r-kr {
+    font-size:0.86rem; color:var(--text-light);
+    background:#f0f4ff; border-left:3px solid var(--primary);
+    padding:0 12px; border-radius:0 8px 8px 0;
+    max-height:0; opacity:0; overflow:hidden;
+    transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.25s ease, margin 0.25s ease;
+    margin-top:0;
+  }
   .r-kr.show { max-height:80px; opacity:1; padding:6px 12px; margin-top:6px; }
-  .r-pron { font-size:0.84rem; color:#9B5DE5; background:#F5F0FF; border-left:3px solid #9B5DE5; padding:0 12px; border-radius:0 8px 8px 0; max-height:0; opacity:0; overflow:hidden; transition:max-height 0.3s ease,opacity 0.25s ease,padding 0.25s ease,margin 0.25s ease; margin-top:0; font-style:italic; }
+  .r-pron {
+    font-size:0.84rem; color:#9B5DE5;
+    background:#F5F0FF; border-left:3px solid #9B5DE5;
+    padding:0 12px; border-radius:0 8px 8px 0;
+    max-height:0; opacity:0; overflow:hidden;
+    transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.25s ease, margin 0.25s ease;
+    margin-top:0; font-style:italic;
+  }
   .r-pron.show { max-height:80px; opacity:1; padding:6px 12px; margin-top:6px; }
   .r-vocab { display:none; flex-wrap:wrap; gap:6px; margin-top:8px; }
   .r-vocab.show { display:flex; }
-  .vocab-chip2 { display:inline-flex; gap:4px; align-items:baseline; background:white; border:1.5px solid var(--border); border-radius:8px; padding:3px 10px; font-size:0.78rem; cursor:pointer; transition:all 0.15s; }
+  .vocab-chip2 {
+    display:inline-flex; gap:4px; align-items:baseline;
+    background:white; border:1.5px solid var(--border);
+    border-radius:8px; padding:3px 10px; font-size:0.78rem;
+    cursor:pointer; transition:all 0.15s;
+  }
   .vocab-chip2:hover { border-color:var(--primary); background:var(--primary-light); }
   .vc2-jp { font-family:'Noto Sans JP',sans-serif; font-weight:500; }
   .vc2-kr { color:var(--text-light); font-size:0.74rem; display:none; }
   .vocab-chip2.vopen .vc2-kr { display:inline; }
   .vocab-chip2.vopen { border-color:var(--green); background:#f0fff8; }
-  .mode-btn { padding:7px 14px; border-radius:10px; border:2px solid var(--border); background:white; font-family:'Nunito','Noto Sans KR',sans-serif; font-weight:700; font-size:0.8rem; cursor:pointer; transition:all 0.18s; color:var(--text-light); }
+  .mode-btn {
+    padding:7px 14px; border-radius:10px;
+    border:2px solid var(--border); background:white;
+    font-family:'Nunito','Noto Sans KR',sans-serif;
+    font-weight:700; font-size:0.8rem;
+    cursor:pointer; transition:all 0.18s; color:var(--text-light);
+  }
   .mode-btn.active { background:var(--primary); color:white; border-color:var(--primary); }
   .mode-btn:hover:not(.active) { border-color:var(--primary); color:var(--primary); }
-  .comp-q-item { background:white; border:2px solid var(--border); border-radius:14px; padding:14px 16px; margin-bottom:10px; cursor:pointer; transition:all 0.18s; }
+  .comp-q-item {
+    background:white; border:2px solid var(--border);
+    border-radius:14px; padding:14px 16px; margin-bottom:10px;
+    cursor:pointer; transition:all 0.18s;
+  }
   .comp-q-item:hover { border-color:var(--primary); }
   .comp-q-text2 { font-size:0.9rem; font-weight:600; display:flex; align-items:flex-start; gap:10px; }
-  .comp-num { min-width:22px; height:22px; border-radius:50%; background:var(--primary); color:white; font-family:'Nunito',sans-serif; font-weight:900; font-size:0.72rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .comp-ans2 { font-size:0.86rem; color:var(--primary); background:var(--primary-light); border-radius:8px; padding:8px 12px; margin-top:10px; display:none; line-height:1.6; }
+  .comp-num {
+    min-width:22px; height:22px; border-radius:50%;
+    background:var(--primary); color:white;
+    font-family:'Nunito',sans-serif; font-weight:900; font-size:0.72rem;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .comp-ans2 {
+    font-size:0.86rem; color:var(--primary);
+    background:var(--primary-light); border-radius:8px;
+    padding:8px 12px; margin-top:10px; display:none; line-height:1.6;
+  }
   .comp-ans2.show { display:block; }
 
-  /* SPEAKER CHIPS */
-  .speaker-chip { min-width:68px; max-width:68px; font-weight:700; font-size:0.8rem; padding:4px 6px; border-radius:20px; text-align:center; height:fit-content; white-space:nowrap; flex-shrink:0; margin-top:2px; }
-  .sp-somi   { background:#D0E4FF; color:#1a4fa0; }
-  .sp-jiho   { background:#FFD6E7; color:#a01a4f; }
-  .sp-riko   { background:#C8F7E8; color:#0d6e4f; }
-  .sp-haruto { background:#E8D8FF; color:#5a1aa0; }
-  .sp-clerk  { background:#FFE0CC; color:#7a3300; }
+  /* ── GAME SECTION ── */
+  .game-selector {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .game-tab {
+    padding: 9px 20px;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    background: white;
+    font-family: 'Nunito','Noto Sans KR',sans-serif;
+    font-weight: 700; font-size:0.88rem;
+    cursor: pointer; transition: all 0.18s;
+    color: var(--text-light);
+  }
+  .game-tab.active, .game-tab:hover { background: var(--primary); color: white; border-color: var(--primary); }
+  .game-area { display: none; }
+  .game-area.active { display: block; }
 
-  /* PROGRESS */
-  .quiz-progress-wrap { background:#ffe5cc; border-radius:999px; height:8px; margin-bottom:14px; overflow:hidden; }
-  .quiz-progress-bar { height:100%; border-radius:999px; background:linear-gradient(90deg,var(--primary),var(--purple)); transition:width 0.4s; width:0%; }
-
-  /* GAME */
-  .game-selector { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; }
-  .game-tab { padding:9px 20px; border-radius:12px; border:2px solid var(--border); background:white; font-family:'Nunito','Noto Sans KR',sans-serif; font-weight:700; font-size:0.88rem; cursor:pointer; transition:all 0.18s; color:var(--text-light); }
-  .game-tab.active,.game-tab:hover { background:var(--primary); color:white; border-color:var(--primary); }
-  .game-area { display:none; }
-  .game-area.active { display:block; }
-  .quiz-q-card { background:linear-gradient(135deg,#FFF0E0,#F5F0FF); border-radius:20px; padding:28px 24px; text-align:center; margin-bottom:18px; border:2px solid var(--primary); }
-  .quiz-q-text { font-family:'Noto Sans JP',sans-serif; font-size:2rem; font-weight:700; letter-spacing:4px; }
+  /* quiz */
+  .quiz-q-card {
+    background: linear-gradient(135deg,#FFF0F6,#FFF9E0);
+    border-radius: 20px; padding: 28px 24px;
+    text-align: center; margin-bottom: 18px;
+    border: 2px solid var(--secondary);
+  }
+  .quiz-q-text { font-family:'Noto Sans JP',sans-serif; font-size:2rem; font-weight:700; letter-spacing:4px; color:var(--text); }
   .quiz-q-hint { font-size:0.85rem; color:var(--text-light); margin-top:8px; }
+  .quiz-progress-wrap { background:#e8ecf8; border-radius:999px; height:8px; margin-bottom:14px; overflow:hidden; }
+  .quiz-progress-bar { height:100%; border-radius:999px; background: linear-gradient(90deg,var(--secondary),var(--purple)); transition: width 0.4s; }
   .quiz-meta { display:flex; justify-content:space-between; font-size:0.82rem; color:var(--text-light); margin-bottom:8px; }
   .quiz-options { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-  .quiz-opt { background:white; border:2px solid var(--border); border-radius:14px; padding:14px; font-size:0.95rem; cursor:pointer; transition:all 0.18s; font-family:'Noto Sans KR',sans-serif; font-weight:600; }
-  .quiz-opt:hover:not(:disabled) { border-color:var(--primary); background:var(--primary-light); }
-  .quiz-opt.correct { background:#E8FFF5; border-color:var(--green); color:#0d6e4f; }
+  .quiz-opt {
+    background: white; border: 2px solid var(--border);
+    border-radius: 14px; padding: 14px; font-size:0.95rem;
+    cursor: pointer; transition: all 0.18s; font-family:'Noto Sans KR',sans-serif;
+    font-weight: 600;
+  }
+  .quiz-opt:hover:not(:disabled) { border-color:var(--secondary); background:#FFF0F6; }
+  .quiz-opt.correct { background:#E8FFF5; border-color:#06D6A0; color:#0d6e4f; }
   .quiz-opt.wrong   { background:#FFF0F0; border-color:#FF6B6B; color:#cc0000; }
-  .quiz-feedback { text-align:center; padding:10px; border-radius:12px; font-weight:700; font-size:0.95rem; margin-top:10px; display:none; }
+  .quiz-feedback {
+    text-align:center; padding:10px; border-radius:12px;
+    font-weight:700; font-size:0.95rem; margin-top:10px; display:none;
+  }
   .quiz-feedback.show { display:block; }
-  .quiz-feedback.ok { background:#E8FFF5; color:#0d6e4f; }
-  .quiz-feedback.ng { background:#FFF0F0; color:#cc0000; }
+  .quiz-feedback.ok  { background:#E8FFF5; color:#0d6e4f; }
+  .quiz-feedback.ng  { background:#FFF0F0; color:#cc0000; }
   .quiz-final { display:none; text-align:center; padding:32px; }
   .quiz-final.show { display:block; }
-  .quiz-final-score { font-family:'Nunito',sans-serif; font-size:3.5rem; font-weight:900; color:var(--primary); }
-  .game-start-btn,.game-next-btn { background:var(--primary); color:white; border:none; border-radius:14px; padding:12px 28px; font-size:0.95rem; cursor:pointer; font-family:'Nunito','Noto Sans KR',sans-serif; font-weight:700; margin-top:12px; transition:all 0.18s; box-shadow:0 3px 12px rgba(255,140,66,0.25); display:block; margin:12px auto 0; }
-  .game-start-btn:hover,.game-next-btn:hover { transform:translateY(-2px); box-shadow:0 5px 18px rgba(255,140,66,0.4); }
+  .quiz-final-score { font-family:'Nunito',sans-serif; font-size:3.5rem; font-weight:900; color:var(--secondary); }
+  .quiz-final-emoji { font-size:3rem; margin:8px 0; }
+  .game-start-btn, .game-next-btn {
+    background: var(--secondary); color:white;
+    border: none; border-radius:14px;
+    padding: 12px 28px; font-size:0.95rem;
+    cursor:pointer; font-family:'Nunito','Noto Sans KR',sans-serif;
+    font-weight:700; margin-top:12px; transition:all 0.18s;
+    box-shadow: 0 3px 12px rgba(255,123,172,0.3);
+    display: block; margin: 12px auto 0;
+  }
+  .game-start-btn:hover, .game-next-btn:hover { transform:translateY(-2px); box-shadow:0 5px 18px rgba(255,123,172,0.4); }
+
+  /* match */
   .match-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
   .match-col { display:flex; flex-direction:column; gap:8px; }
-  .match-item { padding:12px 14px; border-radius:12px; border:2px solid var(--border); background:white; cursor:pointer; font-weight:600; text-align:center; transition:all 0.18s; font-size:0.95rem; }
+  .match-item {
+    padding:12px 14px; border-radius:12px;
+    border:2px solid var(--border); background:white;
+    cursor:pointer; font-weight:600; text-align:center;
+    transition: all 0.18s; font-size:0.95rem;
+  }
   .match-item.jp-item { font-family:'Noto Sans JP',sans-serif; }
-  .match-item:hover:not(.matched) { border-color:var(--primary); background:var(--primary-light); }
-  .match-item.selected { border-color:var(--secondary); background:#E8FFF5; }
+  .match-item:hover:not(.matched) { border-color:var(--secondary); background:#FFF0F6; }
+  .match-item.selected { border-color:var(--secondary); background:#FFF0F6; }
   .match-item.matched  { border-color:var(--green); background:#E8FFF5; color:#0d6e4f; cursor:default; opacity:0.7; }
   .match-item.wrong-flash { background:#FFF0F0; border-color:#FF6B6B; }
   .match-meta { display:flex; gap:12px; margin-bottom:12px; font-size:0.88rem; }
-  .match-stat { background:var(--primary-light); padding:4px 14px; border-radius:8px; color:var(--primary); font-weight:700; }
+  .match-stat { background:#FFF0F6; padding:4px 14px; border-radius:8px; color:var(--secondary); font-weight:700; }
   .match-final { display:none; text-align:center; padding:24px; }
   .match-final.show { display:block; }
-  .fill-sentence { background:white; border-radius:16px; padding:18px 20px; margin-bottom:14px; border:2px solid var(--border); }
+
+  /* fill */
+  .fill-sentence {
+    background:white; border-radius:16px; padding:18px 20px;
+    margin-bottom:14px; border:2px solid var(--border);
+  }
   .fill-jp { font-family:'Noto Sans JP',sans-serif; font-size:1.1rem; margin-bottom:8px; line-height:2; }
-  .fill-blank { display:inline-block; min-width:100px; border-bottom:3px solid var(--primary); margin:0 4px; text-align:center; color:var(--primary); font-weight:700; padding:0 6px; }
+  .fill-blank {
+    display:inline-block;
+    min-width:100px; border-bottom:3px solid var(--secondary);
+    margin:0 4px; text-align:center;
+    color:var(--secondary); font-weight:700;
+    font-family:'Noto Sans JP',sans-serif;
+    padding:0 6px;
+  }
   .fill-chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
-  .chip { padding:7px 14px; border-radius:10px; border:2px solid var(--border); background:white; cursor:pointer; font-size:0.88rem; font-weight:600; font-family:'Noto Sans JP','Noto Sans KR',sans-serif; transition:all 0.15s; }
-  .chip:hover:not(.used) { border-color:var(--primary); background:var(--primary-light); }
+  .chip {
+    padding:7px 14px; border-radius:10px;
+    border:2px solid var(--border); background:white;
+    cursor:pointer; font-size:0.88rem; font-weight:600;
+    font-family:'Noto Sans JP','Noto Sans KR',sans-serif;
+    transition:all 0.15s;
+  }
+  .chip:hover:not(.used) { border-color:var(--secondary); background:#FFF0F6; }
   .chip.used { opacity:0.35; cursor:not-allowed; }
   .fill-fb { font-size:0.85rem; font-weight:700; padding:5px 10px; border-radius:8px; margin-top:6px; display:none; }
   .fill-fb.show { display:block; }
@@ -257,25 +658,27 @@
   .fill-fb.ng { background:#FFF0F0; color:#cc0000; }
   .fill-final { display:none; text-align:center; padding:24px; }
   .fill-final.show { display:block; }
+
+  /* ── UTILITY ── */
+  .divider { height:1px; background:var(--border); margin:20px 0; }
 </style>
 </head>
 <body>
 
 <!-- HEADER -->
 <div class="header">
-  <div class="header-emoji-row">🍜 🍱 🥢 🍣 🍜</div>
-  <div class="header-badge">5단원 · 일본어 I</div>
-  <div class="header-title">いただきます</div>
-  <div class="header-sub">잘 먹겠습니다 — 위치 표현 · 존재·장소 · 선택 표현 · 형용사 활용</div>
+  <div class="header-emoji-row">🎁 🎂 🌸 🍡 🎁</div>
+  <div class="header-badge">4단원 · 일본어 I</div>
+  <div class="header-title">ありがとう</div>
+  <div class="header-sub">고마워 — 축하·감사·비교 표현 · 숫자와 가격 · 형용사 과거형</div>
 </div>
 
 <!-- NAV -->
 <div class="nav-wrap">
   <div class="nav-tabs">
-    <button class="tab-btn active" onclick="switchTab('position',this)">📍 위치</button>
-    <button class="tab-btn" onclick="switchTab('exist',this)">🔍 존재·장소</button>
-    <button class="tab-btn" onclick="switchTab('select',this)">🍽️ 선택 표현</button>
-    <button class="tab-btn" onclick="switchTab('adj',this)">✨ 형용사 활용</button>
+    <button class="tab-btn active" onclick="switchTab('express',this)">🎉 축하·감사</button>
+    <button class="tab-btn" onclick="switchTab('number',this)">🔢 숫자·가격</button>
+    <button class="tab-btn" onclick="switchTab('compare',this)">⚖️ 비교</button>
     <button class="tab-btn" onclick="switchTab('vocab',this)">📖 어휘</button>
     <button class="tab-btn" onclick="switchTab('grammar',this)">📝 문법</button>
     <button class="tab-btn" onclick="switchTab('reading',this)">📚 읽고 이해하기</button>
@@ -283,233 +686,275 @@
   </div>
 </div>
 
-<!-- ═══ 1. 위치 표현 ═══ -->
-<div class="section active" id="sec-position">
+<!-- ═════════════════ 1. 축하·감사 표현 ═════════════════ -->
+<div class="section active" id="sec-express">
 
   <div class="tip-box">
     <div class="tip-icon">💡</div>
     <div class="tip-body">
-      <strong>위치 표현</strong>은 「[장소]に あります／います」와 함께 써요!<br>
-      <span style="font-family:'Noto Sans JP',sans-serif;">コンビニの <strong>となり</strong>に あります。</span> → 편의점 <strong>옆에</strong> 있습니다.
+      <strong>おめでとう vs ありがとう</strong><br>
+      <strong>おめでとう</strong> = 축하해 / <strong>ありがとう</strong> = 고마워<br>
+      <small style="color:#999;margin-top:4px;display:block;">뒤에 ございます를 붙이면 정중한 표현이 돼요 → おめでとうございます / ありがとうございます</small>
     </div>
+  </div>
+
+  <div class="show-all-wrap">
+    <button class="toggle-all-btn" id="express-toggle" onclick="toggleExpressAll()">🔍 번역 모두 보기</button>
+  </div>
+
+  <div class="greeting-grid">
+    <!-- 축하 표현 -->
+    <div class="greeting-group celebrate">
+      <div class="group-label">🎉 축하 표현</div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">おめでとう。</span>
+        <span class="casual-tag">반말</span>
+        <div class="kr-hint">축하해.</div>
+      </div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">おめでとうございます。</span>
+        <span class="formal-tag">공손</span>
+        <div class="kr-hint">축하합니다.</div>
+      </div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">たんじょうび おめでとう。</span>
+        <div class="kr-hint">생일 축하해.</div>
+      </div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">にゅうがく おめでとう。</span>
+        <div class="kr-hint">입학 축하해.</div>
+      </div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">ごうかく おめでとう。</span>
+        <div class="kr-hint">합격 축하해.</div>
+      </div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">そつぎょう おめでとう。</span>
+        <div class="kr-hint">졸업 축하해.</div>
+      </div>
+    </div>
+
+    <!-- 감사 표현 -->
+    <div class="greeting-group thanks">
+      <div class="group-label">🙏 감사 표현</div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">ありがとう。</span>
+        <span class="casual-tag">반말</span>
+        <div class="kr-hint">고마워.</div>
+      </div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">ありがとうございます。</span>
+        <span class="formal-tag">공손</span>
+        <div class="kr-hint">감사합니다.</div>
+      </div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">どうも ありがとう。</span>
+        <div class="kr-hint">정말 고마워.</div>
+      </div>
+    </div>
+
+    <!-- すみません 용법 -->
+    <div class="greeting-group sorry">
+      <div class="group-label">🙇 すみません 세 가지 뜻</div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">すみません。（사과）</span>
+        <div class="kr-hint">죄송합니다. / 미안해요.</div>
+      </div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">すみません。（부르기）</span>
+        <div class="kr-hint">저기요. / 여기요.</div>
+      </div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">すみません。（감사）</span>
+        <div class="kr-hint">고맙습니다. (폐를 끼쳐서 미안)</div>
+      </div>
+      <div style="margin-top:10px;padding:8px 10px;background:rgba(91,141,239,0.08);border-radius:10px;font-size:0.82rem;color:var(--text-light);line-height:1.6;">
+        💡 공통 의미: <strong>상대방에게 폐를 끼쳐서 미안하다</strong>는 뉘앙스가 담겨 있어요.
+      </div>
+    </div>
+
+    <!-- ～ございます -->
+    <div class="greeting-group formal">
+      <div class="group-label">✨ ～ございます (정중형)</div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">おはようございます。</span>
+        <div class="kr-hint">안녕하세요. 〈아침〉</div>
+      </div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">おめでとうございます。</span>
+        <div class="kr-hint">축하합니다.</div>
+      </div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">ありがとうございます。</span>
+        <div class="kr-hint">감사합니다.</div>
+      </div>
+      <div style="margin-top:10px;padding:8px 10px;background:rgba(155,93,229,0.08);border-radius:10px;font-size:0.82rem;color:var(--text-light);line-height:1.6;">
+        💡 おはよう・おめでとう・ありがとう 뒤에 ございます를 붙이면 정중한 표현이 돼요.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═════════════════ 2. 숫자·가격 ═════════════════ -->
+<div class="section" id="sec-number">
+
+  <div class="card">
+    <div class="card-title"><span>🔢</span> 개수 세기 (ひとつ～とお)</div>
+    <div class="num-grid" id="count-grid"></div>
   </div>
 
   <div class="card">
     <div class="card-title">
-      <span>📍</span> 위치를 나타내는 말
-      <button class="mode-btn" id="pos-toggle-btn" onclick="togglePosKr()" style="margin-left:auto;font-size:0.78rem;padding:5px 12px;">🔍 번역 보기</button>
+      <span>💴</span> 숫자 읽기 (100~10,000)
+      <button class="mode-btn" id="num-pron-btn" onclick="toggleNumPron()" style="margin-left:auto;font-size:0.78rem;padding:5px 12px;">🔊 발음 보기</button>
     </div>
-    <div class="position-grid" id="pos-grid"></div>
-  </div>
-</div>
-
-<!-- ═══ 2. 존재·장소 ═══ -->
-<div class="section" id="sec-exist">
-
-  <div class="exist-grid">
-    <div class="exist-block arimasu">
-      <div class="exist-title a">あります</div>
-      <div class="exist-sub">사물·식물 등 (움직이지 않는 것)</div>
-      <div class="exist-example" onclick="toggleExist(this)">
-        <div style="font-family:'Noto Sans JP',sans-serif;">トイレは コンビニの となりに あります。</div>
-        <div class="exist-kr">화장실은 편의점 옆에 있습니다.</div>
-      </div>
-      <div class="exist-example" onclick="toggleExist(this)">
-        <div style="font-family:'Noto Sans JP',sans-serif;">こたつの 上に みかんが あります。</div>
-        <div class="exist-kr">코타츠 위에 귤이 있습니다.</div>
-      </div>
-      <div class="exist-example" onclick="toggleExist(this)">
-        <div style="font-family:'Noto Sans JP',sans-serif;">としょかんは 学校の となりに あります。</div>
-        <div class="exist-kr">도서관은 학교 옆에 있습니다.</div>
-      </div>
+    <div style="overflow-x:auto;">
+      <table class="conj-table" style="min-width:500px;">
+        <thead>
+          <tr>
+            <th>숫자</th><th>읽기</th><th class="num-pron-col" style="display:none;">발음</th><th>숫자</th><th>읽기</th><th class="num-pron-col" style="display:none;">발음</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>100</td><td>ひゃく</td><td class="num-pron-col" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">햐쿠</td><td>200</td><td>にひゃく</td><td class="num-pron-col" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">니햐쿠</td></tr>
+          <tr><td class="highlight">300</td><td class="highlight">さんびゃく</td><td class="num-pron-col highlight" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">삼뱌쿠</td><td>400</td><td>よんひゃく</td><td class="num-pron-col" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">용햐쿠</td></tr>
+          <tr><td>500</td><td>ごひゃく</td><td class="num-pron-col" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">고햐쿠</td><td class="highlight">600</td><td class="highlight">ろっぴゃく</td><td class="num-pron-col highlight" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">롭퍄쿠</td></tr>
+          <tr><td>700</td><td>ななひゃく</td><td class="num-pron-col" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">나나햐쿠</td><td class="highlight">800</td><td class="highlight">はっぴゃく</td><td class="num-pron-col highlight" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">합퍄쿠</td></tr>
+          <tr><td>900</td><td>きゅうひゃく</td><td class="num-pron-col" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">큐-햐쿠</td><td>1,000</td><td>せん</td><td class="num-pron-col" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">센</td></tr>
+          <tr><td class="highlight">3,000</td><td class="highlight">さんぜん</td><td class="num-pron-col highlight" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">산젠</td><td>6,000</td><td>ろくせん</td><td class="num-pron-col" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">로쿠센</td></tr>
+          <tr><td class="highlight">8,000</td><td class="highlight">はっせん</td><td class="num-pron-col highlight" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">핫센</td><td>10,000</td><td>いちまん</td><td class="num-pron-col" style="display:none;color:#9B5DE5;font-style:italic;font-size:0.82rem;">이치만</td></tr>
+        </tbody>
+      </table>
     </div>
-    <div class="exist-block imasu">
-      <div class="exist-title i">います</div>
-      <div class="exist-sub">사람·동물 등 (살아서 움직이는 것)</div>
-      <div class="exist-example" onclick="toggleExist(this)">
-        <div style="font-family:'Noto Sans JP',sans-serif;">山田さんは としょかんの 前に います。</div>
-        <div class="exist-kr">야마다 씨는 도서관 앞에 있습니다.</div>
-      </div>
-      <div class="exist-example" onclick="toggleExist(this)">
-        <div style="font-family:'Noto Sans JP',sans-serif;">テレビの となりに ねこが います。</div>
-        <div class="exist-kr">TV 옆에 고양이가 있습니다.</div>
-      </div>
-      <div class="exist-example" onclick="toggleExist(this)">
-        <div style="font-family:'Noto Sans JP',sans-serif;">いぬは こうえんの 中に います。</div>
-        <div class="exist-kr">개는 공원 안에 있습니다.</div>
-      </div>
+    <div style="margin-top:12px;font-size:0.82rem;color:var(--text-light);background:#FFF9E0;border-radius:10px;padding:10px 14px;">
+      ⚠️ <strong>불규칙 주의!</strong> 300 = さんびゃく / 600 = ろっぴゃく / 800 = はっぴゃく / 3000 = さんぜん / 8000 = はっせん
     </div>
   </div>
 
   <div class="card">
-    <div class="card-title"><span>❓</span> 장소 묻기</div>
-    <div style="display:flex;gap:16px;flex-wrap:wrap;">
-      <div style="flex:1;min-width:180px;background:var(--primary-light);border-radius:14px;padding:16px;">
-        <div style="font-size:0.8rem;color:var(--text-light);margin-bottom:6px;">A 질문</div>
-        <div style="font-family:'Noto Sans JP',sans-serif;font-size:1.05rem;">としょかんは <span style="color:var(--primary);font-weight:600;">どこ</span>ですか。</div>
-        <div style="font-size:0.82rem;color:var(--text-light);margin-top:4px;">도서관은 어디입니까?</div>
-      </div>
-      <div style="flex:1;min-width:180px;background:#E8FFF5;border-radius:14px;padding:16px;">
-        <div style="font-size:0.8rem;color:var(--text-light);margin-bottom:6px;">B 대답</div>
-        <div style="font-family:'Noto Sans JP',sans-serif;font-size:1.05rem;">学校の <span style="color:var(--secondary);font-weight:600;">となり</span>に あります。</div>
-        <div style="font-size:0.82rem;color:var(--text-light);margin-top:4px;">학교 옆에 있습니다.</div>
+    <div class="card-title"><span>🛒</span> 가격 묻고 답하기 — 클릭하면 읽기 확인</div>
+
+    <div style="background:linear-gradient(135deg,#EEF3FF,#FFF0F6);border-radius:14px;padding:16px 18px;margin-bottom:16px;">
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:180px;">
+          <div style="font-size:0.8rem;color:var(--text-light);margin-bottom:6px;">A 질문</div>
+          <div style="font-family:'Noto Sans JP',sans-serif;font-size:1.05rem;">すみません。<span style="color:var(--secondary);font-weight:600;"><ruby>ペン<rt>ぺん</rt></ruby></span>は いくらですか。</div>
+          <div style="font-size:0.82rem;color:var(--text-light);margin-top:4px;">저기요. 펜은 얼마입니까?</div>
+        </div>
+        <div style="flex:1;min-width:180px;">
+          <div style="font-size:0.8rem;color:var(--text-light);margin-bottom:6px;">B 대답</div>
+          <div style="font-family:'Noto Sans JP',sans-serif;font-size:1.05rem;"><span style="color:var(--primary);font-weight:600;">３００<ruby>円<rt>えん</rt></ruby></span>です。</div>
+          <div style="font-size:0.82rem;color:var(--text-light);margin-top:4px;">300엔입니다.</div>
+        </div>
       </div>
     </div>
 
-    <div style="margin-top:14px;background:#FFF9E0;border-radius:12px;padding:12px 16px;font-size:0.88rem;line-height:1.8;">
-      ⚠️ <strong>あります vs います 구별법</strong><br>
-      책, 가방, 가게, 편의점 → <strong style="color:var(--primary);">あります</strong><br>
-      사람, 고양이, 개, 선생님 → <strong style="color:var(--secondary);">います</strong>
+    <div class="price-grid" id="price-grid"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span>🛍️</span> 물건 사기 — 개수 포함</div>
+    <div style="background:linear-gradient(135deg,#E8FFF5,#F0FFF8);border-radius:14px;padding:16px 18px;">
+      <div style="font-family:'Noto Sans JP',sans-serif;font-size:1.05rem;line-height:2.2;">
+        <span style="color:var(--purple);font-weight:600;">もも</span>を <span style="color:var(--secondary);font-weight:600;">ひとつ</span> ください。
+      </div>
+      <div style="font-size:0.85rem;color:var(--text-light);">복숭아를 하나 주세요.</div>
+      <div style="margin-top:12px;font-family:'Noto Sans JP',sans-serif;font-size:0.95rem;color:var(--text-light);">
+        → <strong style="color:var(--text);">[물건]を [개수] ください。</strong> 패턴으로 확장 가능해요!
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ═══ 3. 선택 표현 ═══ -->
-<div class="section" id="sec-select">
+<!-- ═════════════════ 3. 비교 표현 ═════════════════ -->
+<div class="section" id="sec-compare">
 
   <div class="tip-box">
-    <div class="tip-icon">🍽️</div>
+    <div class="tip-icon">⚖️</div>
     <div class="tip-body">
-      <strong>～に します</strong>는 여러 선택지 중 하나를 고를 때 써요.<br>
-      <span style="font-family:'Noto Sans JP',sans-serif;">何に しますか。</span> → 무엇으로 하겠습니까?<br>
-      <span style="font-family:'Noto Sans JP',sans-serif;">わたしは そばに します。</span> → 저는 메밀국수로 하겠습니다.
+      <strong>どちら 비교 패턴</strong><br>
+      <span style="font-family:'Noto Sans JP',sans-serif;">A と B と どちらが いいですか。</span> → A와 B 중 어느 쪽이 좋습니까?<br>
+      <span style="font-family:'Noto Sans JP',sans-serif;">A の ほうが いいです。</span> → A 쪽이 더 좋습니다.
     </div>
   </div>
 
-  <div class="select-box">
-    <div class="select-pattern">何に しますか。／ ～に します。</div>
-    <div class="select-kr">무엇으로 하겠습니까? / ~(으)로 하겠습니다. — 클릭하면 대답 확인</div>
-    <div class="select-example" onclick="toggleSelect(this)">
-      <div class="sel-q">A: 何に しますか。</div>
-      <div class="sel-a">B: わたしは そばに します。<br><span style="font-size:0.82rem;color:#aaa;">저는 메밀국수로 하겠습니다.</span></div>
+  <div class="compare-box">
+    <div class="compare-pattern">A と B と どちらが いいですか。</div>
+    <div class="compare-kr">A와 B 중 어느 쪽이 좋습니까? / どちら = 어느 쪽 / ほう = 쪽</div>
+    <div class="compare-example" onclick="toggleCompare(this)">
+      <div class="compare-q">A: いちごと まっちゃと どちらが いいですか。</div>
+      <div class="compare-a">B: いちごの ほうが いいです。<br><span style="font-size:0.82rem;color:#aaa;">딸기와 말차 중 어느 쪽이 좋습니까? / 딸기 쪽이 더 좋습니다.</span></div>
     </div>
-    <div class="select-example" onclick="toggleSelect(this)">
-      <div class="sel-q">A: 何に しますか。（메뉴판을 보며）</div>
-      <div class="sel-a">B: ぼくは これに します。<br><span style="font-size:0.82rem;color:#aaa;">나는 이것으로 하겠습니다.</span></div>
+    <div class="compare-example" onclick="toggleCompare(this)">
+      <div class="compare-q">A: <ruby>ラーメン<rt>らーめん</rt></ruby>と うどんと どちらが いいですか。</div>
+      <div class="compare-a">B: うどんの ほうが いいです。<br><span style="font-size:0.82rem;color:#aaa;">라멘과 우동 중 어느 쪽이 좋습니까? / 우동 쪽이 더 좋습니다.</span></div>
     </div>
-    <div class="select-example" onclick="toggleSelect(this)">
-      <div class="sel-q">A: のみものは 何に しますか。</div>
-      <div class="sel-a">B: コーラに します。<br><span style="font-size:0.82rem;color:#aaa;">콜라로 하겠습니다.</span></div>
+    <div class="compare-example" onclick="toggleCompare(this)">
+      <div class="compare-q">A: あかと しろと どちらが いいですか。</div>
+      <div class="compare-a">B: あかの ほうが いいです。<br><span style="font-size:0.82rem;color:#aaa;">빨간색과 흰색 중 어느 쪽이 좋습니까? / 빨간색 쪽이 더 좋습니다.</span></div>
     </div>
   </div>
 
   <div class="card">
-    <div class="card-title"><span>🍜</span> 식사 인사</div>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;">
-      <div style="flex:1;min-width:200px;background:linear-gradient(135deg,#FFF0E0,#FFF8F0);border:2px solid var(--primary);border-radius:16px;padding:18px;text-align:center;">
-        <div style="font-family:'Noto Sans JP',sans-serif;font-size:1.4rem;font-weight:700;color:var(--primary);">いただきます。</div>
-        <div style="font-size:0.8rem;color:#9B5DE5;font-style:italic;margin-top:4px;">이타다키마스.</div>
-        <div style="font-size:0.88rem;color:var(--text-light);margin-top:8px;">잘 먹겠습니다.<br><span style="font-size:0.78rem;">식사 전에 두 손 모아 인사</span></div>
-      </div>
-      <div style="flex:1;min-width:200px;background:linear-gradient(135deg,#E8FFF5,#F0FFF8);border:2px solid var(--secondary);border-radius:16px;padding:18px;text-align:center;">
-        <div style="font-family:'Noto Sans JP',sans-serif;font-size:1.4rem;font-weight:700;color:var(--secondary);">ごちそうさまでした。</div>
-        <div style="font-size:0.8rem;color:#9B5DE5;font-style:italic;margin-top:4px;">고치소-사마데시타.</div>
-        <div style="font-size:0.88rem;color:var(--text-light);margin-top:8px;">잘 먹었습니다.<br><span style="font-size:0.78rem;">식사 후에 두 손 모아 인사</span></div>
-      </div>
-    </div>
-    <div style="margin-top:14px;font-size:0.85rem;color:var(--text-light);background:#FFF9E0;border-radius:10px;padding:10px 14px;line-height:1.7;">
-      💡 일본인은 식사 전후에 <strong>두 손을 모아 합장</strong>하며 인사해요. 음식을 만들어 준 사람과 자연·생명에 대한 감사의 마음을 담은 표현이에요.
-    </div>
-  </div>
-</div>
+    <div class="card-title"><span>🔄</span> 형용사 과거형 활용</div>
 
-<!-- ═══ 4. 형용사 활용 ═══ -->
-<div class="section" id="sec-adj">
-
-  <div class="card">
-    <div class="card-title"><span>📊</span> い형용사 · な형용사 전체 활용표</div>
-    <div style="overflow-x:auto;">
-      <table class="adj-table">
+    <div style="overflow-x:auto;margin-bottom:16px;">
+      <table class="conj-table" style="min-width:500px;">
         <thead>
-          <tr><th>종류</th><th>기본형</th><th>정중형</th><th>연결형 (て형)</th><th>부정 정중형</th></tr>
+          <tr>
+            <th>종류</th><th>기본형</th><th>정중형 (현재)</th><th>과거 정중형</th>
+          </tr>
         </thead>
         <tbody>
           <tr>
-            <td rowspan="4" style="font-weight:700;color:var(--purple);background:#F5F0FF;">い형용사</td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">から<span class="hl">い</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">から<span class="hl">いです</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">から<span class="hl2">くて</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">から<span class="hl3">く ないです</span></td>
+            <td rowspan="4" style="font-weight:700;color:var(--primary);background:#EEF3FF;">い형용사</td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">おいし<span class="highlight">い</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">おいし<span class="highlight">いです</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">おいし<span class="highlight2">かったです</span></td>
           </tr>
           <tr>
-            <td style="font-family:'Noto Sans JP',sans-serif;">おも<span class="hl">い</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">おも<span class="hl">いです</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">おも<span class="hl2">くて</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">おも<span class="hl3">く ないです</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">こわ<span class="highlight">い</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">こわ<span class="highlight">いです</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">こわ<span class="highlight2">かったです</span></td>
           </tr>
           <tr>
-            <td style="font-family:'Noto Sans JP',sans-serif;">安<span class="hl">い</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">安<span class="hl">いです</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">安<span class="hl2">くて</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">安<span class="hl3">く ないです</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">うれし<span class="highlight">い</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">うれし<span class="highlight">いです</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">うれし<span class="highlight2">かったです</span></td>
+          </tr>
+          <tr style="background:#FFF9E0;">
+            <td style="font-family:'Noto Sans JP',sans-serif;color:#cc3300;font-weight:700;">い<span class="highlight">い</span> ⚠️불규칙</td>
+            <td style="font-family:'Noto Sans JP',sans-serif;color:#cc3300;">い<span class="highlight">いです</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;color:#cc3300;font-weight:700;">よ<span class="highlight2">かったです</span></td>
           </tr>
           <tr>
-            <td style="font-family:'Noto Sans JP',sans-serif;">高<span class="hl">い</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">高<span class="hl">いです</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">高<span class="hl2">くて</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">高<span class="hl3">く ないです</span></td>
+            <td rowspan="3" style="font-weight:700;color:var(--purple);background:#F5F0FF;">な형용사</td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>元気<rt>げんき</rt></ruby><span class="highlight">だ</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>元気<rt>げんき</rt></ruby><span class="highlight">です</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>元気<rt>げんき</rt></ruby><span class="highlight2">でした</span></td>
           </tr>
           <tr>
-            <td rowspan="3" style="font-weight:700;color:#FF7BAC;background:#FFF0F6;">な형용사</td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">しずか<span class="hl">だ</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">しずか<span class="hl">です</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">しずか<span class="hl2">で</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">しずか<span class="hl3">じゃ ないです</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">たいへん<span class="highlight">だ</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">たいへん<span class="highlight">です</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">たいへん<span class="highlight2">でした</span></td>
           </tr>
           <tr>
-            <td style="font-family:'Noto Sans JP',sans-serif;">しんせつ<span class="hl">だ</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">しんせつ<span class="hl">です</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">しんせつ<span class="hl2">で</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">しんせつ<span class="hl3">じゃ ないです</span></td>
-          </tr>
-          <tr>
-            <td style="font-family:'Noto Sans JP',sans-serif;">とくい<span class="hl">だ</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">とくい<span class="hl">です</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">とくい<span class="hl2">で</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">とくい<span class="hl3">じゃ ないです</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">にぎやか<span class="highlight">だ</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">にぎやか<span class="highlight">です</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">にぎやか<span class="highlight2">でした</span></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div style="margin-top:12px;font-size:0.85rem;line-height:1.9;background:#FFF9E0;border-radius:10px;padding:10px 14px;">
-      🔑 <strong>い형용사 연결형</strong>: い → <strong style="color:var(--purple);">くて</strong> (安い + おいしい → 安<strong style="color:var(--purple);">くて</strong> おいしい)<br>
-      🔑 <strong>な형용사 연결형</strong>: だ → <strong style="color:var(--purple);">で</strong> (しずかだ + きれいだ → しずか<strong style="color:var(--purple);">で</strong> きれいです)<br>
-      🔑 <strong>い형용사 부정형</strong>: い → <strong style="color:#e74c3c;">く ないです</strong> &nbsp;&nbsp; <strong>な형용사 부정형</strong>: だ → <strong style="color:#e74c3c;">じゃ ないです</strong>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="card-title"><span>💬</span> 형용사 예문 <small style="font-weight:400;color:#aaa;font-size:0.8rem;margin-left:4px;">클릭하면 번역</small></div>
-    <div class="example-list">
-      <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">この ラーメンは からく ないです。</div>
-        <div class="ex-kr">이 라멘은 맵지 않습니다.</div>
-      </div>
-      <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">この 店、安くて おいしいですね。</div>
-        <div class="ex-kr">이 가게, 싸고 맛있네요.</div>
-      </div>
-      <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">白くて かわいいです。</div>
-        <div class="ex-kr">하얗고 귀엽습니다.</div>
-      </div>
-      <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">あの 店は しずかじゃ ないです。</div>
-        <div class="ex-kr">저 가게는 조용하지 않습니다.</div>
-      </div>
-      <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">えいごは あまり とくいじゃ ないです。</div>
-        <div class="ex-kr">영어는 그다지 잘하지 않습니다.</div>
-      </div>
-      <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">しんせつで すてきです。</div>
-        <div class="ex-kr">친절하고 멋집니다.</div>
-      </div>
+    <div style="background:#FFF9E0;border-radius:12px;padding:12px 16px;font-size:0.88rem;line-height:1.8;">
+      ⚠️ <strong>いい의 과거형은 よかった</strong>예요! いかった라고 쓰지 않도록 주의해요.<br>
+      い형용사: い → <strong style="color:var(--purple);">かったです</strong> &nbsp;|&nbsp; な형용사: だ → <strong style="color:var(--purple);">でした</strong>
     </div>
   </div>
 </div>
 
-<!-- ═══ 5. 어휘 ═══ -->
+<!-- ═════════════════ 4. 어휘 ═════════════════ -->
 <div class="section" id="sec-vocab">
   <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
     <button class="toggle-all-btn" id="vocab-toggle" onclick="toggleVocabAll()">🔍 뜻 모두 보기</button>
@@ -518,107 +963,121 @@
   <div class="vocab-grid" id="vocab-grid"></div>
 </div>
 
-<!-- ═══ 6. 문법 ═══ -->
+<!-- ═════════════════ 5. 문법 ═════════════════ -->
 <div class="section" id="sec-grammar">
 
   <div class="grammar-block">
-    <div class="grammar-pattern">[장소]に あります／います。</div>
+    <div class="grammar-pattern">A と B と どちらが いいですか。</div>
     <div class="grammar-desc">
-      <strong>「~에 있습니다」</strong> — 존재와 위치를 나타내는 표현이에요.<br>
-      に = ~에 (위치), あります = 있습니다(사물), います = 있습니다(사람·동물)
+      <strong>「A와 B 중 어느 쪽이 좋습니까?」</strong> — 두 가지를 비교할 때 사용해요.<br>
+      と = ~와/과, どちら = 어느 쪽, が = 주어 조사, ほう = 쪽
     </div>
     <div class="example-list">
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">トイレは コンビニの となりに あります。</div>
-        <div class="ex-kr">화장실은 편의점 옆에 있습니다.</div>
+        <div class="ex-jp">いちごと まっちゃと どちらが いいですか。</div>
+        <div class="ex-kr">딸기와 말차 중 어느 쪽이 좋습니까?</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">山田さんは こうえんの 前に います。</div>
-        <div class="ex-kr">야마다 씨는 공원 앞에 있습니다.</div>
-      </div>
-      <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">トイレは どこですか。</div>
-        <div class="ex-kr">화장실은 어디입니까?</div>
+        <div class="ex-jp">いちごの ほうが いいです。</div>
+        <div class="ex-kr">딸기 쪽이 더 좋습니다.</div>
       </div>
     </div>
   </div>
 
   <div class="grammar-block" style="border-left-color:var(--secondary);">
-    <div class="grammar-pattern" style="background:#E8FFF5;color:#06B86F;">何に しますか。／ ～に します。</div>
+    <div class="grammar-pattern" style="background:#FFF0F6;color:#FF7BAC;">[물건]を [개수] ください。</div>
     <div class="grammar-desc">
-      <strong>「무엇으로 하겠습니까? / ~(으)로 하겠습니다」</strong> — 선택할 때 쓰는 표현이에요.<br>
-      に = ~으로 (선택의 방향), します = 하겠습니다
+      <strong>「~을/를 [개수] 주세요」</strong> — 물건을 살 때 쓰는 표현이에요.<br>
+      を = ~을/를 (목적격 조사), ください = 주세요
     </div>
     <div class="example-list">
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">何に しますか。</div>
-        <div class="ex-kr">무엇으로 하겠습니까?</div>
+        <div class="ex-jp">ももを ひとつ ください。</div>
+        <div class="ex-kr">복숭아를 하나 주세요.</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">わたしは そばに します。</div>
-        <div class="ex-kr">저는 메밀국수로 하겠습니다.</div>
+        <div class="ex-jp">りんごを みっつ ください。</div>
+        <div class="ex-kr">사과를 세 개 주세요.</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">ぼくは これに します。</div>
-        <div class="ex-kr">나는 이것으로 하겠습니다.</div>
+        <div class="ex-jp">これを ひとつ ください。</div>
+        <div class="ex-kr">이것을 하나 주세요.</div>
       </div>
     </div>
   </div>
 
   <div class="grammar-block" style="border-left-color:var(--purple);">
-    <div class="grammar-pattern" style="background:#F5F0FF;color:#9B5DE5;">い형용사くて / な형용사で</div>
+    <div class="grammar-pattern" style="background:#F5F0FF;color:#9B5DE5;">い형용사 과거형: ～かったです</div>
     <div class="grammar-desc">
-      <strong>「~하고 ~합니다」</strong> — 두 가지 성질을 이어줄 때 쓰는 연결형이에요.<br>
-      い형용사: い → <strong>くて</strong> &nbsp;&nbsp;|&nbsp;&nbsp; な형용사: だ → <strong>で</strong>
+      <strong>「~했습니다」</strong> — い형용사의 과거 정중형이에요.<br>
+      어미 い를 빼고 → <strong>かったです</strong> 붙이기<br>
+      ⚠️ 예외: いい → <strong style="color:var(--secondary);">よかったです</strong> (いかった ✗)
     </div>
     <div class="example-list">
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">安くて おいしいです。</div>
-        <div class="ex-kr">싸고 맛있습니다. (安い → 安くて)</div>
+        <div class="ex-jp">とても おいしかったです。</div>
+        <div class="ex-kr">매우 맛있었습니다.</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">しずかで きれいです。</div>
-        <div class="ex-kr">조용하고 예쁩니다. (しずかだ → しずかで)</div>
+        <div class="ex-jp">とても うれしかったです。</div>
+        <div class="ex-kr">매우 기뻤습니다.</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">おもくて 大きいです。</div>
-        <div class="ex-kr">무겁고 큽니다.</div>
+        <div class="ex-jp">よかったです。</div>
+        <div class="ex-kr">좋았습니다. (いい의 과거형)</div>
       </div>
     </div>
   </div>
 
-  <div class="grammar-block" style="border-left-color:#e74c3c;">
-    <div class="grammar-pattern" style="background:#FFF0F0;color:#e74c3c;">～く ないです／～じゃ ないです</div>
+  <div class="grammar-block" style="border-left-color:var(--accent);">
+    <div class="grammar-pattern" style="background:#FFF9E0;color:#c8860a;">な형용사 과거형: ～でした</div>
     <div class="grammar-desc">
-      <strong>「~하지 않습니다」</strong> — 형용사의 부정 정중형이에요.<br>
-      い형용사: い → <strong>く ないです</strong> &nbsp;&nbsp;|&nbsp;&nbsp; な형용사: だ → <strong>じゃ ないです</strong><br>
-      <span style="color:#e74c3c;">あまり</span>(그다지) + 부정형 → 「그다지 ~하지 않습니다」
+      <strong>「~였습니다」</strong> — な형용사의 과거 정중형이에요.<br>
+      어미 だ를 빼고 → <strong>でした</strong> 붙이기
     </div>
     <div class="example-list">
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">いいえ、からく ないです。</div>
-        <div class="ex-kr">아니요, 맵지 않습니다.</div>
+        <div class="ex-jp">まちは にぎやかでした。</div>
+        <div class="ex-kr">거리는 북적였습니다.</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">いいえ、あまり 高く ないです。</div>
-        <div class="ex-kr">아니요, 그다지 비싸지 않습니다.</div>
+        <div class="ex-jp">とても たいへんでした。</div>
+        <div class="ex-kr">매우 힘들었습니다.</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">いいえ、あまり しずかじゃ ないです。</div>
-        <div class="ex-kr">아니요, 그다지 조용하지 않습니다.</div>
+        <div class="ex-jp"><ruby>元気<rt>げんき</rt></ruby>でした。</div>
+        <div class="ex-kr">건강했습니다.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grammar-block" style="border-left-color:var(--green);">
+    <div class="grammar-pattern" style="background:#E8FFF5;color:#06D6A0;">[물건]は いくらですか。</div>
+    <div class="grammar-desc">
+      <strong>「~은/는 얼마입니까?」</strong> — 가격을 물어볼 때 쓰는 표현이에요.<br>
+      いくら = 얼마, ～円（えん）= ~엔 (일본 화폐 단위)
+    </div>
+    <div class="example-list">
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">すみません。これ いくらですか。</div>
+        <div class="ex-kr">저기요. 이것 얼마입니까?</div>
+      </div>
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">６００<ruby>円<rt>えん</rt></ruby>です。</div>
+        <div class="ex-kr">600엔입니다.</div>
       </div>
     </div>
   </div>
 
 </div>
 
-<!-- ═══ 7. 읽고 이해하기 ═══ -->
+<!-- ═════════════════ 6. 읽고 이해하기 ═════════════════ -->
 <div class="section" id="sec-reading">
 
   <div class="tip-box">
-    <div class="tip-icon">🍜</div>
+    <div class="tip-icon">🎁</div>
     <div class="tip-body">
-      <strong>상황:</strong> 일본에서 만난 친구들이 식당에서 음식을 먹습니다.<br>
+      <strong>상황:</strong> 리코와 하루토는 소미에게 줄 선물을 과자 가게에서 삽니다.<br>
       <small style="color:#999;">각 대사를 클릭하면 번역이 나타납니다</small>
     </div>
   </div>
@@ -635,48 +1094,49 @@
       <button class="toggle-all-btn" id="read-reveal-btn" onclick="toggleReadAll()" style="margin:0;">🔍 번역 모두 보기</button>
     </div>
 
-    <div style="font-size:0.78rem;color:#b2bec3;text-align:right;margin-bottom:10px;">번역 확인: <span id="read-prog-count">0</span> / 14</div>
+    <div style="font-size:0.78rem;color:#b2bec3;text-align:right;margin-bottom:10px;">번역 확인: <span id="read-prog-count">0</span> / 12</div>
     <div class="quiz-progress-wrap" style="margin-bottom:16px;"><div class="quiz-progress-bar" id="read-prog-bar" style="width:0%"></div></div>
 
-    <div class="scene-label">🎬 장면 1 — 공항 & 식당 도착</div>
+    <!-- 장면 1: 편지와 기쁨 -->
+    <div class="scene-label">🎬 장면 1 — 편지 & 쇼핑 준비</div>
 
     <div class="r-line" onclick="toggleRLine(this)">
       <div class="r-num">①</div>
-      <div class="speaker-chip sp-haruto">하루토</div>
+      <div class="speaker-chip sp-somi">소미</div>
       <div class="r-body">
-        <div class="line-jp">日本へ ようこそ！</div>
-        <div class="r-pron">니혼에 요-코소!</div>
-        <div class="r-kr">일본에 온 걸 환영해!</div>
+        <div class="line-jp">りこちゃんへ。<ruby>元気<rt>げんき</rt></ruby>ですか。たんじょうび おめでとう！<ruby>ソミ<rt>そみ</rt></ruby>より</div>
+        <div class="r-pron">리코챵에. 겡키데스카. 탄조-비 오메데토-! 소미요리</div>
+        <div class="r-kr">리코에게. 잘 지내? 생일 축하해! 소미로부터</div>
         <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">ようこそ</span><span class="vc2-kr">환영합니다</span></div>
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～へ</span><span class="vc2-kr">~에 (방향)</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～へ</span><span class="vc2-kr">~에게</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp"><ruby>元気<rt>げんき</rt></ruby>ですか</span><span class="vc2-kr">잘 지내요?</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～より</span><span class="vc2-kr">~로부터</span></div>
         </div>
       </div>
     </div>
 
     <div class="r-line" onclick="toggleRLine(this)">
       <div class="r-num">②</div>
-      <div class="speaker-chip sp-haruto">하루토</div>
+      <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
-        <div class="line-jp">ソミちゃん、ジホくん！</div>
-        <div class="r-pron">소미챵, 지호쿤!</div>
-        <div class="r-kr">소미야, 지호야!</div>
+        <div class="line-jp">わあ、うれしい！</div>
+        <div class="r-pron">와-, 우레시-!</div>
+        <div class="r-kr">와, 기뻐!</div>
         <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～ちゃん</span><span class="vc2-kr">~야 (여성·친근)</span></div>
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～くん</span><span class="vc2-kr">~군 (남성·친근)</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">うれしい</span><span class="vc2-kr">기쁘다</span></div>
         </div>
       </div>
     </div>
 
     <div class="r-line" onclick="toggleRLine(this)">
       <div class="r-num">③</div>
-      <div class="speaker-chip sp-riko">리코</div>
+      <div class="speaker-chip sp-clerk">점원</div>
       <div class="r-body">
-        <div class="line-jp">いろいろ ありますね。</div>
-        <div class="r-pron">이로이로 아리마스네.</div>
-        <div class="r-kr">여러 가지 있네요.</div>
+        <div class="line-jp">いらっしゃいませ。</div>
+        <div class="r-pron">이랏샤이마세.</div>
+        <div class="r-kr">어서 오세요.</div>
         <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">いろいろ</span><span class="vc2-kr">여러 가지</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">いらっしゃいませ</span><span class="vc2-kr">어서 오세요</span></div>
         </div>
       </div>
     </div>
@@ -685,81 +1145,88 @@
       <div class="r-num">④</div>
       <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
-        <div class="line-jp">何に しますか。</div>
-        <div class="r-pron">나니니 시마스카.</div>
-        <div class="r-kr">무엇으로 하겠습니까?</div>
+        <div class="line-jp">どんな おかしが いいかな……。</div>
+        <div class="r-pron">돈나 오카시가 이-카나……</div>
+        <div class="r-kr">어떤 과자가 좋을까……</div>
         <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">何</span><span class="vc2-kr">무엇</span></div>
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～に します</span><span class="vc2-kr">~(으)로 하겠습니다</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">どんな</span><span class="vc2-kr">어떤</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">おかし</span><span class="vc2-kr">과자</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～かな</span><span class="vc2-kr">~일까, ~인 것 같아</span></div>
         </div>
       </div>
     </div>
+
+    <!-- 장면 2: 비교와 구매 -->
+    <div class="scene-label">🎬 장면 2 — 비교 & 구매</div>
 
     <div class="r-line" onclick="toggleRLine(this)">
       <div class="r-num">⑤</div>
-      <div class="speaker-chip sp-jiho">지호</div>
+      <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
-        <div class="line-jp">ぼくは これに します。</div>
-        <div class="r-pron">보쿠와 코레니 시마스.</div>
-        <div class="r-kr">나는 이것으로 하겠습니다.</div>
+        <div class="line-jp">せんぱいは いちごと まっちゃと どちらが いいですか。</div>
+        <div class="r-pron">센파이와 이치고토 맛챠토 도치라가 이-데스카.</div>
+        <div class="r-kr">선배는 딸기와 말차 중 어느 쪽이 좋아요?</div>
         <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">これ</span><span class="vc2-kr">이것</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">せんぱい</span><span class="vc2-kr">선배</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">いちご</span><span class="vc2-kr">딸기</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">まっちゃ</span><span class="vc2-kr">말차</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">どちら</span><span class="vc2-kr">어느 쪽</span></div>
         </div>
       </div>
     </div>
 
-    <div class="scene-label">🎬 장면 2 — 식사 & 대화</div>
-
     <div class="r-line" onclick="toggleRLine(this)">
       <div class="r-num">⑥</div>
-      <div class="speaker-chip sp-clerk">점원</div>
+      <div class="speaker-chip sp-haruto">하루토</div>
       <div class="r-body">
-        <div class="line-jp">おまたせしました。</div>
-        <div class="r-pron">오마타세시마시타.</div>
-        <div class="r-kr">오래 기다리셨습니다.</div>
+        <div class="line-jp">うーん、ぼくは いちごの ほうが いいかな。</div>
+        <div class="r-pron">우-ㄴ, 보쿠와 이치고노 호-가 이-카나.</div>
+        <div class="r-kr">음, 나는 딸기 쪽이 더 좋은 것 같아.</div>
         <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">おまたせしました</span><span class="vc2-kr">오래 기다리셨습니다</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">うーん</span><span class="vc2-kr">음 (고민할 때)</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">ほう</span><span class="vc2-kr">쪽</span></div>
         </div>
       </div>
     </div>
 
     <div class="r-line" onclick="toggleRLine(this)">
       <div class="r-num">⑦</div>
-      <div class="speaker-chip sp-somi">소미</div>
+      <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
-        <div class="line-jp">いただきます。</div>
-        <div class="r-pron">이타다키마스.</div>
-        <div class="r-kr">잘 먹겠습니다.</div>
+        <div class="line-jp">そうですね。</div>
+        <div class="r-pron">소-데스네.</div>
+        <div class="r-kr">그렇군요.</div>
         <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">いただきます</span><span class="vc2-kr">잘 먹겠습니다</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">そうですね</span><span class="vc2-kr">그렇군요 / 맞아요</span></div>
         </div>
       </div>
     </div>
 
     <div class="r-line" onclick="toggleRLine(this)">
       <div class="r-num">⑧</div>
-      <div class="speaker-chip sp-somi">소미</div>
+      <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
-        <div class="line-jp">この 店、安くて おいしいですね。</div>
-        <div class="r-pron">코노 미세, 야스쿠테 오이시-데스네.</div>
-        <div class="r-kr">이 가게, 싸고 맛있네요.</div>
+        <div class="line-jp">あのう、すみません。これ いくらですか。</div>
+        <div class="r-pron">아노-, 스미마셍. 코레 이쿠라데스카.</div>
+        <div class="r-kr">저기요, 실례합니다. 이것 얼마입니까?</div>
         <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">安くて</span><span class="vc2-kr">싸고 (연결형)</span></div>
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">おいしい</span><span class="vc2-kr">맛있다</span></div>
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～ね</span><span class="vc2-kr">~네요 (동의·감탄)</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">あのう</span><span class="vc2-kr">저기요 (말걸기)</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">すみません</span><span class="vc2-kr">실례합니다</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">これ</span><span class="vc2-kr">이것</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">いくら</span><span class="vc2-kr">얼마</span></div>
         </div>
       </div>
     </div>
 
     <div class="r-line" onclick="toggleRLine(this)">
       <div class="r-num">⑨</div>
-      <div class="speaker-chip sp-haruto">하루토</div>
+      <div class="speaker-chip sp-clerk">점원</div>
       <div class="r-body">
-        <div class="line-jp">うんうん。</div>
-        <div class="r-pron">운운.</div>
-        <div class="r-kr">응응. (맞아맞아.)</div>
+        <div class="line-jp">６００<ruby>円<rt>えん</rt></ruby>です。</div>
+        <div class="r-pron">롭퍄쿠엔데스.</div>
+        <div class="r-kr">600엔입니다.</div>
         <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">うんうん</span><span class="vc2-kr">응응 (맞아맞아)</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～円（えん）</span><span class="vc2-kr">~엔 (화폐 단위)</span></div>
         </div>
       </div>
     </div>
@@ -768,71 +1235,42 @@
       <div class="r-num">⑩</div>
       <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
-        <div class="line-jp">ジホくん、からいですか。</div>
-        <div class="r-pron">지호쿤, 카라이데스카.</div>
-        <div class="r-kr">지호야, 맵습니까?</div>
+        <div class="line-jp">ひとつ ください。</div>
+        <div class="r-pron">히토츠 쿠다사이.</div>
+        <div class="r-kr">하나 주세요.</div>
         <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">からい</span><span class="vc2-kr">맵다</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">ひとつ</span><span class="vc2-kr">하나, 한 개</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">ください</span><span class="vc2-kr">주세요</span></div>
         </div>
       </div>
     </div>
+
+    <!-- 장면 3: 감사 편지 -->
+    <div class="scene-label">🎬 장면 3 — 감사 편지</div>
 
     <div class="r-line" onclick="toggleRLine(this)">
       <div class="r-num">⑪</div>
-      <div class="speaker-chip sp-jiho">지호</div>
+      <div class="speaker-chip sp-clerk">점원</div>
       <div class="r-body">
-        <div class="line-jp">いいえ、ぜんぜん からく ないです。だいじょうぶです。</div>
-        <div class="r-pron">이-에, 젠젠 카라쿠 나이데스. 다이죠-부데스.</div>
-        <div class="r-kr">아니요, 전혀 맵지 않습니다. 괜찮습니다.</div>
-        <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">ぜんぜん</span><span class="vc2-kr">전혀</span></div>
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">からく ないです</span><span class="vc2-kr">맵지 않습니다</span></div>
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">だいじょうぶ</span><span class="vc2-kr">괜찮다</span></div>
-        </div>
+        <div class="line-jp">はい。</div>
+        <div class="r-pron">하이.</div>
+        <div class="r-kr">네. (여기 있습니다.)</div>
+        <div class="r-vocab"></div>
       </div>
     </div>
-
-    <div class="scene-label">🎬 장면 3 — 식사 후</div>
 
     <div class="r-line" onclick="toggleRLine(this)">
       <div class="r-num">⑫</div>
-      <div class="speaker-chip sp-somi">소미</div>
+      <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
-        <div class="line-jp">ああ、おなかが いっぱい。</div>
-        <div class="r-pron">아-, 오나카가 입빠이.</div>
-        <div class="r-kr">아, 배가 불러.</div>
+        <div class="line-jp">たんじょうびの <ruby>プレゼント<rt>ぷれぜんと</rt></ruby>、ありがとう！とても うれしかったです。これは <ruby>日本<rt>にほん</rt></ruby>の <ruby>有名<rt>ゆうめい</rt></ruby>な おかしです。</div>
+        <div class="r-pron">탄조-비노 푸레젠토, 아리가토-! 토테모 우레시캇타데스. 코레와 니혼노 유-메-나 오카시데스.</div>
+        <div class="r-kr">생일 선물, 고마워! 매우 기뻤어. 이것은 일본의 유명한 과자야.</div>
         <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">おなかが いっぱい</span><span class="vc2-kr">배가 부르다</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="r-line" onclick="toggleRLine(this)">
-      <div class="r-num">⑬</div>
-      <div class="speaker-chip sp-jiho">지호</div>
-      <div class="r-body">
-        <div class="line-jp">あのう、トイレは どこですか。</div>
-        <div class="r-pron">아노-, 토이레와 도코데스카.</div>
-        <div class="r-kr">저기요, 화장실은 어디입니까?</div>
-        <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">あのう</span><span class="vc2-kr">저기요</span></div>
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">トイレ</span><span class="vc2-kr">화장실</span></div>
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">どこ</span><span class="vc2-kr">어디</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="r-line" onclick="toggleRLine(this)">
-      <div class="r-num">⑭</div>
-      <div class="speaker-chip sp-clerk">점원</div>
-      <div class="r-body">
-        <div class="line-jp">トイレは コンビニの となりに あります。</div>
-        <div class="r-pron">토이레와 콘비니노 토나리니 아리마스.</div>
-        <div class="r-kr">화장실은 편의점 옆에 있습니다.</div>
-        <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">コンビニ</span><span class="vc2-kr">편의점</span></div>
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">となり</span><span class="vc2-kr">옆</span></div>
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">あります</span><span class="vc2-kr">있습니다(사물)</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp"><ruby>プレゼント<rt>ぷれぜんと</rt></ruby></span><span class="vc2-kr">선물</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">うれしかったです</span><span class="vc2-kr">기뻤습니다</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp"><ruby>有名<rt>ゆうめい</rt></ruby>な</span><span class="vc2-kr">유명한</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">おかし</span><span class="vc2-kr">과자</span></div>
         </div>
       </div>
     </div>
@@ -840,26 +1278,30 @@
 
   <div class="card">
     <div class="card-title"><span>📝</span> 내용 확인 <small style="font-weight:400;color:#aaa;font-size:0.8rem;">클릭하면 정답 확인</small></div>
+
     <div class="comp-q-item" onclick="this.querySelector('.comp-ans2').classList.toggle('show')">
-      <div class="comp-q-text2"><span class="comp-num">1</span>식사하기 전에 하는 인사말은 무엇입니까?</div>
-      <div class="comp-ans2"><span style="font-family:'Noto Sans JP',sans-serif;font-weight:600;">いただきます。</span> — 대화 ⑦에서 소미가 사용했어요.</div>
+      <div class="comp-q-text2"><span class="comp-num">1</span>편지에서 소미가 리코에게 한 축하 표현을 찾아봅시다.</div>
+      <div class="comp-ans2"><span style="font-family:'Noto Sans JP',sans-serif;font-weight:600;">たんじょうび おめでとう！</span> — 대화 ①에서 소미가 편지에 썼어요.</div>
     </div>
+
     <div class="comp-q-item" onclick="this.querySelector('.comp-ans2').classList.toggle('show')">
-      <div class="comp-q-text2"><span class="comp-num">2</span>지호는 음식을 먹으며 맵다고 했습니까?</div>
-      <div class="comp-ans2"><span style="font-family:'Noto Sans JP',sans-serif;font-weight:600;">いいえ、ぜんぜん からく ないです。</span> — 전혀 맵지 않다고 했어요. 대화 ⑪</div>
+      <div class="comp-q-text2"><span class="comp-num">2</span>하루토가 선택한 맛은 무엇입니까?</div>
+      <div class="comp-ans2"><span style="font-family:'Noto Sans JP',sans-serif;font-weight:600;">いちごの ほうが いいかな。</span> — 딸기 쪽이 더 좋다고 했어요. 대화 ⑥</div>
     </div>
+
     <div class="comp-q-item" onclick="this.querySelector('.comp-ans2').classList.toggle('show')">
-      <div class="comp-q-text2"><span class="comp-num">3</span>화장실은 어디에 있습니까?</div>
-      <div class="comp-ans2"><span style="font-family:'Noto Sans JP',sans-serif;font-weight:600;">コンビニの となりに あります。</span> — 편의점 옆에 있어요. 대화 ⑭</div>
+      <div class="comp-q-text2"><span class="comp-num">3</span>리코가 산 과자는 얼마입니까?</div>
+      <div class="comp-ans2"><span style="font-family:'Noto Sans JP',sans-serif;font-weight:600;">６００<ruby>円<rt>えん</rt></ruby></span>입니다. — 대화 ⑨에서 점원이 알려줬어요.</div>
     </div>
+
     <div class="comp-q-item" onclick="this.querySelector('.comp-ans2').classList.toggle('show')">
-      <div class="comp-q-text2"><span class="comp-num">4</span>소미가 식당에 대해 한 말은?</div>
-      <div class="comp-ans2"><span style="font-family:'Noto Sans JP',sans-serif;font-weight:600;">この 店、安くて おいしいですね。</span> — 싸고 맛있다고 했어요. い형용사 연결형이 쓰였어요. 대화 ⑧</div>
+      <div class="comp-q-text2"><span class="comp-num">4</span>감사 편지에서 리코가 기쁨을 표현한 문장은?</div>
+      <div class="comp-ans2"><span style="font-family:'Noto Sans JP',sans-serif;font-weight:600;">とても うれしかったです。</span> — い형용사 과거형이 쓰인 표현이에요. 대화 ⑫</div>
     </div>
   </div>
 </div>
 
-<!-- ═══ 8. 게임 ═══ -->
+<!-- ═════════════════ 7. 게임 ═════════════════ -->
 <div class="section" id="sec-game">
   <div class="game-selector">
     <button class="game-tab active" onclick="switchGame('quiz',this)">❓ 퀴즈</button>
@@ -867,9 +1309,13 @@
     <button class="game-tab" onclick="switchGame('fill',this)">✏️ 빈칸 채우기</button>
   </div>
 
+  <!-- QUIZ -->
   <div class="game-area active" id="game-quiz">
     <div class="card">
-      <div class="quiz-meta"><span id="q-counter">1/10</span><span id="q-score">0점</span></div>
+      <div class="quiz-meta">
+        <span id="q-counter">1/10</span>
+        <span id="q-score">0점</span>
+      </div>
       <div class="quiz-progress-wrap"><div class="quiz-progress-bar" id="q-bar" style="width:0%"></div></div>
       <div class="quiz-q-card">
         <div class="quiz-q-text" id="q-question">시작 버튼을 눌러주세요</div>
@@ -878,7 +1324,7 @@
       <div class="quiz-options" id="q-opts"></div>
       <div class="quiz-feedback" id="q-fb"></div>
       <div class="quiz-final" id="q-final">
-        <div style="font-size:2.5rem;" id="q-emoji">🎉</div>
+        <div class="quiz-final-emoji" id="q-emoji">🎉</div>
         <div class="quiz-final-score"><span id="q-final-num">0</span><span style="font-size:1.5rem;color:var(--text-light)">/10</span></div>
         <div id="q-final-msg" style="margin-top:8px;color:var(--text-light);font-size:0.95rem;"></div>
         <button class="game-start-btn" onclick="startQuiz()">🔄 다시 하기</button>
@@ -888,25 +1334,32 @@
     </div>
   </div>
 
+  <!-- MATCH -->
   <div class="game-area" id="game-match">
     <div class="card">
-      <div class="match-meta"><span class="match-stat">맞춘 쌍: <span id="m-score">0</span> / <span id="m-total">0</span></span></div>
-      <div class="match-grid"><div class="match-col" id="m-left"></div><div class="match-col" id="m-right"></div></div>
+      <div class="match-meta">
+        <span class="match-stat">맞춘 쌍: <span id="m-score">0</span> / <span id="m-total">0</span></span>
+      </div>
+      <div class="match-grid">
+        <div class="match-col" id="m-left"></div>
+        <div class="match-col" id="m-right"></div>
+      </div>
       <div class="match-final" id="m-final">
         <div style="font-size:2.5rem;">🎊</div>
-        <div style="font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;color:var(--primary);margin-top:8px;">완성!</div>
+        <div style="font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;color:var(--secondary);margin-top:8px;">완성!</div>
         <button class="game-start-btn" onclick="startMatch()">🔄 다시 하기</button>
       </div>
       <button class="game-start-btn" id="m-start-btn" onclick="startMatch()">▶ 매칭 시작</button>
     </div>
   </div>
 
+  <!-- FILL -->
   <div class="game-area" id="game-fill">
     <div class="card">
       <div id="fill-qs"></div>
       <div class="fill-final" id="fill-final">
         <div style="font-size:2.5rem;" id="fill-emoji">🏆</div>
-        <div style="font-family:'Nunito',sans-serif;font-size:2rem;font-weight:900;color:var(--primary);">
+        <div style="font-family:'Nunito',sans-serif;font-size:2rem;font-weight:900;color:var(--secondary);">
           <span id="fill-score">0</span> / <span id="fill-total">0</span>
         </div>
         <div id="fill-msg" style="margin-top:6px;color:var(--text-light);font-size:0.95rem;"></div>
@@ -917,110 +1370,125 @@
   </div>
 </div>
 
-<!-- ════ SCRIPT ════ -->
+<!-- ══════════════════════════ SCRIPT ══════════════════════════ -->
 <script>
 // ── DATA ──
-const positionData = [
-  {emoji:'⬆️', jp:'上（うえ）', pron:'우에', kr:'위'},
-  {emoji:'⬇️', jp:'下（した）', pron:'시타', kr:'아래'},
-  {emoji:'🔲', jp:'中（なか）', pron:'나카', kr:'안, 가운데'},
-  {emoji:'↔️', jp:'となり',     pron:'토나리', kr:'옆'},
-  {emoji:'⬅️', jp:'左（ひだり）',pron:'히다리', kr:'왼쪽'},
-  {emoji:'➡️', jp:'右（みぎ）', pron:'미기', kr:'오른쪽'},
-  {emoji:'🔜', jp:'前（まえ）', pron:'마에', kr:'앞'},
-  {emoji:'🔙', jp:'後ろ（うしろ）',pron:'우시로', kr:'뒤'},
+const vocabulary = [
+  // 축하·감사
+  {jp:'おめでとう',reading:'오메데토-',kr:'축하해',cat:'celebrate'},
+  {jp:'おめでとうございます',reading:'오메데토- 고자이마스',kr:'축하합니다',cat:'celebrate'},
+  {jp:'たんじょうび',reading:'탄죠-비',kr:'생일',cat:'celebrate'},
+  {jp:'にゅうがく',reading:'뉴-가쿠',kr:'입학',cat:'celebrate'},
+  {jp:'ごうかく',reading:'고-카쿠',kr:'합격',cat:'celebrate'},
+  {jp:'そつぎょう',reading:'소츠교-',kr:'졸업',cat:'celebrate'},
+  {jp:'ありがとう',reading:'아리가토-',kr:'고마워',cat:'thanks'},
+  {jp:'ありがとうございます',reading:'아리가토- 고자이마스',kr:'감사합니다',cat:'thanks'},
+  {jp:'すみません',reading:'스미마셍',kr:'실례합니다/죄송합니다/여기요',cat:'thanks'},
+  {jp:'<ruby>プレゼント<rt>ぷれぜんと</rt></ruby>',reading:'푸레젠토',kr:'선물',cat:'thanks'},
+  // 숫자·개수
+  {jp:'ひとつ',reading:'히토츠',kr:'한 개',cat:'number'},
+  {jp:'ふたつ',reading:'후타츠',kr:'두 개',cat:'number'},
+  {jp:'みっつ',reading:'밋츠',kr:'세 개',cat:'number'},
+  {jp:'よっつ',reading:'욧츠',kr:'네 개',cat:'number'},
+  {jp:'いつつ',reading:'이츠츠',kr:'다섯 개',cat:'number'},
+  {jp:'いくつ',reading:'이쿠츠',kr:'몇 개',cat:'number'},
+  {jp:'いくら',reading:'이쿠라',kr:'얼마',cat:'number'},
+  {jp:'～円（えん）',reading:'엔',kr:'~엔 (화폐 단위)',cat:'number'},
+  {jp:'ください',reading:'쿠다사이',kr:'주세요',cat:'number'},
+  // 비교
+  {jp:'どちら',reading:'도치라',kr:'어느 쪽',cat:'compare'},
+  {jp:'ほう',reading:'호우',kr:'쪽',cat:'compare'},
+  {jp:'いちご',reading:'이치고',kr:'딸기',cat:'compare'},
+  {jp:'まっちゃ',reading:'맛챠',kr:'말차',cat:'compare'},
+  {jp:'<ruby>ラーメン<rt>らーめん</rt></ruby>',reading:'라-멘',kr:'라멘',cat:'compare'},
+  {jp:'うどん',reading:'우동',kr:'우동',cat:'compare'},
+  // 형용사
+  {jp:'うれしい',reading:'우레시-',kr:'기쁘다',cat:'adj'},
+  {jp:'こわい',reading:'코와이',kr:'무섭다',cat:'adj'},
+  {jp:'おいしい',reading:'오이시-',kr:'맛있다',cat:'adj'},
+  {jp:'にぎやかだ',reading:'니기야카다',kr:'번화하다, 북적이다',cat:'adj'},
+  {jp:'たいへんだ',reading:'타이헨다',kr:'힘들다, 큰일이다',cat:'adj'},
+  {jp:'<ruby>元気<rt>げんき</rt></ruby>だ',reading:'겡키다',kr:'건강하다',cat:'adj'},
+  // 물건
+  {jp:'おかし',reading:'오카시',kr:'과자',cat:'object'},
+  {jp:'<ruby>ペン<rt>ぺん</rt></ruby>',reading:'펜',kr:'펜',cat:'object'},
+  {jp:'はし',reading:'하시',kr:'젓가락',cat:'object'},
+  {jp:'ぼうし',reading:'보-시',kr:'모자',cat:'object'},
+  {jp:'<ruby>本<rt>ほん</rt></ruby>',reading:'혼',kr:'책',cat:'object'},
+  {jp:'もも',reading:'모모',kr:'복숭아',cat:'object'},
+  {jp:'りんご',reading:'링고',kr:'사과',cat:'object'},
+  {jp:'みかん',reading:'미칸',kr:'귤',cat:'object'},
+  {jp:'すいか',reading:'스이카',kr:'수박',cat:'object'},
+  // 기타 표현
+  {jp:'いらっしゃいませ',reading:'이랏샤이마세',kr:'어서 오세요',cat:'thanks'},
+  {jp:'どんな',reading:'돈나',kr:'어떤',cat:'thanks'},
+  {jp:'～かな',reading:'카나',kr:'~일까, ~인 것 같아',cat:'particle'},
+  {jp:'～ね',reading:'네',kr:'~군, ~네 (동의/감탄)',cat:'particle'},
+  {jp:'あのう',reading:'아노-',kr:'저기요 (말걸기)',cat:'particle'},
+  {jp:'これ',reading:'코레',kr:'이것',cat:'object'},
+  {jp:'～へ',reading:'에',kr:'~에게',cat:'particle'},
+  {jp:'～より',reading:'요리',kr:'~로부터',cat:'particle'},
 ];
 
-const vocabulary = [
-  // 위치
-  {jp:'上（うえ）',reading:'우에',kr:'위',cat:'position'},
-  {jp:'下（した）',reading:'시타',kr:'아래',cat:'position'},
-  {jp:'中（なか）',reading:'나카',kr:'안, 가운데',cat:'position'},
-  {jp:'となり',reading:'토나리',kr:'옆',cat:'position'},
-  {jp:'左（ひだり）',reading:'히다리',kr:'왼쪽',cat:'position'},
-  {jp:'右（みぎ）',reading:'미기',kr:'오른쪽',cat:'position'},
-  {jp:'前（まえ）',reading:'마에',kr:'앞',cat:'position'},
-  {jp:'後ろ（うしろ）',reading:'우시로',kr:'뒤',cat:'position'},
-  {jp:'どこ',reading:'도코',kr:'어디',cat:'position'},
-  // 존재
-  {jp:'あります',reading:'아리마스',kr:'있습니다 (사물 등)',cat:'exist'},
-  {jp:'います',reading:'이마스',kr:'있습니다 (사람·동물)',cat:'exist'},
-  {jp:'コンビニ',reading:'콘비니',kr:'편의점',cat:'exist'},
-  {jp:'としょかん',reading:'토쇼칸',kr:'도서관',cat:'exist'},
-  {jp:'こうえん',reading:'코-엔',kr:'공원',cat:'exist'},
-  {jp:'学校（がっこう）',reading:'갓코-',kr:'학교',cat:'exist'},
-  {jp:'いぬ',reading:'이누',kr:'개',cat:'exist'},
-  // 음식
-  {jp:'そば',reading:'소바',kr:'메밀국수',cat:'food'},
-  {jp:'うどん',reading:'우동',kr:'우동',cat:'food'},
-  {jp:'ラーメン',reading:'라-멘',kr:'라멘',cat:'food'},
-  {jp:'ぎゅうどん',reading:'규-동',kr:'소고기덮밥',cat:'food'},
-  {jp:'コーラ',reading:'코-라',kr:'콜라',cat:'food'},
-  {jp:'コーヒー',reading:'코-히-',kr:'커피',cat:'food'},
-  {jp:'メニュー',reading:'메뉴-',kr:'메뉴',cat:'food'},
-  {jp:'いただきます',reading:'이타다키마스',kr:'잘 먹겠습니다',cat:'food'},
-  {jp:'ごちそうさまでした',reading:'고치소-사마데시타',kr:'잘 먹었습니다',cat:'food'},
-  // い형용사
-  {jp:'からい',reading:'카라이',kr:'맵다',cat:'adj-i'},
-  {jp:'安い（やすい）',reading:'야스이',kr:'싸다',cat:'adj-i'},
-  {jp:'高い（たかい）',reading:'타카이',kr:'비싸다, 높다',cat:'adj-i'},
-  {jp:'おもい',reading:'오모이',kr:'무겁다',cat:'adj-i'},
-  {jp:'大きい（おおきい）',reading:'오-키-',kr:'크다',cat:'adj-i'},
-  {jp:'白い（しろい）',reading:'시로이',kr:'하얗다',cat:'adj-i'},
-  {jp:'広い（ひろい）',reading:'히로이',kr:'넓다',cat:'adj-i'},
-  {jp:'おいしい',reading:'오이시-',kr:'맛있다',cat:'adj-i'},
-  // な형용사
-  {jp:'しずかだ',reading:'시즈카다',kr:'조용하다',cat:'adj-na'},
-  {jp:'しんせつだ',reading:'신세츠다',kr:'친절하다',cat:'adj-na'},
-  {jp:'かんたんだ',reading:'칸탄다',kr:'간단하다',cat:'adj-na'},
-  {jp:'とくいだ',reading:'토쿠이다',kr:'잘하다',cat:'adj-na'},
-  {jp:'だいじょうぶだ',reading:'다이죠-부다',kr:'괜찮다',cat:'adj-na'},
-  // 기타
-  {jp:'いろいろ',reading:'이로이로',kr:'여러 가지',cat:'other'},
-  {jp:'ようこそ',reading:'요-코소',kr:'환영합니다',cat:'other'},
-  {jp:'おまたせしました',reading:'오마타세시마시타',kr:'오래 기다리셨습니다',cat:'other'},
-  {jp:'ぜんぜん',reading:'젠젠',kr:'전혀',cat:'other'},
-  {jp:'あまり',reading:'아마리',kr:'그다지',cat:'other'},
-  {jp:'おなかが いっぱい',reading:'오나카가 입빠이',kr:'배가 부르다',cat:'other'},
-  // 조사
-  {jp:'～に',reading:'니',kr:'~에 (위치/선택)',cat:'particle'},
-  {jp:'～で',reading:'데',kr:'~에서 (장소) / ~하고 (연결형)',cat:'particle'},
-  {jp:'～く ないです',reading:'쿠 나이데스',kr:'~하지 않습니다 (い형)',cat:'particle'},
-  {jp:'～じゃ ないです',reading:'쟈 나이데스',kr:'~하지 않습니다 (な형)',cat:'particle'},
+const countData = [
+  {n:'ひとつ',pron:'히토츠',kr:'한 개',num:1},
+  {n:'ふたつ',pron:'후타츠',kr:'두 개',num:2},
+  {n:'みっつ',pron:'밋츠',kr:'세 개',num:3},
+  {n:'よっつ',pron:'욧츠',kr:'네 개',num:4},
+  {n:'いつつ',pron:'이츠츠',kr:'다섯 개',num:5},
+  {n:'むっつ',pron:'뭇츠',kr:'여섯 개',num:6},
+  {n:'ななつ',pron:'나나츠',kr:'일곱 개',num:7},
+  {n:'やっつ',pron:'얏츠',kr:'여덟 개',num:8},
+  {n:'ここのつ',pron:'코코노츠',kr:'아홉 개',num:9},
+  {n:'とお',pron:'토오',kr:'열 개',num:10},
+];
+
+const priceItems = [
+  {name:'はし',reading:'하시',yen:600,yenReading:'ろっぴゃく<ruby>円<rt>えん</rt></ruby>'},
+  {name:'<ruby>本<rt>ほん</rt></ruby>',reading:'혼',yen:800,yenReading:'はっぴゃく<ruby>円<rt>えん</rt></ruby>'},
+  {name:'ぼうし',reading:'보우시',yen:1500,yenReading:'せんごひゃく<ruby>円<rt>えん</rt></ruby>'},
+  {name:'<ruby>ペン<rt>ぺん</rt></ruby>',reading:'펜',yen:300,yenReading:'さんびゃく<ruby>円<rt>えん</rt></ruby>'},
+  {name:'おかし',reading:'오카시',yen:600,yenReading:'ろっぴゃく<ruby>円<rt>えん</rt></ruby>'},
+  {name:'<ruby>コーヒー<rt>こーひー</rt></ruby>',reading:'코오히이',yen:400,yenReading:'よんひゃく<ruby>円<rt>えん</rt></ruby>'},
 ];
 
 const fillData = [
-  {jp:'トイレは コンビニの ___ に あります。',ans:'となり',choices:['となり','まえ','うえ','なか'],kr:'화장실은 편의점 ___ 에 있습니다.'},
-  {jp:'山田さんは としょかんの ___ に います。',ans:'まえ',choices:['まえ','となり','した','うしろ'],kr:'야마다 씨는 도서관 ___ 에 있습니다.'},
-  {jp:'わたしは そばに ___。',ans:'します',choices:['します','あります','います','ありますか'],kr:'저는 메밀국수로 ___.'},
-  {jp:'この ラーメンは からく ___。',ans:'ないです',choices:['ないです','じゃないです','でした','です'],kr:'이 라멘은 맵지 ___. (い형용사 부정)'},
-  {jp:'あの 店は しずかじゃ ___。',ans:'ないです',choices:['ないです','くないです','でした','です'],kr:'저 가게는 조용하지 ___. (な형용사 부정)'},
-  {jp:'安___ おいしいです。',ans:'くて',choices:['くて','で','いて','なで'],kr:'싸___ 맛있습니다. (い형용사 연결형)'},
-  {jp:'しんせつ___ すてきです。',ans:'で',choices:['で','くて','いで','なくて'],kr:'친절하___ 멋집니다. (な형용사 연결형)'},
+  {jp:'たんじょうび ___。',ans:'おめでとう',choices:['おめでとう','ありがとう','すみません','いらっしゃいませ'],kr:'생일 ___.'},
+  {jp:'いちごと まっちゃと ___ が いいですか。',ans:'どちら',choices:['どちら','ほう','いくつ','これ'],kr:'딸기와 말차 중 어느 ___ 이 좋습니까?'},
+  {jp:'いちごの ___ が いいです。',ans:'ほう',choices:['ほう','どちら','いくつ','みっつ'],kr:'딸기 ___ 이 더 좋습니다.'},
+  {jp:'すみません。これ ___ ですか。',ans:'いくら',choices:['いくら','いくつ','どちら','なん'],kr:'저기요. 이것 ___입니까?'},
+  {jp:'とても うれし___ です。',ans:'かった',choices:['かった','でした','です','かったで'],kr:'매우 기뻤습니다. (과거형)'},
+  {jp:'りんごを みっつ ___。',ans:'ください',choices:['ください','おめでとう','ありがとう','すみません'],kr:'사과를 세 개 ___.'},
+  {jp:'まちは にぎやか___。',ans:'でした',choices:['でした','かったです','でいます','です'],kr:'거리는 북적였습니다. (과거형)'},
 ];
 
 // ── RENDER ──
-function renderPositions(){
-  const g = document.getElementById('pos-grid');
-  g.innerHTML = positionData.map(p => `
-    <div class="pos-card" onclick="this.querySelector('.pos-kr').classList.toggle('show')">
-      <div class="pos-emoji">${p.emoji}</div>
-      <div class="pos-jp">${p.jp}</div>
-      <div class="pos-pron">${p.pron}</div>
-      <div class="pos-kr">${p.kr}</div>
+function renderCount(){
+  const g = document.getElementById('count-grid');
+  g.innerHTML = countData.map((c,i) => `
+    <div class="num-card" style="cursor:pointer;">
+      <div class="num-num">${c.num}</div>
+      <div class="num-jp">${c.n}</div>
+      <div class="num-alt" style="color:#9B5DE5;font-size:0.75rem;margin-top:3px;">${c.pron}</div>
+      <div class="num-alt">${c.kr}</div>
     </div>
   `).join('');
 }
 
-let posKrShow = false;
-function togglePosKr(){
-  posKrShow = !posKrShow;
-  document.querySelectorAll('.pos-kr').forEach(el => el.classList.toggle('show', posKrShow));
-  document.getElementById('pos-toggle-btn').textContent = posKrShow ? '🙈 번역 숨기기' : '🔍 번역 보기';
-  document.getElementById('pos-toggle-btn').classList.toggle('active', posKrShow);
+function renderPrices(){
+  const g = document.getElementById('price-grid');
+  if(!g) return;
+  g.innerHTML = priceItems.map((p,i) => `
+    <div class="price-card" onclick="this.querySelector('.price-reading').classList.toggle('show')">
+      <div class="price-item-name">${p.name}</div>
+      <div style="font-size:0.75rem;color:var(--text-light);margin-bottom:4px;">${p.reading}</div>
+      <div class="price-yen">¥${p.yen}</div>
+      <div class="price-reading">${p.yenReading}</div>
+    </div>
+  `).join('');
 }
 
-const catLabel = {position:'위치',exist:'존재',food:'음식',particle:'조사','adj-i':'い형용사','adj-na':'な형용사',other:'기타'};
+const catLabel = {celebrate:'축하',thanks:'감사',number:'숫자',compare:'비교',particle:'조사',adj:'형용사',object:'물건'};
 function renderVocab(){
   const g = document.getElementById('vocab-grid');
   g.innerHTML = vocabulary.map(v => `
@@ -1047,9 +1515,14 @@ function switchGame(name, btn){
   document.getElementById('game-'+name).classList.add('active');
 }
 
-function toggleExist(el){ el.querySelector('.exist-kr').classList.toggle('show'); }
-function toggleSelect(el){ el.querySelector('.sel-a').classList.toggle('show'); }
-function toggleEx(el){ el.querySelector('.ex-kr').classList.toggle('show'); }
+// 토글 함수들
+let expressAllShow = false;
+function toggleExpressAll(){
+  expressAllShow = !expressAllShow;
+  document.querySelectorAll('#sec-express .kr-hint').forEach(el => el.classList.toggle('show', expressAllShow));
+  document.getElementById('express-toggle').textContent = expressAllShow ? '🙈 번역 모두 숨기기' : '🔍 번역 모두 보기';
+}
+function toggleKr(el){ el.querySelector('.kr-hint').classList.toggle('show'); }
 
 let vocabAllShow = false;
 function toggleVocabAll(){
@@ -1064,37 +1537,48 @@ function toggleVocabPron(){
   document.getElementById('vocab-pron-btn').textContent = vocabPronShow ? '🙈 발음 모두 숨기기' : '🔊 발음 모두 보기';
 }
 function toggleVocab(el){ el.querySelector('.vocab-kr').classList.toggle('show'); }
+function toggleEx(el){ el.querySelector('.ex-kr').classList.toggle('show'); }
+function toggleCompare(el){ el.querySelector('.compare-a').classList.toggle('show'); }
 
-// ── READING ──
-let readAllShow = false, readRevealCount = 0;
+// ── READING TAB ──
+let readAllShow = false;
+let readRevealCount = 0;
+
 function toggleRLine(el){
   const kr = el.querySelector('.r-kr');
-  const was = kr.classList.contains('show');
+  const wasShown = kr.classList.contains('show');
   kr.classList.toggle('show');
-  readRevealCount = was ? Math.max(readRevealCount-1,0) : Math.min(readRevealCount+1,14);
+  readRevealCount = wasShown ? Math.max(readRevealCount-1,0) : Math.min(readRevealCount+1,12);
   updateReadProg();
 }
 function toggleReadAll(){
   readAllShow = !readAllShow;
   document.querySelectorAll('#sec-reading .r-kr').forEach(el => el.classList.toggle('show', readAllShow));
   document.getElementById('read-reveal-btn').textContent = readAllShow ? '🙈 번역 모두 숨기기' : '🔍 번역 모두 보기';
-  readRevealCount = readAllShow ? 14 : 0;
+  readRevealCount = readAllShow ? 12 : 0;
   updateReadProg();
 }
 function updateReadProg(){
-  document.getElementById('read-prog-bar').style.width = (readRevealCount/14*100)+'%';
+  const pct = (readRevealCount/12)*100;
+  document.getElementById('read-prog-bar').style.width = pct+'%';
   document.getElementById('read-prog-count').textContent = readRevealCount;
 }
 function setRMode(mode){
-  ['read','pron','vocab'].forEach(m => document.getElementById('rmode-'+m).classList.toggle('active', m===mode));
+  document.getElementById('rmode-read').classList.toggle('active', mode==='read');
+  document.getElementById('rmode-pron').classList.toggle('active', mode==='pron');
+  document.getElementById('rmode-vocab').classList.toggle('active', mode==='vocab');
   document.querySelectorAll('#sec-reading .r-vocab').forEach(v => v.classList.toggle('show', mode==='vocab'));
   document.querySelectorAll('#sec-reading .r-pron').forEach(v => v.classList.toggle('show', mode==='pron'));
 }
-function toggleVc2(e, el){ e.stopPropagation(); el.classList.toggle('vopen'); }
+function toggleVc2(e, el){
+  e.stopPropagation();
+  el.classList.toggle('vopen');
+}
 
 // ── QUIZ ──
 let qQs=[], qIdx=0, qScore=0, qAnswered=false;
 function shuffle(a){ return [...a].sort(()=>Math.random()-.5); }
+
 function startQuiz(){
   qQs = shuffle(vocabulary.filter(v=>v.cat!=='particle')).slice(0,10).map(v=>{
     const wrongs = shuffle(vocabulary.filter(w=>w.kr!==v.kr)).slice(0,3).map(w=>w.kr);
@@ -1113,21 +1597,23 @@ function renderQ(){
   document.getElementById('q-question').textContent=q.q;
   document.getElementById('q-hint').textContent='읽기: '+q.hint;
   document.getElementById('q-score').textContent=qScore+'점';
-  document.getElementById('q-bar').style.width=(qIdx/qQs.length*100)+'%';
+  const pct=(qIdx/qQs.length)*100;
+  document.getElementById('q-bar').style.width=pct+'%';
   document.getElementById('q-counter').textContent=(qIdx+1)+'/'+qQs.length;
   document.getElementById('q-fb').className='quiz-feedback';
   document.getElementById('q-next-btn').style.display='none';
   qAnswered=false;
   document.getElementById('q-opts').innerHTML=q.opts.map(o=>`
     <button class="quiz-opt" onclick="answerQ(this,'${o.replace(/'/g,"\\'")}','${q.ans.replace(/'/g,"\\'")}')">
-      ${o}</button>`).join('');
+      ${o}
+    </button>`).join('');
 }
 function answerQ(btn,chosen,ans){
   if(qAnswered)return; qAnswered=true;
   document.querySelectorAll('.quiz-opt').forEach(o=>{o.disabled=true; if(o.textContent.trim()===ans)o.classList.add('correct');});
   const fb=document.getElementById('q-fb');
   if(chosen===ans){ btn.classList.add('correct'); qScore++; fb.textContent='🎉 정답!'; fb.className='quiz-feedback show ok'; }
-  else { btn.classList.add('wrong'); fb.textContent=`❌ 정답: ${ans}`; fb.className='quiz-feedback show ng'; }
+  else { btn.classList.add('wrong'); fb.textContent=`❌ 틀렸어요. 정답: ${ans}`; fb.className='quiz-feedback show ng'; }
   document.getElementById('q-score').textContent=qScore+'점';
   document.getElementById('q-next-btn').style.display='block';
   qIdx++;
@@ -1137,10 +1623,10 @@ function showQFinal(){
   document.getElementById('q-opts').innerHTML='';
   document.getElementById('q-fb').className='quiz-feedback';
   document.getElementById('q-next-btn').style.display='none';
-  document.getElementById('q-final').classList.add('show');
+  const f=document.getElementById('q-final'); f.classList.add('show');
   document.getElementById('q-final-num').textContent=qScore;
   const e=qScore>=9?'🏆':qScore>=7?'🎉':qScore>=5?'😊':'💪';
-  const m=qScore>=9?'완벽해요!':qScore>=7?'잘했어요!':qScore>=5?'절반 이상! 다시 도전!':'더 공부해봐요 💪';
+  const m=qScore>=9?'완벽해요! 최고!':qScore>=7?'잘했어요! 조금만 더!':qScore>=5?'절반 이상! 다시 도전!':'더 공부해봐요 💪';
   document.getElementById('q-emoji').textContent=e;
   document.getElementById('q-final-msg').textContent=m;
 }
@@ -1215,8 +1701,17 @@ function pickChip(i,chosen,ans){
   }
 }
 
+let numPronShow = false;
+function toggleNumPron(){
+  numPronShow = !numPronShow;
+  document.querySelectorAll('.num-pron-col').forEach(el => el.style.display = numPronShow ? '' : 'none');
+  document.getElementById('num-pron-btn').textContent = numPronShow ? '🙈 발음 숨기기' : '🔊 발음 보기';
+  document.getElementById('num-pron-btn').classList.toggle('active', numPronShow);
+}
+
 // ── INIT ──
-renderPositions();
+renderCount();
+renderPrices();
 renderVocab();
 </script>
 </body>
