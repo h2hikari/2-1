@@ -352,6 +352,8 @@
   .vocab-reading { font-size:0.78rem; color:var(--text-light); margin-top:3px; }
   .vocab-kr { font-size:0.88rem; color:var(--primary); font-weight:600; margin-top:6px; display:none; }
   .vocab-kr.show { display:block; }
+  .vocab-pron-text { font-size:0.78rem; color:#9B5DE5; font-style:italic; margin-top:3px; display:none; }
+  .vocab-pron-text.show { display:block; }
   .vocab-cat {
     position: absolute; top:10px; right:10px;
     font-size:0.68rem; font-weight:700; padding:2px 6px; border-radius:6px;
@@ -489,6 +491,15 @@
     margin-top:0;
   }
   .r-kr.show { max-height:80px; opacity:1; padding:6px 12px; margin-top:6px; }
+  .r-pron {
+    font-size:0.84rem; color:#9B5DE5;
+    background:#F5F0FF; border-left:3px solid #9B5DE5;
+    padding:0 12px; border-radius:0 8px 8px 0;
+    max-height:0; opacity:0; overflow:hidden;
+    transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.25s ease, margin 0.25s ease;
+    margin-top:0; font-style:italic;
+  }
+  .r-pron.show { max-height:80px; opacity:1; padding:6px 12px; margin-top:6px; }
   .r-vocab { display:none; flex-wrap:wrap; gap:6px; margin-top:8px; }
   .r-vocab.show { display:flex; }
   .vocab-chip2 {
@@ -938,8 +949,9 @@
 
 <!-- ═════════════════ 4. 어휘 ═════════════════ -->
 <div class="section" id="sec-vocab">
-  <div class="show-all-wrap">
+  <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
     <button class="toggle-all-btn" id="vocab-toggle" onclick="toggleVocabAll()">🔍 뜻 모두 보기</button>
+    <button class="toggle-all-btn" id="vocab-pron-btn" onclick="toggleVocabPron()" style="background:var(--purple);box-shadow:0 3px 12px rgba(155,93,229,0.25);">🔊 발음 모두 보기</button>
   </div>
   <div class="vocab-grid" id="vocab-grid"></div>
 </div>
@@ -1069,6 +1081,7 @@
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
       <div style="display:flex;gap:8px;">
         <button class="mode-btn active" id="rmode-read" onclick="setRMode('read')">📖 읽기</button>
+        <button class="mode-btn" id="rmode-pron" onclick="setRMode('pron')">🔊 발음</button>
         <button class="mode-btn" id="rmode-vocab" onclick="setRMode('vocab')">📌 어휘</button>
       </div>
       <button class="toggle-all-btn" id="read-reveal-btn" onclick="toggleReadAll()" style="margin:0;">🔍 번역 모두 보기</button>
@@ -1085,6 +1098,7 @@
       <div class="speaker-chip sp-somi">소미</div>
       <div class="r-body">
         <div class="line-jp">りこちゃんへ。元気ですか。たんじょうび おめでとう！ソミより</div>
+        <div class="r-pron">리코챵에. 겡키데스카. 탄조-비 오메데토-! 소미요리</div>
         <div class="r-kr">리코에게. 잘 지내? 생일 축하해! 소미로부터</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～へ</span><span class="vc2-kr">~에게</span></div>
@@ -1099,6 +1113,7 @@
       <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
         <div class="line-jp">わあ、うれしい！</div>
+        <div class="r-pron">와-, 우레시-!</div>
         <div class="r-kr">와, 기뻐!</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">うれしい</span><span class="vc2-kr">기쁘다</span></div>
@@ -1111,6 +1126,7 @@
       <div class="speaker-chip sp-clerk">점원</div>
       <div class="r-body">
         <div class="line-jp">いらっしゃいませ。</div>
+        <div class="r-pron">이랏샤이마세.</div>
         <div class="r-kr">어서 오세요.</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">いらっしゃいませ</span><span class="vc2-kr">어서 오세요</span></div>
@@ -1123,6 +1139,7 @@
       <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
         <div class="line-jp">どんな おかしが いいかな……。</div>
+        <div class="r-pron">돈나 오카시가 이-카나……</div>
         <div class="r-kr">어떤 과자가 좋을까……</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">どんな</span><span class="vc2-kr">어떤</span></div>
@@ -1140,6 +1157,7 @@
       <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
         <div class="line-jp">せんぱいは いちごと まっちゃと どちらが いいですか。</div>
+        <div class="r-pron">센파이와 이치고토 맛챠토 도치라가 이-데스카.</div>
         <div class="r-kr">선배는 딸기와 말차 중 어느 쪽이 좋아요?</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">せんぱい</span><span class="vc2-kr">선배</span></div>
@@ -1155,6 +1173,7 @@
       <div class="speaker-chip sp-haruto">하루토</div>
       <div class="r-body">
         <div class="line-jp">うーん、ぼくは いちごの ほうが いいかな。</div>
+        <div class="r-pron">우-ㄴ, 보쿠와 이치고노 호-가 이-카나.</div>
         <div class="r-kr">음, 나는 딸기 쪽이 더 좋은 것 같아.</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">うーん</span><span class="vc2-kr">음 (고민할 때)</span></div>
@@ -1168,6 +1187,7 @@
       <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
         <div class="line-jp">そうですね。</div>
+        <div class="r-pron">소-데스네.</div>
         <div class="r-kr">그렇군요.</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">そうですね</span><span class="vc2-kr">그렇군요 / 맞아요</span></div>
@@ -1180,6 +1200,7 @@
       <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
         <div class="line-jp">あのう、すみません。これ いくらですか。</div>
+        <div class="r-pron">아노-, 스미마셍. 코레 이쿠라데스카.</div>
         <div class="r-kr">저기요, 실례합니다. 이것 얼마입니까?</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">あのう</span><span class="vc2-kr">저기요 (말걸기)</span></div>
@@ -1195,6 +1216,7 @@
       <div class="speaker-chip sp-clerk">점원</div>
       <div class="r-body">
         <div class="line-jp">６００円です。</div>
+        <div class="r-pron">롭퍄쿠엔데스.</div>
         <div class="r-kr">600엔입니다.</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～円（えん）</span><span class="vc2-kr">~엔 (화폐 단위)</span></div>
@@ -1207,6 +1229,7 @@
       <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
         <div class="line-jp">ひとつ ください。</div>
+        <div class="r-pron">히토츠 쿠다사이.</div>
         <div class="r-kr">하나 주세요.</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">ひとつ</span><span class="vc2-kr">하나, 한 개</span></div>
@@ -1223,6 +1246,7 @@
       <div class="speaker-chip sp-clerk">점원</div>
       <div class="r-body">
         <div class="line-jp">はい。</div>
+        <div class="r-pron">하이.</div>
         <div class="r-kr">네. (여기 있습니다.)</div>
         <div class="r-vocab"></div>
       </div>
@@ -1233,6 +1257,7 @@
       <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
         <div class="line-jp">たんじょうびの プレゼント、ありがとう！とても うれしかったです。これは 日本の 有名な おかしです。</div>
+        <div class="r-pron">탄조-비노 푸레젠토, 아리가토-! 토테모 우레시캇타데스. 코레와 니혼노 유-메-나 오카시데스.</div>
         <div class="r-kr">생일 선물, 고마워! 매우 기뻤어. 이것은 일본의 유명한 과자야.</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">プレゼント</span><span class="vc2-kr">선물</span></div>
@@ -1399,16 +1424,16 @@ const vocabulary = [
 ];
 
 const countData = [
-  {n:'ひとつ',kr:'한 개',num:1},
-  {n:'ふたつ',kr:'두 개',num:2},
-  {n:'みっつ',kr:'세 개',num:3},
-  {n:'よっつ',kr:'네 개',num:4},
-  {n:'いつつ',kr:'다섯 개',num:5},
-  {n:'むっつ',kr:'여섯 개',num:6},
-  {n:'ななつ',kr:'일곱 개',num:7},
-  {n:'やっつ',kr:'여덟 개',num:8},
-  {n:'ここのつ',kr:'아홉 개',num:9},
-  {n:'とお',kr:'열 개',num:10},
+  {n:'ひとつ',pron:'히토츠',kr:'한 개',num:1},
+  {n:'ふたつ',pron:'후타츠',kr:'두 개',num:2},
+  {n:'みっつ',pron:'밋츠',kr:'세 개',num:3},
+  {n:'よっつ',pron:'욧츠',kr:'네 개',num:4},
+  {n:'いつつ',pron:'이츠츠',kr:'다섯 개',num:5},
+  {n:'むっつ',pron:'뭇츠',kr:'여섯 개',num:6},
+  {n:'ななつ',pron:'나나츠',kr:'일곱 개',num:7},
+  {n:'やっつ',pron:'얏츠',kr:'여덟 개',num:8},
+  {n:'ここのつ',pron:'코코노츠',kr:'아홉 개',num:9},
+  {n:'とお',pron:'토오',kr:'열 개',num:10},
 ];
 
 const priceItems = [
@@ -1434,9 +1459,10 @@ const fillData = [
 function renderCount(){
   const g = document.getElementById('count-grid');
   g.innerHTML = countData.map((c,i) => `
-    <div class="num-card" onclick="this.classList.toggle('flipped')" style="cursor:pointer;">
+    <div class="num-card" style="cursor:pointer;">
       <div class="num-num">${c.num}</div>
       <div class="num-jp">${c.n}</div>
+      <div class="num-alt" style="color:#9B5DE5;font-size:0.75rem;margin-top:3px;">${c.pron}</div>
       <div class="num-alt">${c.kr}</div>
     </div>
   `).join('');
@@ -1462,7 +1488,7 @@ function renderVocab(){
     <div class="vocab-card" onclick="toggleVocab(this)">
       <span class="vocab-cat cat-${v.cat}">${catLabel[v.cat]||v.cat}</span>
       <div class="vocab-jp">${v.jp}</div>
-      <div class="vocab-reading">${v.reading}</div>
+      <div class="vocab-pron-text">${v.reading}</div>
       <div class="vocab-kr">${v.kr}</div>
     </div>
   `).join('');
@@ -1497,6 +1523,12 @@ function toggleVocabAll(){
   document.querySelectorAll('.vocab-kr').forEach(el => el.classList.toggle('show', vocabAllShow));
   document.getElementById('vocab-toggle').textContent = vocabAllShow ? '🙈 뜻 모두 숨기기' : '🔍 뜻 모두 보기';
 }
+let vocabPronShow = false;
+function toggleVocabPron(){
+  vocabPronShow = !vocabPronShow;
+  document.querySelectorAll('.vocab-pron-text').forEach(el => el.classList.toggle('show', vocabPronShow));
+  document.getElementById('vocab-pron-btn').textContent = vocabPronShow ? '🙈 발음 모두 숨기기' : '🔊 발음 모두 보기';
+}
 function toggleVocab(el){ el.querySelector('.vocab-kr').classList.toggle('show'); }
 function toggleEx(el){ el.querySelector('.ex-kr').classList.toggle('show'); }
 function toggleCompare(el){ el.querySelector('.compare-a').classList.toggle('show'); }
@@ -1526,8 +1558,10 @@ function updateReadProg(){
 }
 function setRMode(mode){
   document.getElementById('rmode-read').classList.toggle('active', mode==='read');
+  document.getElementById('rmode-pron').classList.toggle('active', mode==='pron');
   document.getElementById('rmode-vocab').classList.toggle('active', mode==='vocab');
   document.querySelectorAll('#sec-reading .r-vocab').forEach(v => v.classList.toggle('show', mode==='vocab'));
+  document.querySelectorAll('#sec-reading .r-pron').forEach(v => v.classList.toggle('show', mode==='pron'));
 }
 function toggleVc2(e, el){
   e.stopPropagation();
