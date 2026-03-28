@@ -154,6 +154,9 @@
   .adj-table .hl  { color:var(--primary); font-weight:700; }
   .adj-table .hl2 { color:var(--purple); font-weight:700; }
   .adj-table .hl3 { color:#e74c3c; font-weight:700; }
+  .adj-td-pron { font-size:0.72rem; color:#9B5DE5; font-style:italic; margin-top:2px; display:none; }
+  .adj-td-pron.show { display:block; }
+  .adj-td-kr { font-size:0.72rem; color:var(--primary); font-weight:600; margin-top:3px; }
 
   /* VOCAB */
   .vocab-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; }
@@ -183,6 +186,8 @@
   .ex-jp { font-family:'Noto Sans JP',sans-serif; font-size:1rem; flex:1; min-width:200px; }
   .ex-kr { font-size:0.82rem; color:var(--text-light); display:none; width:100%; }
   .ex-kr.show { display:block; }
+  .ex-pron { font-size:0.82rem; color:#9B5DE5; font-style:italic; display:none; width:100%; }
+  .ex-pron.show { display:block; }
 
   /* READING */
   .scene-label { text-align:center; font-size:0.78rem; color:var(--text-light); font-weight:700; letter-spacing:1px; margin:14px 0 10px; display:flex; align-items:center; gap:8px; }
@@ -435,7 +440,10 @@
 <div class="section" id="sec-adj">
 
   <div class="card">
-    <div class="card-title"><span>📊</span> い형용사 · な형용사 전체 활용표</div>
+    <div class="card-title">
+      <span>📊</span> い형용사 · な형용사 전체 활용표
+      <button class="mode-btn" id="adj-table-pron-btn" onclick="toggleAdjTablePron()" style="margin-left:auto;font-size:0.78rem;padding:5px 12px;">🔊 발음 보기</button>
+    </div>
     <div style="overflow-x:auto;">
       <table class="adj-table">
         <thead>
@@ -444,47 +452,47 @@
         <tbody>
           <tr>
             <td rowspan="4" style="font-weight:700;color:var(--purple);background:#F5F0FF;">い형용사</td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">から<span class="hl">い</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">から<span class="hl">いです</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">から<span class="hl2">くて</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">から<span class="hl3">く ないです</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">から<span class="hl">い</span><div class="adj-td-kr">맵다</div><div class="adj-td-pron">카라이</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">から<span class="hl">いです</span><div class="adj-td-pron">카라이데스</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">から<span class="hl2">くて</span><div class="adj-td-pron">카라쿠테</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">から<span class="hl3">く ないです</span><div class="adj-td-pron">카라쿠 나이데스</div></td>
           </tr>
           <tr>
-            <td style="font-family:'Noto Sans JP',sans-serif;">おも<span class="hl">い</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">おも<span class="hl">いです</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">おも<span class="hl2">くて</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">おも<span class="hl3">く ないです</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">おも<span class="hl">い</span><div class="adj-td-kr">무겁다</div><div class="adj-td-pron">오모이</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">おも<span class="hl">いです</span><div class="adj-td-pron">오모이데스</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">おも<span class="hl2">くて</span><div class="adj-td-pron">오모쿠테</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">おも<span class="hl3">く ないです</span><div class="adj-td-pron">오모쿠 나이데스</div></td>
           </tr>
           <tr>
-            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>安<rt>やす</rt></ruby><span class="hl">い</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>安<rt>やす</rt></ruby><span class="hl">いです</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>安<rt>やす</rt></ruby><span class="hl2">くて</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>安<rt>やす</rt></ruby><span class="hl3">く ないです</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>安<rt>やす</rt></ruby><span class="hl">い</span><div class="adj-td-kr">싸다</div><div class="adj-td-pron">야스이</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>安<rt>やす</rt></ruby><span class="hl">いです</span><div class="adj-td-pron">야스이데스</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>安<rt>やす</rt></ruby><span class="hl2">くて</span><div class="adj-td-pron">야스쿠테</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>安<rt>やす</rt></ruby><span class="hl3">く ないです</span><div class="adj-td-pron">야스쿠 나이데스</div></td>
           </tr>
           <tr>
-            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>高<rt>たか</rt></ruby><span class="hl">い</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>高<rt>たか</rt></ruby><span class="hl">いです</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>高<rt>たか</rt></ruby><span class="hl2">くて</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>高<rt>たか</rt></ruby><span class="hl3">く ないです</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>高<rt>たか</rt></ruby><span class="hl">い</span><div class="adj-td-kr">비싸다·높다</div><div class="adj-td-pron">타카이</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>高<rt>たか</rt></ruby><span class="hl">いです</span><div class="adj-td-pron">타카이데스</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>高<rt>たか</rt></ruby><span class="hl2">くて</span><div class="adj-td-pron">타카쿠테</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>高<rt>たか</rt></ruby><span class="hl3">く ないです</span><div class="adj-td-pron">타카쿠 나이데스</div></td>
           </tr>
           <tr>
             <td rowspan="3" style="font-weight:700;color:#FF7BAC;background:#FFF0F6;">な형용사</td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">しずか<span class="hl">だ</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">しずか<span class="hl">です</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">しずか<span class="hl2">で</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">しずか<span class="hl3">じゃ ないです</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">しずか<span class="hl">だ</span><div class="adj-td-kr">조용하다</div><div class="adj-td-pron">시즈카다</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">しずか<span class="hl">です</span><div class="adj-td-pron">시즈카데스</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">しずか<span class="hl2">で</span><div class="adj-td-pron">시즈카데</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">しずか<span class="hl3">じゃ ないです</span><div class="adj-td-pron">시즈카쟈 나이데스</div></td>
           </tr>
           <tr>
-            <td style="font-family:'Noto Sans JP',sans-serif;">しんせつ<span class="hl">だ</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">しんせつ<span class="hl">です</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">しんせつ<span class="hl2">で</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">しんせつ<span class="hl3">じゃ ないです</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">しんせつ<span class="hl">だ</span><div class="adj-td-kr">친절하다</div><div class="adj-td-pron">신세츠다</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">しんせつ<span class="hl">です</span><div class="adj-td-pron">신세츠데스</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">しんせつ<span class="hl2">で</span><div class="adj-td-pron">신세츠데</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">しんせつ<span class="hl3">じゃ ないです</span><div class="adj-td-pron">신세츠쟈 나이데스</div></td>
           </tr>
           <tr>
-            <td style="font-family:'Noto Sans JP',sans-serif;">とくい<span class="hl">だ</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">とくい<span class="hl">です</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">とくい<span class="hl2">で</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">とくい<span class="hl3">じゃ ないです</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">とくい<span class="hl">だ</span><div class="adj-td-kr">잘하다</div><div class="adj-td-pron">토쿠이다</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">とくい<span class="hl">です</span><div class="adj-td-pron">토쿠이데스</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">とくい<span class="hl2">で</span><div class="adj-td-pron">토쿠이데</div></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;">とくい<span class="hl3">じゃ ないです</span><div class="adj-td-pron">토쿠이쟈 나이데스</div></td>
           </tr>
         </tbody>
       </table>
@@ -497,30 +505,40 @@
   </div>
 
   <div class="card">
-    <div class="card-title"><span>💬</span> 형용사 예문 <small style="font-weight:400;color:#aaa;font-size:0.8rem;margin-left:4px;">클릭하면 번역</small></div>
-    <div class="example-list">
+    <div class="card-title">
+      <span>💬</span> 형용사 예문
+      <small style="font-weight:400;color:#aaa;font-size:0.8rem;margin-left:4px;">클릭하면 번역</small>
+      <button class="mode-btn" id="adj-ex-pron-btn" onclick="toggleAdjExPron()" style="margin-left:auto;font-size:0.78rem;padding:5px 12px;">🔊 발음 보기</button>
+    </div>
+    <div class="example-list" id="adj-example-list">
       <div class="example-item" onclick="toggleEx(this)">
         <div class="ex-jp">この <ruby class="kata">ラーメン<rt>らーめん</rt></ruby>は からく ないです。</div>
+        <div class="ex-pron">코노 라-멘와 카라쿠 나이데스.</div>
         <div class="ex-kr">이 라멘은 맵지 않습니다.</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
         <div class="ex-jp">この <ruby>店<rt>みせ</rt></ruby>、<ruby>安<rt>やす</rt></ruby>くて おいしいですね。</div>
+        <div class="ex-pron">코노 미세, 야스쿠테 오이시-데스네.</div>
         <div class="ex-kr">이 가게, 싸고 맛있네요.</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
         <div class="ex-jp"><ruby>白<rt>しろ</rt></ruby>くて かわいいです。</div>
+        <div class="ex-pron">시로쿠테 카와이-데스.</div>
         <div class="ex-kr">하얗고 귀엽습니다.</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
         <div class="ex-jp">あの <ruby>店<rt>みせ</rt></ruby>は しずかじゃ ないです。</div>
+        <div class="ex-pron">아노 미세와 시즈카쟈 나이데스.</div>
         <div class="ex-kr">저 가게는 조용하지 않습니다.</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
         <div class="ex-jp">えいごは あまり とくいじゃ ないです。</div>
+        <div class="ex-pron">에-고와 아마리 토쿠이쟈 나이데스.</div>
         <div class="ex-kr">영어는 그다지 잘하지 않습니다.</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
         <div class="ex-jp">しんせつで すてきです。</div>
+        <div class="ex-pron">신세츠데 스테키데스.</div>
         <div class="ex-kr">친절하고 멋집니다.</div>
       </div>
     </div>
@@ -790,7 +808,7 @@
         <div class="r-pron">지호쿤, 카라이데스카.</div>
         <div class="r-kr">지호야, 맵습니까?</div>
         <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">からい</span><span class="vc2-kr">맵다</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">카라이</span><span class="vc2-kr">맵다</span></div>
         </div>
       </div>
     </div>
@@ -804,7 +822,7 @@
         <div class="r-kr">아니요, 전혀 맵지 않습니다. 괜찮습니다.</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">ぜんぜん</span><span class="vc2-kr">전혀</span></div>
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">からく ないです</span><span class="vc2-kr">맵지 않습니다</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">카라쿠 나이데스</span><span class="vc2-kr">맵지 않습니다</span></div>
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">だいじょうぶ</span><span class="vc2-kr">괜찮다</span></div>
         </div>
       </div>
@@ -1236,6 +1254,25 @@ function pickChip(i,chosen,ans){
 // ── INIT ──
 renderPositions();
 renderVocab();
+
+// ── ADJ PRON TOGGLES ──
+let adjTablePronShow = false;
+function toggleAdjTablePron(){
+  adjTablePronShow = !adjTablePronShow;
+  document.querySelectorAll('.adj-td-pron').forEach(el => el.classList.toggle('show', adjTablePronShow));
+  const btn = document.getElementById('adj-table-pron-btn');
+  btn.textContent = adjTablePronShow ? '🙈 발음 숨기기' : '🔊 발음 보기';
+  btn.classList.toggle('active', adjTablePronShow);
+}
+
+let adjExPronShow = false;
+function toggleAdjExPron(){
+  adjExPronShow = !adjExPronShow;
+  document.querySelectorAll('#adj-example-list .ex-pron').forEach(el => el.classList.toggle('show', adjExPronShow));
+  const btn = document.getElementById('adj-ex-pron-btn');
+  btn.textContent = adjExPronShow ? '🙈 발음 숨기기' : '🔊 발음 보기';
+  btn.classList.toggle('active', adjExPronShow);
+}
 </script>
 </body>
 </html>
