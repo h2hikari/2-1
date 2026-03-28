@@ -26,6 +26,11 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Noto Sans KR','Noto Sans JP',sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
+  /* RUBY — 네이티브 방식, baseline 정렬 */
+  ruby { ruby-align: center; vertical-align: baseline; line-height: 2.4; }
+  rt { font-size: 0.52em; font-family: 'Noto Sans JP', sans-serif; color: #9B5DE5; line-height: 1; text-align: center; white-space: nowrap; letter-spacing: 0; }
+  ruby.kata rt { color: #e07b00; }
+
   /* HEADER */
   .header {
     background: linear-gradient(135deg, #1a1f5e 0%, #4A6FE3 55%, #9B5DE5 100%);
@@ -64,7 +69,6 @@
   /* TOGGLE BTN */
   .toggle-all-btn { background:var(--primary); color:white; border:none; border-radius:12px; padding:9px 22px; font-size:0.88rem; cursor:pointer; font-family:'Nunito','Noto Sans KR',sans-serif; font-weight:700; margin-bottom:16px; transition:all 0.18s; box-shadow:0 3px 12px rgba(74,111,227,0.25); }
   .toggle-all-btn:hover { transform:translateY(-1px); box-shadow:0 5px 18px rgba(74,111,227,0.35); }
-  .show-all-wrap { margin-bottom:14px; }
 
   /* 시계 */
   .clock-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
@@ -76,8 +80,11 @@
   .clock-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); border-color:var(--primary); }
   .clock-card:hover::before { opacity:1; }
   .clock-num  { font-family:'Nunito',sans-serif; font-size:1.6rem; font-weight:900; color:var(--primary); position:relative; z-index:1; }
-  .clock-jp   { font-family:'Noto Sans JP',sans-serif; font-size:0.9rem; font-weight:600; margin-top:4px; position:relative; z-index:1; }
+  .clock-jp   { font-family:'Noto Sans JP',sans-serif; font-size:1.15rem; font-weight:700; margin-top:6px; position:relative; z-index:1; }
   .clock-pron { font-size:0.72rem; color:#9B5DE5; font-style:italic; margin-top:3px; position:relative; z-index:1; }
+  .clock-hira  { font-family:'Noto Sans JP',sans-serif; font-size:0.78rem; color:#9B5DE5; margin-top:4px; position:relative; z-index:1; }
+  .clock-pron-hide { font-size:0.72rem; color:#e07b00; font-style:italic; font-weight:600; margin-top:3px; display:none; position:relative; z-index:1; }
+  .clock-pron-hide.show { display:block; }
   .clock-kr   { font-size:0.75rem; color:var(--text-light); margin-top:2px; display:none; position:relative; z-index:1; }
   .clock-kr.show { display:block; }
 
@@ -156,11 +163,11 @@
   .r-line:hover { background:var(--primary-light); }
   .r-num { min-width:26px; height:26px; border-radius:50%; background:var(--primary-light); color:var(--primary); font-family:'Nunito',sans-serif; font-weight:900; font-size:0.72rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:4px; }
   .r-body { flex:1; }
-  .line-jp { font-family:'Noto Sans JP',sans-serif; font-size:1.08rem; line-height:1.9; }
+  .line-jp { font-family:'Noto Sans JP',sans-serif; font-size:1.08rem; line-height:2.4; }
   .r-kr { font-size:0.86rem; color:var(--text-light); background:#f0f4ff; border-left:3px solid var(--primary); padding:0 12px; border-radius:0 8px 8px 0; max-height:0; opacity:0; overflow:hidden; transition:max-height 0.3s ease,opacity 0.25s ease,padding 0.25s ease,margin 0.25s ease; margin-top:0; }
-  .r-kr.show { max-height:80px; opacity:1; padding:6px 12px; margin-top:6px; }
+  .r-kr.show { max-height:100px; opacity:1; padding:6px 12px; margin-top:6px; }
   .r-pron { font-size:0.84rem; color:#9B5DE5; background:#F5F0FF; border-left:3px solid #9B5DE5; padding:0 12px; border-radius:0 8px 8px 0; max-height:0; opacity:0; overflow:hidden; transition:max-height 0.3s ease,opacity 0.25s ease,padding 0.25s ease,margin 0.25s ease; margin-top:0; font-style:italic; }
-  .r-pron.show { max-height:80px; opacity:1; padding:6px 12px; margin-top:6px; }
+  .r-pron.show { max-height:100px; opacity:1; padding:6px 12px; margin-top:6px; }
   .r-vocab { display:none; flex-wrap:wrap; gap:6px; margin-top:8px; }
   .r-vocab.show { display:flex; }
   .vocab-chip2 { display:inline-flex; gap:4px; align-items:baseline; background:white; border:1.5px solid var(--border); border-radius:8px; padding:3px 10px; font-size:0.78rem; cursor:pointer; transition:all 0.15s; }
@@ -228,7 +235,7 @@
   .match-final { display:none; text-align:center; padding:24px; }
   .match-final.show { display:block; }
   .fill-sentence { background:white; border-radius:16px; padding:18px 20px; margin-bottom:14px; border:2px solid var(--border); }
-  .fill-jp { font-family:'Noto Sans JP',sans-serif; font-size:1.1rem; margin-bottom:8px; line-height:2; }
+  .fill-jp { font-family:'Noto Sans JP',sans-serif; font-size:1.1rem; margin-bottom:8px; line-height:2.6; }
   .fill-blank { display:inline-block; min-width:100px; border-bottom:3px solid var(--primary); margin:0 4px; text-align:center; color:var(--primary); font-weight:700; padding:0 6px; }
   .fill-chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
   .chip { padding:7px 14px; border-radius:10px; border:2px solid var(--border); background:white; cursor:pointer; font-size:0.88rem; font-weight:600; font-family:'Noto Sans JP','Noto Sans KR',sans-serif; transition:all 0.15s; }
@@ -248,7 +255,7 @@
 <div class="header">
   <div class="header-emoji-row">🕖 🚃 📅 🌃 🕖</div>
   <div class="header-badge">6단원 · 일본어 I</div>
-  <div class="header-title">いま、何時ですか</div>
+  <div class="header-title">いま、<ruby>何<rt>なん</rt></ruby><ruby>時<rt>じ</rt></ruby>ですか</div>
   <div class="header-sub">지금 몇 시입니까 — 시간·요일 · 거절 표현 · 동사 활용</div>
 </div>
 
@@ -267,11 +274,10 @@
 
 <!-- ═══ 1. 시간·요일 ═══ -->
 <div class="section active" id="sec-time">
-
   <div class="card">
     <div class="card-title">
-      <span>🕐</span> 시간 읽기 (～時)
-      <button class="mode-btn" id="time-toggle-btn" onclick="toggleTimeKr()" style="margin-left:auto;font-size:0.78rem;padding:5px 12px;">🔍 번역 보기</button>
+      <span>🕐</span> 시간 읽기 (～<ruby>時<rt>じ</rt></ruby>)
+      <button class="mode-btn" id="time-toggle-btn" onclick="toggleTimeKr()" style="margin-left:auto;font-size:0.78rem;padding:5px 12px;">🔊 발음 보기</button>
     </div>
     <div class="tip-box" style="margin-bottom:16px;">
       <div class="tip-icon">💡</div>
@@ -296,12 +302,12 @@
       <div style="display:flex;gap:16px;flex-wrap:wrap;">
         <div style="flex:1;min-width:180px;">
           <div style="font-size:0.8rem;color:var(--text-light);margin-bottom:6px;">A 질문</div>
-          <div style="font-family:'Noto Sans JP',sans-serif;font-size:1.05rem;">きょうは <span style="color:var(--primary);font-weight:600;">何ようびですか。</span></div>
+          <div style="font-family:'Noto Sans JP',sans-serif;font-size:1.05rem;">きょうは <span style="color:var(--primary);font-weight:600;"><ruby>何<rt>なん</rt></ruby>ようびですか。</span></div>
           <div style="font-size:0.82rem;color:var(--text-light);margin-top:4px;">오늘은 무슨 요일입니까?</div>
         </div>
         <div style="flex:1;min-width:180px;">
           <div style="font-size:0.8rem;color:var(--text-light);margin-bottom:6px;">B 대답</div>
-          <div style="font-family:'Noto Sans JP',sans-serif;font-size:1.05rem;"><span style="color:var(--secondary);font-weight:600;">月ようびです。</span></div>
+          <div style="font-family:'Noto Sans JP',sans-serif;font-size:1.05rem;"><span style="color:var(--secondary);font-weight:600;"><ruby>月<rt>げつ</rt></ruby>ようびです。</span></div>
           <div style="font-size:0.82rem;color:var(--text-light);margin-top:4px;">월요일입니다.</div>
         </div>
       </div>
@@ -328,8 +334,8 @@
       <div class="rej-a">B: やきそばは ちょっと……。<br><span style="font-size:0.82rem;color:#aaa;">야키소바는 어떻습니까? / 야키소바는 좀……(됐습니다.)</span></div>
     </div>
     <div class="reject-example" onclick="toggleReject(this)">
-      <div class="rej-q">A: 日ようびは どうですか。</div>
-      <div class="rej-a">B: 日ようびは ちょっと……。<br><span style="font-size:0.82rem;color:#aaa;">일요일은 어떻습니까? / 일요일은 좀……(곤란합니다.)</span></div>
+      <div class="rej-q">A: <ruby>日<rt>にち</rt></ruby>ようびは どうですか。</div>
+      <div class="rej-a">B: <ruby>日<rt>にち</rt></ruby>ようびは ちょっと……。<br><span style="font-size:0.82rem;color:#aaa;">일요일은 어떻습니까? / 일요일은 좀……(곤란합니다.)</span></div>
     </div>
     <div class="reject-example" onclick="toggleReject(this)">
       <div class="rej-q">A: じてんしゃは どうですか。</div>
@@ -342,7 +348,7 @@
     <div style="font-size:0.88rem;color:var(--text-light);margin-bottom:14px;">이유·상황을 설명하며 말끝을 흐릴 때 앞서 배운 형용사 연결형을 써요.</div>
     <div class="example-list">
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">高い ところが こわくて……。</div>
+        <div class="ex-jp"><ruby>高<rt>たか</rt></ruby>い ところが こわくて……。</div>
         <div class="ex-kr">높은 곳이 무서워서……</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
@@ -379,7 +385,7 @@
               ② 어미가 る로 끝나지만 る 앞이 あ·う·お단인 동사
             </td>
             <td style="font-family:'Noto Sans JP',sans-serif;">
-              会う / あそぶ / 行く / すわる / はなす / よむ
+              <ruby>会<rt>あ</rt></ruby>う / あそぶ / <ruby>行<rt>い</rt></ruby>く / すわる / はなす / よむ
             </td>
           </tr>
           <tr>
@@ -387,19 +393,19 @@
             <td style="font-size:0.85rem;text-align:left;padding:10px 14px;">
               어미가 る로 끝나고 る 앞이 い단·え단인 동사
             </td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">見る / 食べる</td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>見<rt>み</rt></ruby>る / <ruby>食<rt>た</rt></ruby>べる</td>
           </tr>
           <tr>
             <td class="g3" style="white-space:nowrap;">3그룹</td>
             <td style="font-size:0.85rem;text-align:left;padding:10px 14px;">불규칙 활용 동사 (딱 2개)</td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">来る（くる） / する</td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>来<rt>く</rt></ruby>る（くる） / する</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div style="background:#FFF9E0;border-radius:10px;padding:10px 14px;font-size:0.85rem;line-height:1.8;">
-      💡 <strong>見る</strong> → る 앞이 「み (い단)」→ <strong class="g2">2그룹</strong> &nbsp;&nbsp;
-      <strong>食べる</strong> → る 앞이 「べ (え단)」→ <strong class="g2">2그룹</strong><br>
+      💡 <strong><ruby>見<rt>み</rt></ruby>る</strong> → る 앞이 「み (い단)」→ <strong class="g2">2그룹</strong> &nbsp;&nbsp;
+      <strong><ruby>食<rt>た</rt></ruby>べる</strong> → る 앞이 「べ (え단)」→ <strong class="g2">2그룹</strong><br>
       💡 <strong>すわる</strong> → る 앞이 「わ (あ단)」→ <strong class="g1">1그룹</strong>
     </div>
   </div>
@@ -414,16 +420,16 @@
         <tbody>
           <tr>
             <td rowspan="4" class="g1">1그룹</td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">会<span class="hl">う</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>会<rt>あ</rt></ruby><span class="hl">う</span></td>
             <td style="font-size:0.8rem;color:var(--text-light);">う단 → い단 + ます</td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">会い<span class="hl">ます</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">会い<span class="hl2">ました</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>会<rt>あ</rt></ruby>い<span class="hl">ます</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>会<rt>あ</rt></ruby>い<span class="hl2">ました</span></td>
           </tr>
           <tr>
-            <td style="font-family:'Noto Sans JP',sans-serif;">行<span class="hl">く</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>行<rt>い</rt></ruby><span class="hl">く</span></td>
             <td style="font-size:0.8rem;color:var(--text-light);">く → き + ます</td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">行き<span class="hl">ます</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">行き<span class="hl2">ました</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>行<rt>い</rt></ruby>き<span class="hl">ます</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>行<rt>い</rt></ruby>き<span class="hl2">ました</span></td>
           </tr>
           <tr>
             <td style="font-family:'Noto Sans JP',sans-serif;">よ<span class="hl">む</span></td>
@@ -439,22 +445,22 @@
           </tr>
           <tr>
             <td rowspan="2" class="g2">2그룹</td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">見<span class="hl">る</span></td>
-            <td rowspan="2" style="font-size:0.8rem;color:var(--text-light);">る を 빼고 + ます</td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">見<span class="hl">ます</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">見<span class="hl2">ました</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>見<rt>み</rt></ruby><span class="hl">る</span></td>
+            <td rowspan="2" style="font-size:0.8rem;color:var(--text-light);">る를 빼고 + ます</td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>見<rt>み</rt></ruby><span class="hl">ます</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>見<rt>み</rt></ruby><span class="hl2">ました</span></td>
           </tr>
           <tr>
-            <td style="font-family:'Noto Sans JP',sans-serif;">食べ<span class="hl">る</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">食べ<span class="hl">ます</span></td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">食べ<span class="hl2">ました</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>食<rt>た</rt></ruby>べ<span class="hl">る</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>食<rt>た</rt></ruby>べ<span class="hl">ます</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>食<rt>た</rt></ruby>べ<span class="hl2">ました</span></td>
           </tr>
           <tr>
             <td rowspan="2" class="g3">3그룹</td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">来<span class="hl">る</span></td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>来<rt>く</rt></ruby><span class="hl">る</span></td>
             <td rowspan="2" style="font-size:0.8rem;color:var(--text-light);">불규칙 활용</td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">来<span class="hl">ます</span> (き)</td>
-            <td style="font-family:'Noto Sans JP',sans-serif;">来<span class="hl2">ました</span> (き)</td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>来<rt>き</rt></ruby><span class="hl">ます</span> (き)</td>
+            <td style="font-family:'Noto Sans JP',sans-serif;"><ruby>来<rt>き</rt></ruby><span class="hl2">ました</span> (き)</td>
           </tr>
           <tr>
             <td style="font-family:'Noto Sans JP',sans-serif;"><span class="hl">する</span></td>
@@ -467,7 +473,7 @@
     <div style="margin-top:12px;font-size:0.85rem;background:#FFF9E0;border-radius:10px;padding:10px 14px;line-height:1.8;">
       🔑 <strong>1그룹</strong>: 어미 う단 → い단으로 바꾸고 ます 붙이기<br>
       🔑 <strong>2그룹</strong>: 어미 る를 빼고 ます 붙이기<br>
-      🔑 <strong>3그룹</strong>: 来る → <strong>きます</strong> / する → <strong>します</strong> (암기 필수!)
+      🔑 <strong>3그룹</strong>: <ruby>来<rt>く</rt></ruby>る → <strong>きます</strong> / する → <strong>します</strong> (암기 필수!)
     </div>
   </div>
 
@@ -475,23 +481,23 @@
     <div class="card-title"><span>🔄</span> 현재 → 과거 바꿔보기 <small style="font-weight:400;color:#aaa;font-size:0.8rem;margin-left:4px;">클릭하면 과거형 확인</small></div>
     <div class="example-list">
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">まつりに 行きます。→ きのう まつりに ___。</div>
-        <div class="ex-kr">마쓰리에 갑니다. → 어제 마쓰리에 <strong>行きました</strong>。</div>
+        <div class="ex-jp">まつりに <ruby>行<rt>い</rt></ruby>きます。→ きのう まつりに ___。</div>
+        <div class="ex-kr">마쓰리에 갑니다. → 어제 마쓰리에 <strong><ruby>行<rt>い</rt></ruby>きました</strong>。</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
         <div class="ex-jp">しんぶんを よみます。→ きのう しんぶんを ___。</div>
         <div class="ex-kr">신문을 읽습니다. → 어제 신문을 <strong>よみました</strong>。</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">えいがを 見ます。→ きのう えいがを ___。</div>
-        <div class="ex-kr">영화를 봅니다. → 어제 영화를 <strong>見ました</strong>。</div>
+        <div class="ex-jp">えいがを <ruby>見<rt>み</rt></ruby>ます。→ きのう えいがを ___。</div>
+        <div class="ex-kr">영화를 봅니다. → 어제 영화를 <strong><ruby>見<rt>み</rt></ruby>ました</strong>。</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
         <div class="ex-jp">べんきょうを します。→ きのう べんきょうを ___。</div>
         <div class="ex-kr">공부를 합니다. → 어제 공부를 <strong>しました</strong>。</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">友だちと あそびます。→ きのう 友だちと ___。</div>
+        <div class="ex-jp"><ruby>友<rt>とも</rt></ruby>だちと あそびます。→ きのう <ruby>友<rt>とも</rt></ruby>だちと ___。</div>
         <div class="ex-kr">친구와 놉니다. → 어제 친구와 <strong>あそびました</strong>。</div>
       </div>
     </div>
@@ -511,22 +517,22 @@
 <div class="section" id="sec-grammar">
 
   <div class="grammar-block">
-    <div class="grammar-pattern">いま 何時ですか。／ ～時です。</div>
+    <div class="grammar-pattern">いま <ruby>何<rt>なん</rt></ruby><ruby>時<rt>じ</rt></ruby>ですか。／ ～<ruby>時<rt>じ</rt></ruby>です。</div>
     <div class="grammar-desc">
       <strong>「지금 몇 시입니까? / ~시입니다」</strong> — 시간을 묻고 답하는 표현이에요.<br>
-      いま = 지금, 何時 = 몇 시, ～時 = ~시
+      いま = 지금, <ruby>何時<rt>なんじ</rt></ruby> = 몇 시, ～<ruby>時<rt>じ</rt></ruby> = ~시
     </div>
     <div class="example-list">
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">いま 何時ですか。</div>
+        <div class="ex-jp">いま <ruby>何<rt>なん</rt></ruby><ruby>時<rt>じ</rt></ruby>ですか。</div>
         <div class="ex-kr">지금 몇 시입니까?</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">７時です。</div>
+        <div class="ex-jp"><ruby>７<rt>しち</rt></ruby><ruby>時<rt>じ</rt></ruby>です。</div>
         <div class="ex-kr">7시입니다.</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">きょうは 何ようびですか。</div>
+        <div class="ex-jp">きょうは <ruby>何<rt>なん</rt></ruby>ようびですか。</div>
         <div class="ex-kr">오늘은 무슨 요일입니까?</div>
       </div>
     </div>
@@ -558,15 +564,15 @@
     </div>
     <div class="example-list">
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">あした 友だちと 会います。</div>
+        <div class="ex-jp">あした <ruby>友<rt>とも</rt></ruby>だちと <ruby>会<rt>あ</rt></ruby>います。</div>
         <div class="ex-kr">내일 친구와 만납니다.</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">きのう 日本の 友だちに 会いました。</div>
+        <div class="ex-jp">きのう <ruby>日本<rt>にほん</rt></ruby>の <ruby>友<rt>とも</rt></ruby>だちに <ruby>会<rt>あ</rt></ruby>いました。</div>
         <div class="ex-kr">어제 일본 친구를 만났습니다.</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">夜の 東京を 見ました。</div>
+        <div class="ex-jp"><ruby>夜<rt>よる</rt></ruby>の <ruby class="kata">東京<rt>とうきょう</rt></ruby>を <ruby>見<rt>み</rt></ruby>ました。</div>
         <div class="ex-kr">밤의 도쿄를 봤습니다.</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
@@ -584,11 +590,11 @@
     </div>
     <div class="example-list">
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">きのう まつりに 行きました。</div>
+        <div class="ex-jp">きのう まつりに <ruby>行<rt>い</rt></ruby>きました。</div>
         <div class="ex-kr">어제 마쓰리에 갔습니다.</div>
       </div>
       <div class="example-item" onclick="toggleEx(this)">
-        <div class="ex-jp">あした えいがを 見ます。</div>
+        <div class="ex-jp">あした えいがを <ruby>見<rt>み</rt></ruby>ます。</div>
         <div class="ex-kr">내일 영화를 봅니다.</div>
       </div>
     </div>
@@ -619,18 +625,18 @@
     <div style="font-size:0.78rem;color:#b2bec3;text-align:right;margin-bottom:10px;">번역 확인: <span id="read-prog-count">0</span> / 12</div>
     <div class="quiz-progress-wrap" style="margin-bottom:16px;"><div class="quiz-progress-bar" id="read-prog-bar" style="width:0%"></div></div>
 
-    <div class="scene-label">🎬 장면 1 — 시간 확인 & 스카이트리 발견</div>
+    <div class="scene-label">🎬 장면 1 — 시간 확인 &amp; 스카이트리 발견</div>
 
     <div class="r-line" onclick="toggleRLine(this)">
       <div class="r-num">①</div>
       <div class="speaker-chip sp-riko">리코</div>
       <div class="r-body">
-        <div class="line-jp">いま 何時ですか。</div>
+        <div class="line-jp">いま <ruby>何<rt>なん</rt></ruby><ruby>時<rt>じ</rt></ruby>ですか。</div>
         <div class="r-pron">이마 난지데스카.</div>
         <div class="r-kr">지금 몇 시입니까?</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">いま</span><span class="vc2-kr">지금</span></div>
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">何時</span><span class="vc2-kr">몇 시</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp"><ruby>何<rt>なん</rt></ruby><ruby>時<rt>じ</rt></ruby></span><span class="vc2-kr">몇 시</span></div>
         </div>
       </div>
     </div>
@@ -639,11 +645,11 @@
       <div class="r-num">②</div>
       <div class="speaker-chip sp-haruto">하루토</div>
       <div class="r-body">
-        <div class="line-jp">７時。</div>
+        <div class="line-jp"><ruby>７<rt>しち</rt></ruby><ruby>時<rt>じ</rt></ruby>。</div>
         <div class="r-pron">시치지.</div>
         <div class="r-kr">7시.</div>
         <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～時</span><span class="vc2-kr">~시</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～<ruby>時<rt>じ</rt></ruby></span><span class="vc2-kr">~시</span></div>
         </div>
       </div>
     </div>
@@ -666,7 +672,7 @@
       <div class="r-num">④</div>
       <div class="speaker-chip sp-somi">소미</div>
       <div class="r-body">
-        <div class="line-jp">あ、あれ 何ですか。</div>
+        <div class="line-jp">あ、あれ <ruby>何<rt>なん</rt></ruby>ですか。</div>
         <div class="r-pron">아, 아레 난데스카.</div>
         <div class="r-kr">아, 저것 무엇입니까?</div>
         <div class="r-vocab">
@@ -679,27 +685,27 @@
       <div class="r-num">⑤</div>
       <div class="speaker-chip sp-haruto">하루토</div>
       <div class="r-body">
-        <div class="line-jp">スカイツリー。</div>
+        <div class="line-jp"><ruby class="kata">スカイツリー<rt>すかいつりー</rt></ruby>。</div>
         <div class="r-pron">스카이츠리-.</div>
         <div class="r-kr">스카이트리.</div>
         <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">スカイツリー</span><span class="vc2-kr">스카이트리</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp"><ruby class="kata">スカイツリー<rt>すかいつりー</rt></ruby></span><span class="vc2-kr">스카이트리</span></div>
         </div>
       </div>
     </div>
 
-    <div class="scene-label">🎬 장면 2 — 스카이트리 방문 & 거절</div>
+    <div class="scene-label">🎬 장면 2 — 스카이트리 방문 &amp; 거절</div>
 
     <div class="r-line" onclick="toggleRLine(this)">
       <div class="r-num">⑥</div>
       <div class="speaker-chip sp-haruto">하루토</div>
       <div class="r-body">
-        <div class="line-jp">いまから 行く？</div>
+        <div class="line-jp">いまから <ruby>行<rt>い</rt></ruby>く？</div>
         <div class="r-pron">이마카라 이쿠?</div>
         <div class="r-kr">지금부터 갈래?</div>
         <div class="r-vocab">
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">いまから</span><span class="vc2-kr">지금부터</span></div>
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">行く</span><span class="vc2-kr">가다</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp"><ruby>行<rt>い</rt></ruby>く</span><span class="vc2-kr">가다</span></div>
         </div>
       </div>
     </div>
@@ -708,11 +714,11 @@
       <div class="r-num">⑦</div>
       <div class="speaker-chip sp-somi">소미</div>
       <div class="r-body">
-        <div class="line-jp">行きます！</div>
+        <div class="line-jp"><ruby>行<rt>い</rt></ruby>きます！</div>
         <div class="r-pron">이키마스!</div>
         <div class="r-kr">가겠습니다!</div>
         <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">行きます</span><span class="vc2-kr">갑니다 (1그룹)</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp"><ruby>行<rt>い</rt></ruby>きます</span><span class="vc2-kr">갑니다 (1그룹)</span></div>
         </div>
       </div>
     </div>
@@ -743,7 +749,7 @@
       </div>
     </div>
 
-    <div class="scene-label">🎬 장면 3 — 이유 설명 & 블로그 포스팅</div>
+    <div class="scene-label">🎬 장면 3 — 이유 설명 &amp; 블로그 포스팅</div>
 
     <div class="r-line" onclick="toggleRLine(this)">
       <div class="r-num">⑩</div>
@@ -762,7 +768,7 @@
       <div class="r-num">⑪</div>
       <div class="speaker-chip sp-jiho">지호</div>
       <div class="r-body">
-        <div class="line-jp">高い ところが こわくて……。ごめんなさい。みなさんは ぜひ！</div>
+        <div class="line-jp"><ruby>高<rt>たか</rt></ruby>い ところが こわくて……。ごめんなさい。みなさんは ぜひ！</div>
         <div class="r-pron">타카이 토코로가 코와쿠테……. 고멘나사이. 미나상와 제히!</div>
         <div class="r-kr">높은 곳이 무서워서……. 미안합니다. 여러분은 꼭 가세요!</div>
         <div class="r-vocab">
@@ -777,13 +783,13 @@
       <div class="r-num">⑫</div>
       <div class="speaker-chip sp-jiho">지호 블로그</div>
       <div class="r-body">
-        <div class="line-jp">きのう 日本の 友だちに 会いました。スカイツリーに 行きました。夜の 東京を 見ました。けしきが きれいでした。とても たのしかったです。</div>
+        <div class="line-jp">きのう <ruby>日本<rt>にほん</rt></ruby>の <ruby>友<rt>とも</rt></ruby>だちに <ruby>会<rt>あ</rt></ruby>いました。<ruby class="kata">スカイツリー<rt>すかいつりー</rt></ruby>に <ruby>行<rt>い</rt></ruby>きました。<ruby>夜<rt>よる</rt></ruby>の <ruby class="kata">東京<rt>とうきょう</rt></ruby>を <ruby>見<rt>み</rt></ruby>ました。けしきが きれいでした。とても たのしかったです。</div>
         <div class="r-pron">키노- 니혼노 토모다치니 아이마시타. 스카이츠리-니 이키마시타. 요루노 토-쿄-오 미마시타. 케시키가 키레이데시타. 토테모 타노시캇타데스.</div>
         <div class="r-kr">어제 일본 친구를 만났습니다. 스카이트리에 갔습니다. 밤의 도쿄를 봤습니다. 경치가 예뻤습니다. 매우 즐거웠습니다.</div>
         <div class="r-vocab">
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">会いました</span><span class="vc2-kr">만났습니다</span></div>
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">行きました</span><span class="vc2-kr">갔습니다</span></div>
-          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">見ました</span><span class="vc2-kr">봤습니다</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp"><ruby>会<rt>あ</rt></ruby>いました</span><span class="vc2-kr">만났습니다</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp"><ruby>行<rt>い</rt></ruby>きました</span><span class="vc2-kr">갔습니다</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp"><ruby>見<rt>み</rt></ruby>ました</span><span class="vc2-kr">봤습니다</span></div>
           <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">たのしかったです</span><span class="vc2-kr">즐거웠습니다</span></div>
         </div>
       </div>
@@ -794,15 +800,15 @@
     <div class="card-title"><span>📝</span> 내용 확인 <small style="font-weight:400;color:#aaa;font-size:0.8rem;">클릭하면 정답 확인</small></div>
     <div class="comp-q-item" onclick="this.querySelector('.comp-ans2').classList.toggle('show')">
       <div class="comp-q-text2"><span class="comp-num">1</span>대화에서 지금 몇 시입니까?</div>
-      <div class="comp-ans2"><span style="font-family:'Noto Sans JP',sans-serif;font-weight:600;">７時（しちじ）</span>입니다. 대화 ②</div>
+      <div class="comp-ans2"><span style="font-family:'Noto Sans JP',sans-serif;font-weight:600;"><ruby>７<rt>しち</rt></ruby><ruby>時<rt>じ</rt></ruby>（しちじ）</span>입니다. 대화 ②</div>
     </div>
     <div class="comp-q-item" onclick="this.querySelector('.comp-ans2').classList.toggle('show')">
       <div class="comp-q-text2"><span class="comp-num">2</span>지호는 왜 스카이트리에 가지 않았습니까?</div>
-      <div class="comp-ans2"><span style="font-family:'Noto Sans JP',sans-serif;font-weight:600;">高い ところが こわくて……。</span> — 높은 곳이 무서워서요. 대화 ⑪</div>
+      <div class="comp-ans2"><span style="font-family:'Noto Sans JP',sans-serif;font-weight:600;"><ruby>高<rt>たか</rt></ruby>い ところが こわくて……。</span> — 높은 곳이 무서워서요. 대화 ⑪</div>
     </div>
     <div class="comp-q-item" onclick="this.querySelector('.comp-ans2').classList.toggle('show')">
       <div class="comp-q-text2"><span class="comp-num">3</span>블로그에서 지호가 한 일 3가지는?</div>
-      <div class="comp-ans2">① 日本の 友だちに <strong>会いました</strong><br>② スカイツリーに <strong>行きました</strong><br>③ 夜の 東京を <strong>見ました</strong></div>
+      <div class="comp-ans2">① <ruby>日本<rt>にほん</rt></ruby>の <ruby>友<rt>とも</rt></ruby>だちに <strong><ruby>会<rt>あ</rt></ruby>いました</strong><br>② <ruby class="kata">スカイツリー<rt>すかいつりー</rt></ruby>に <strong><ruby>行<rt>い</rt></ruby>きました</strong><br>③ <ruby>夜<rt>よる</rt></ruby>の <ruby class="kata">東京<rt>とうきょう</rt></ruby>を <strong><ruby>見<rt>み</rt></ruby>ました</strong></div>
     </div>
     <div class="comp-q-item" onclick="this.querySelector('.comp-ans2').classList.toggle('show')">
       <div class="comp-q-text2"><span class="comp-num">4</span>지호의 블로그 감상은?</div>
@@ -872,91 +878,85 @@
 <!-- SCRIPT -->
 <script>
 const clockData = [
-  {n:1, jp:'１時',  pron:'이치지', kr:'1시'},
-  {n:2, jp:'２時',  pron:'니지',   kr:'2시'},
-  {n:3, jp:'３時',  pron:'산지',   kr:'3시'},
-  {n:4, jp:'４時',  pron:'よじ ⚠️', kr:'4시'},
-  {n:5, jp:'５時',  pron:'고지',   kr:'5시'},
-  {n:6, jp:'６時',  pron:'로쿠지', kr:'6시'},
-  {n:7, jp:'７時',  pron:'시치지', kr:'7시'},
-  {n:8, jp:'８時',  pron:'하치지', kr:'8시'},
-  {n:9, jp:'９時',  pron:'くじ ⚠️', kr:'9시'},
-  {n:10,jp:'１０時',pron:'쥬-지',  kr:'10시'},
-  {n:11,jp:'１１時',pron:'쥬-이치지',kr:'11시'},
-  {n:12,jp:'１２時',pron:'쥬-니지',kr:'12시'},
+  {jp:'１<ruby>時<rt>じ</rt></ruby>',  hira:'いちじ',  pron:'이치지',    kr:'1시'},
+  {jp:'２<ruby>時<rt>じ</rt></ruby>',  hira:'にじ',    pron:'니지',      kr:'2시'},
+  {jp:'３<ruby>時<rt>じ</rt></ruby>',  hira:'さんじ',  pron:'산지',      kr:'3시'},
+  {jp:'４<ruby>時<rt>じ</rt></ruby>',  hira:'よじ ⚠️', pron:'요지 ⚠️',   kr:'4시'},
+  {jp:'５<ruby>時<rt>じ</rt></ruby>',  hira:'ごじ',    pron:'고지',      kr:'5시'},
+  {jp:'６<ruby>時<rt>じ</rt></ruby>',  hira:'ろくじ',  pron:'로쿠지',    kr:'6시'},
+  {jp:'７<ruby>時<rt>じ</rt></ruby>',  hira:'しちじ',  pron:'시치지',    kr:'7시'},
+  {jp:'８<ruby>時<rt>じ</rt></ruby>',  hira:'はちじ',  pron:'하치지',    kr:'8시'},
+  {jp:'９<ruby>時<rt>じ</rt></ruby>',  hira:'くじ ⚠️', pron:'쿠지 ⚠️',   kr:'9시'},
+  {jp:'１０<ruby>時<rt>じ</rt></ruby>',hira:'じゅうじ',pron:'쥬-지',     kr:'10시'},
+  {jp:'１１<ruby>時<rt>じ</rt></ruby>',hira:'じゅういちじ',pron:'쥬-이치지',kr:'11시'},
+  {jp:'１２<ruby>時<rt>じ</rt></ruby>',hira:'じゅうにじ',pron:'쥬-니지', kr:'12시'},
 ];
 
 const dayData = [
-  {kanji:'月', cls:'mon', pron:'게츠요-비', kr:'월요일'},
-  {kanji:'火', cls:'tue', pron:'카요-비',   kr:'화요일'},
-  {kanji:'水', cls:'wed', pron:'스이요-비', kr:'수요일'},
-  {kanji:'木', cls:'thu', pron:'모쿠요-비', kr:'목요일'},
-  {kanji:'金', cls:'fri', pron:'킨요-비',   kr:'금요일'},
-  {kanji:'土', cls:'sat', pron:'도요-비',   kr:'토요일'},
-  {kanji:'日', cls:'sun', pron:'니치요-비', kr:'일요일'},
+  {kanji:'<ruby>月<rt>げつ</rt></ruby>', cls:'mon', pron:'게츠요-비', kr:'월요일'},
+  {kanji:'<ruby>火<rt>か</rt></ruby>',   cls:'tue', pron:'카요-비',   kr:'화요일'},
+  {kanji:'<ruby>水<rt>すい</rt></ruby>', cls:'wed', pron:'스이요-비', kr:'수요일'},
+  {kanji:'<ruby>木<rt>もく</rt></ruby>', cls:'thu', pron:'모쿠요-비', kr:'목요일'},
+  {kanji:'<ruby>金<rt>きん</rt></ruby>', cls:'fri', pron:'킨요-비',   kr:'금요일'},
+  {kanji:'<ruby>土<rt>ど</rt></ruby>',   cls:'sat', pron:'도요-비',   kr:'토요일'},
+  {kanji:'<ruby>日<rt>にち</rt></ruby>', cls:'sun', pron:'니치요-비', kr:'일요일'},
 ];
 
 const vocabulary = [
-  // 시간·요일
   {jp:'いま',reading:'이마',kr:'지금',cat:'time'},
-  {jp:'何時（なんじ）',reading:'난지',kr:'몇 시',cat:'time'},
-  {jp:'～時（じ）',reading:'지',kr:'~시',cat:'time'},
+  {jp:'<ruby>何時<rt>なんじ</rt></ruby>',reading:'난지',kr:'몇 시',cat:'time'},
+  {jp:'～<ruby>時<rt>じ</rt></ruby>',reading:'지',kr:'~시',cat:'time'},
   {jp:'きょう',reading:'쿄-',kr:'오늘',cat:'time'},
   {jp:'あした',reading:'아시타',kr:'내일',cat:'time'},
   {jp:'きのう',reading:'키노-',kr:'어제',cat:'time'},
-  {jp:'何ようび',reading:'난요-비',kr:'무슨 요일',cat:'time'},
-  {jp:'月ようび',reading:'게츠요-비',kr:'월요일',cat:'time'},
-  {jp:'火ようび',reading:'카요-비',kr:'화요일',cat:'time'},
-  {jp:'水ようび',reading:'스이요-비',kr:'수요일',cat:'time'},
-  {jp:'木ようび',reading:'모쿠요-비',kr:'목요일',cat:'time'},
-  {jp:'金ようび',reading:'킨요-비',kr:'금요일',cat:'time'},
-  {jp:'土ようび',reading:'도요-비',kr:'토요일',cat:'time'},
-  {jp:'日ようび',reading:'니치요-비',kr:'일요일',cat:'time'},
-  // 동사 1그룹
-  {jp:'会う（あう）',reading:'아우',kr:'만나다',cat:'verb'},
-  {jp:'行く（いく）',reading:'이쿠',kr:'가다',cat:'verb'},
+  {jp:'<ruby>何<rt>なん</rt></ruby>ようび',reading:'난요-비',kr:'무슨 요일',cat:'time'},
+  {jp:'<ruby>月<rt>げつ</rt></ruby>ようび',reading:'게츠요-비',kr:'월요일',cat:'time'},
+  {jp:'<ruby>火<rt>か</rt></ruby>ようび',reading:'카요-비',kr:'화요일',cat:'time'},
+  {jp:'<ruby>水<rt>すい</rt></ruby>ようび',reading:'스이요-비',kr:'수요일',cat:'time'},
+  {jp:'<ruby>木<rt>もく</rt></ruby>ようび',reading:'모쿠요-비',kr:'목요일',cat:'time'},
+  {jp:'<ruby>金<rt>きん</rt></ruby>ようび',reading:'킨요-비',kr:'금요일',cat:'time'},
+  {jp:'<ruby>土<rt>ど</rt></ruby>ようび',reading:'도요-비',kr:'토요일',cat:'time'},
+  {jp:'<ruby>日<rt>にち</rt></ruby>ようび',reading:'니치요-비',kr:'일요일',cat:'time'},
+  {jp:'<ruby>会<rt>あ</rt></ruby>う',reading:'아우',kr:'만나다',cat:'verb'},
+  {jp:'<ruby>行<rt>い</rt></ruby>く',reading:'이쿠',kr:'가다',cat:'verb'},
   {jp:'あそぶ',reading:'아소부',kr:'놀다',cat:'verb'},
   {jp:'すわる',reading:'스와루',kr:'앉다',cat:'verb'},
   {jp:'はなす',reading:'하나스',kr:'이야기하다',cat:'verb'},
   {jp:'よむ',reading:'요무',kr:'읽다',cat:'verb'},
-  // 동사 2·3그룹
-  {jp:'見る（みる）',reading:'미루',kr:'보다',cat:'verb3'},
-  {jp:'食べる（たべる）',reading:'타베루',kr:'먹다',cat:'verb3'},
-  {jp:'来る（くる）',reading:'쿠루',kr:'오다',cat:'verb3'},
+  {jp:'<ruby>見<rt>み</rt></ruby>る',reading:'미루',kr:'보다',cat:'verb3'},
+  {jp:'<ruby>食<rt>た</rt></ruby>べる',reading:'타베루',kr:'먹다',cat:'verb3'},
+  {jp:'<ruby>来<rt>く</rt></ruby>る',reading:'쿠루',kr:'오다',cat:'verb3'},
   {jp:'する',reading:'스루',kr:'하다',cat:'verb3'},
-  // 거절·상황
   {jp:'ちょっと……',reading:'쵯토',kr:'좀……(완곡한 거절)',cat:'reject'},
   {jp:'どうですか',reading:'도-데스카',kr:'어떻습니까?',cat:'reject'},
   {jp:'どうしたの',reading:'도-시타노',kr:'무슨 일이야? 왜 그래?',cat:'reject'},
   {jp:'ごめんなさい',reading:'고멘나사이',kr:'미안합니다',cat:'reject'},
   {jp:'ぜひ',reading:'제히',kr:'꼭, 부디',cat:'reject'},
   {jp:'わくわくする',reading:'와쿠와쿠 스루',kr:'설레다',cat:'reject'},
-  // 형용사·기타
   {jp:'いたい',reading:'이타이',kr:'아프다',cat:'adj'},
   {jp:'さむい',reading:'사무이',kr:'춥다',cat:'adj'},
   {jp:'こわい',reading:'코와이',kr:'무섭다',cat:'adj'},
   {jp:'たのしい',reading:'타노시-',kr:'즐겁다',cat:'adj'},
   {jp:'まつり',reading:'마츠리',kr:'마쓰리 (축제)',cat:'other'},
-  {jp:'スカイツリー',reading:'스카이츠리-',kr:'스카이트리',cat:'other'},
-  {jp:'夜（よる）',reading:'요루',kr:'밤',cat:'other'},
+  {jp:'<ruby class="kata">スカイツリー<rt>すかいつりー</rt></ruby>',reading:'스카이츠리-',kr:'스카이트리',cat:'other'},
+  {jp:'<ruby>夜<rt>よる</rt></ruby>',reading:'요루',kr:'밤',cat:'other'},
   {jp:'けしき',reading:'케시키',kr:'경치',cat:'other'},
-  {jp:'友だち（ともだち）',reading:'토모다치',kr:'친구',cat:'other'},
+  {jp:'<ruby>友<rt>とも</rt></ruby>だち',reading:'토모다치',kr:'친구',cat:'other'},
   {jp:'しんぶん',reading:'신분',kr:'신문',cat:'other'},
   {jp:'えいが',reading:'에이가',kr:'영화',cat:'other'},
   {jp:'べんきょう',reading:'벵쿄-',kr:'공부',cat:'other'},
-  // 조사
   {jp:'～に',reading:'니',kr:'~에/에게 (목적지·대상)',cat:'particle'},
   {jp:'～を',reading:'오',kr:'~을/를 (목적어)',cat:'particle'},
 ];
 
 const fillData = [
-  {jp:'いま 何___ ですか。',ans:'時',choices:['時','ようび','じかん','まい'],kr:'지금 몇 ___입니까?'},
-  {jp:'きょうは 何___ ですか。',ans:'ようび',choices:['ようび','時','にち','がつ'],kr:'오늘은 무슨 ___입니까?'},
+  {jp:'いま <ruby>何<rt>なん</rt></ruby>___ ですか。',ans:'時',choices:['時','ようび','じかん','まい'],kr:'지금 몇 ___입니까?'},
+  {jp:'きょうは <ruby>何<rt>なん</rt></ruby>___ ですか。',ans:'ようび',choices:['ようび','時','にち','がつ'],kr:'오늘은 무슨 ___입니까?'},
   {jp:'やきそばは ちょっと ___。',ans:'……',choices:['……','です','ます','でした'],kr:'야키소바는 좀…… (거절)'},
-  {jp:'きのう まつりに 行き___。',ans:'ました',choices:['ました','ます','でした','です'],kr:'어제 마쓰리에 ___. (과거형)'},
-  {jp:'あした えいがを 見___。',ans:'ます',choices:['ます','ました','でした','です'],kr:'내일 영화를 ___. (현재·미래형)'},
-  {jp:'行く → 行___ます。',ans:'き',choices:['き','く','か','け'],kr:'行く의 정중형 어미 변화'},
-  {jp:'来る → ___ます。',ans:'き',choices:['き','く','こ','か'],kr:'来る의 정중형 (불규칙 암기!)'},
+  {jp:'きのう まつりに <ruby>行<rt>い</rt></ruby>き___。',ans:'ました',choices:['ました','ます','でした','です'],kr:'어제 마쓰리에 ___. (과거형)'},
+  {jp:'あした えいがを <ruby>見<rt>み</rt></ruby>___。',ans:'ます',choices:['ます','ました','でした','です'],kr:'내일 영화를 ___. (현재·미래형)'},
+  {jp:'<ruby>行<rt>い</rt></ruby>く → <ruby>行<rt>い</rt></ruby>___ます。',ans:'き',choices:['き','く','か','け'],kr:'行く의 정중형 어미 변화'},
+  {jp:'<ruby>来<rt>く</rt></ruby>る → ___ます。',ans:'き',choices:['き','く','こ','か'],kr:'来る의 정중형 (불규칙 암기!)'},
 ];
 
 // ── RENDER ──
@@ -964,9 +964,9 @@ function renderClock(){
   const g = document.getElementById('clock-grid');
   g.innerHTML = clockData.map(c => `
     <div class="clock-card" onclick="this.querySelector('.clock-kr').classList.toggle('show')">
-      <div class="clock-num">${c.n}</div>
       <div class="clock-jp">${c.jp}</div>
-      <div class="clock-pron">${c.pron}</div>
+      <div class="clock-hira">${c.hira}</div>
+      <div class="clock-pron clock-pron-hide">${c.pron}</div>
       <div class="clock-kr">${c.kr}</div>
     </div>
   `).join('');
@@ -975,8 +975,8 @@ function renderClock(){
 let timeKrShow = false;
 function toggleTimeKr(){
   timeKrShow = !timeKrShow;
-  document.querySelectorAll('.clock-kr').forEach(el => el.classList.toggle('show', timeKrShow));
-  document.getElementById('time-toggle-btn').textContent = timeKrShow ? '🙈 번역 숨기기' : '🔍 번역 보기';
+  document.querySelectorAll('.clock-pron-hide').forEach(el => el.classList.toggle('show', timeKrShow));
+  document.getElementById('time-toggle-btn').textContent = timeKrShow ? '🙈 발음 숨기기' : '🔊 발음 보기';
   document.getElementById('time-toggle-btn').classList.toggle('active', timeKrShow);
 }
 
@@ -1013,7 +1013,6 @@ function renderVocab(){
   `).join('');
 }
 
-// ── TAB / UI ──
 function switchTab(id, btn){
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1044,7 +1043,6 @@ function toggleVocabPron(){
 }
 function toggleVocab(el){ el.querySelector('.vocab-kr').classList.toggle('show'); }
 
-// ── READING ──
 let readAllShow = false, readRevealCount = 0;
 function toggleRLine(el){
   const kr = el.querySelector('.r-kr');
@@ -1071,7 +1069,6 @@ function setRMode(mode){
 }
 function toggleVc2(e, el){ e.stopPropagation(); el.classList.toggle('vopen'); }
 
-// ── QUIZ ──
 let qQs=[], qIdx=0, qScore=0, qAnswered=false;
 function shuffle(a){ return [...a].sort(()=>Math.random()-.5); }
 function startQuiz(){
@@ -1089,7 +1086,7 @@ function startQuiz(){
 function renderQ(){
   if(qIdx>=qQs.length){ showQFinal(); return; }
   const q=qQs[qIdx];
-  document.getElementById('q-question').textContent=q.q;
+  document.getElementById('q-question').innerHTML=q.q;
   document.getElementById('q-hint').textContent='읽기: '+q.hint;
   document.getElementById('q-score').textContent=qScore+'점';
   document.getElementById('q-bar').style.width=(qIdx/qQs.length*100)+'%';
@@ -1124,7 +1121,6 @@ function showQFinal(){
   document.getElementById('q-final-msg').textContent=m;
 }
 
-// ── MATCH ──
 let mSel=null, mMatched=0, mTotal=0;
 function startMatch(){
   const pairs=shuffle(vocabulary.filter(v=>v.cat!=='particle')).slice(0,7);
@@ -1153,7 +1149,6 @@ function mClick(el){
   }
 }
 
-// ── FILL ──
 let fillDone=[], fillScore=0;
 function startFill(){
   fillDone=new Array(fillData.length).fill(false); fillScore=0;
