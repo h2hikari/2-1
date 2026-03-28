@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>おじゃまします - 3단원 일본어 수업</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Nunito:wght@600;700;800;900&display=swap');
+
+  :root {
+    --bg: #F0FFF8;
+    --card: #FFFFFF;
+    --primary: #06B86F;
+    --primary-light: #E8FFF5;
+    --secondary: #FF7BAC;
+    --accent: #FFD166;
+    --green: #06D6A0;
+    --purple: #9B5DE5;
+    --orange: #FF9F43;
+    --text: #1E2A45;
+    --text-light: #6B7A99;
+    --border: #C8EFE0;
+    --shadow: 0 4px 20px rgba(6,184,111,0.10);
+    --shadow-hover: 0 8px 32px rgba(6,184,111,0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans KR', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #06B86F 0%, #00C896 50%, #06D6A0 100%);
+    padding: 32px 20px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/svg%3E") repeat;
+  }
+  .header-emoji-row { font-size:1.4rem; letter-spacing:6px; opacity:0.6; margin-bottom:10px; position:relative; }
+  .header-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.22);
+    border: 1.5px solid rgba(255,255,255,0.4);
+    border-radius: 20px; padding: 3px 14px;
+    font-size: 0.78rem; color: white;
+    font-family: 'Nunito', sans-serif; font-weight: 700;
+    margin-bottom: 10px; position: relative;
+  }
+  .header-title {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 3rem; font-weight: 700; color: white;
+    text-shadow: 0 3px 12px rgba(0,0,0,0.15);
+    letter-spacing: 4px; position: relative;
+  }
+  .header-sub { color: rgba(255,255,255,0.85); margin-top:8px; font-size:0.95rem; font-weight:500; position:relative; }
+
+  /* NAV */
+  .nav-wrap {
+    background: white; border-bottom: 2px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 16px rgba(6,184,111,0.10);
+  }
+  .nav-tabs {
+    display: flex; justify-content: center; gap: 4px;
+    padding: 14px 16px 0; flex-wrap: wrap;
+    max-width: 960px; margin: 0 auto;
+  }
+  .tab-btn {
+    padding: 9px 16px; border: none;
+    border-radius: 12px 12px 0 0;
+    font-family: 'Nunito', 'Noto Sans KR', sans-serif;
+    font-size: 0.85rem; font-weight: 700;
+    cursor: pointer; transition: all 0.18s;
+    background: #f0fff8; color: var(--text-light);
+    position: relative; bottom: -2px;
+  }
+  .tab-btn.active { background: var(--primary); color: white; bottom: 0; }
+  .tab-btn:hover:not(.active) { background: #c8efe0; color: var(--primary); }
+
+  /* SECTIONS */
+  .section { display: none; padding: 28px 16px; max-width: 960px; margin: 0 auto; }
+  .section.active { display: block; }
+
+  /* CARD */
+  .card {
+    background: var(--card); border-radius: 20px;
+    padding: 24px; margin-bottom: 20px;
+    box-shadow: var(--shadow); border: 1.5px solid var(--border);
+  }
+  .card-title {
+    font-family: 'Nunito', sans-serif; font-size: 1rem;
+    font-weight: 800; color: var(--primary);
+    margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+  }
+
+  /* TIP BOX */
+  .tip-box {
+    background: linear-gradient(135deg,#FFF9E0,#FFFDF5);
+    border: 2px solid var(--accent); border-radius: 14px;
+    padding: 14px 18px; font-size: 0.9rem; margin-bottom: 20px;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .tip-icon { font-size:1.3rem; flex-shrink:0; }
+  .tip-body { line-height:1.7; }
+  .tip-body strong { color: var(--primary); }
+
+  /* TOGGLE BTN */
+  .toggle-all-btn {
+    background: var(--primary); color: white;
+    border: none; border-radius: 12px;
+    padding: 9px 22px; font-size: 0.88rem;
+    cursor: pointer; font-family: 'Nunito','Noto Sans KR',sans-serif;
+    font-weight: 700; margin-bottom: 16px; transition: all 0.18s;
+    box-shadow: 0 3px 12px rgba(6,184,111,0.25);
+  }
+  .toggle-all-btn:hover { transform: translateY(-1px); box-shadow: 0 5px 18px rgba(6,184,111,0.35); }
+
+  /* ── 인사말 ── */
+  .greeting-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media(max-width:560px){ .greeting-grid { grid-template-columns: 1fr; } }
+  .greeting-group { border-radius: 16px; padding: 18px; border: 2px solid transparent; }
+  .greeting-group.outing  { background: linear-gradient(135deg,#E8FFF5,#F0FFF8); border-color: var(--green); }
+  .greeting-group.visit   { background: linear-gradient(135deg,#FFF0F6,#FFF5F9); border-color: var(--secondary); }
+  .greeting-group.family  { background: linear-gradient(135deg,#FFF9E0,#FFFDF5); border-color: var(--accent); }
+  .group-label { font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; opacity:0.6; }
+  .greeting-item {
+    display: flex; align-items: baseline; gap: 8px;
+    padding: 7px 8px; border-bottom: 1px dashed rgba(0,0,0,0.07);
+    cursor: pointer; border-radius: 8px; transition: background 0.15s;
+  }
+  .greeting-item:last-child { border-bottom: none; }
+  .greeting-item:hover { background: rgba(255,255,255,0.7); }
+  .jp-main { font-family:'Noto Sans JP',sans-serif; font-size:1.05rem; font-weight:500; }
+  .kr-hint { font-size:0.82rem; color:var(--text-light); display:none; }
+  .kr-hint.show { display:block; }
+
+  /* ── 가족 호칭 ── */
+  .family-table { width:100%; border-collapse:collapse; font-size:0.9rem; }
+  .family-table th {
+    background: var(--primary); color: white;
+    padding: 10px 12px; text-align:center;
+    font-family:'Nunito',sans-serif; font-weight:700; font-size:0.82rem;
+  }
+  .family-table th:first-child { border-radius:10px 0 0 0; }
+  .family-table th:last-child { border-radius:0 10px 0 0; }
+  .family-table td {
+    padding: 10px 12px; text-align:center;
+    border-bottom: 1px solid var(--border);
+    font-family:'Noto Sans JP','Noto Sans KR',sans-serif;
+  }
+  .family-table tr:hover td { background: var(--primary-light); }
+  .family-table .kr-col { font-family:'Noto Sans KR',sans-serif; font-weight:600; }
+  .family-table .mine { color: var(--primary); font-weight:700; }
+  .family-table .other { color: var(--orange); font-weight:700; }
+  .family-table .call { color: var(--purple); font-weight:700; }
+
+  /* ── 형용사 ── */
+  .adj-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media(max-width:560px){ .adj-grid { grid-template-columns:1fr; } }
+  .adj-block {
+    border-radius:16px; padding:20px;
+    border: 2px solid var(--border);
+  }
+  .adj-block.i-adj { background: linear-gradient(135deg,#EEF3FF,#F5F0FF); border-color: #9B5DE5; }
+  .adj-block.na-adj { background: linear-gradient(135deg,#FFF0F6,#FFF5F9); border-color: #FF7BAC; }
+  .adj-block-title {
+    font-family:'Nunito',sans-serif; font-weight:800; font-size:0.88rem;
+    margin-bottom:12px; display:flex; align-items:center; gap:6px;
+  }
+  .adj-pattern {
+    font-family:'Noto Sans JP',sans-serif; font-size:0.9rem;
+    background: rgba(255,255,255,0.7); border-radius:8px;
+    padding: 8px 12px; margin-bottom:8px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .adj-arrow { color: var(--text-light); }
+  .adj-result { font-weight:700; color: var(--primary); }
+  .adj-note { font-size:0.78rem; color:var(--text-light); margin-top:8px; }
+
+  /* ── 어휘 ── */
+  .vocab-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; }
+  .vocab-card {
+    background:white; border-radius:14px; padding:14px 16px;
+    border: 2px solid var(--border); cursor:pointer; transition:all 0.18s;
+    position:relative;
+  }
+  .vocab-card:hover { border-color:var(--primary); transform:translateY(-2px); box-shadow:var(--shadow-hover); }
+  .vocab-jp { font-family:'Noto Sans JP',sans-serif; font-size:1.05rem; font-weight:500; }
+  .vocab-reading { font-size:0.78rem; color:var(--text-light); margin-top:3px; }
+  .vocab-kr { font-size:0.88rem; color:var(--primary); font-weight:600; margin-top:6px; display:none; }
+  .vocab-kr.show { display:block; }
+  .vocab-cat {
+    position:absolute; top:10px; right:10px;
+    font-size:0.68rem; font-weight:700; padding:2px 6px; border-radius:6px;
+  }
+  .cat-greeting { background:#E8FFF5; color:#06B86F; }
+  .cat-family   { background:#FFF9E0; color:#c8860a; }
+  .cat-adj-i    { background:#F5F0FF; color:#9B5DE5; }
+  .cat-adj-na   { background:#FFF0F6; color:#FF7BAC; }
+  .cat-particle { background:#EEF3FF; color:#5B8DEF; }
+  .cat-other    { background:#f0f0f0; color:#666; }
+
+  /* ── 문법 ── */
+  .grammar-block {
+    background: white; border-radius:18px; padding:22px;
+    margin-bottom:16px; border-left: 5px solid var(--primary);
+    box-shadow: var(--shadow);
+  }
+  .grammar-pattern {
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:1.1rem; font-weight:700; color:var(--primary);
+    background:var(--primary-light); display:inline-block;
+    padding: 6px 16px; border-radius:10px; margin-bottom:12px; letter-spacing:2px;
+  }
+  .grammar-desc { font-size:0.92rem; line-height:1.8; color:var(--text); margin-bottom:14px; }
+  .example-list { display:flex; flex-direction:column; gap:8px; }
+  .example-item {
+    display:flex; gap:10px; align-items:baseline;
+    padding:10px 14px; border-radius:12px;
+    background:#f8fff8; border:1px solid var(--border);
+    cursor:pointer; transition:background 0.15s;
+  }
+  .example-item:hover { background:var(--primary-light); }
+  .ex-jp { font-family:'Noto Sans JP',sans-serif; font-size:1rem; flex:1; }
+  .ex-kr { font-size:0.82rem; color:var(--text-light); display:none; }
+  .ex-kr.show { display:block; }
+
+  /* ── 읽고 이해하기 ── */
+  .scene-label {
+    text-align:center; font-size:0.78rem; color:var(--text-light);
+    font-weight:700; letter-spacing:1px; margin:14px 0 10px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .scene-label::before, .scene-label::after { content:''; flex:1; height:1px; background:var(--border); }
+  .r-line {
+    display:flex; gap:10px; padding:10px 12px; border-radius:12px;
+    cursor:pointer; transition:background 0.15s; margin-bottom:4px;
+  }
+  .r-line:hover { background:var(--primary-light); }
+  .r-num {
+    min-width:26px; height:26px; border-radius:50%;
+    background:var(--primary-light); color:var(--primary);
+    font-family:'Nunito',sans-serif; font-weight:900; font-size:0.72rem;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; margin-top:4px;
+  }
+  .r-body { flex:1; }
+  .line-jp { font-family:'Noto Sans JP',sans-serif; font-size:1.08rem; line-height:1.9; }
+  .r-kr {
+    font-size:0.86rem; color:var(--text-light);
+    background:#f0fff8; border-left:3px solid var(--primary);
+    padding:6px 12px; border-radius:0 8px 8px 0;
+    margin-top:6px; line-height:1.6; display:none;
+  }
+  .r-kr.show { display:block; }
+  .r-pron {
+    font-size:0.84rem; color:#9B5DE5;
+    background:#F5F0FF; border-left:3px solid #9B5DE5;
+    padding:6px 12px; border-radius:0 8px 8px 0;
+    margin-top:6px; line-height:1.6; display:none; font-style:italic;
+  }
+  .r-pron.show { display:block; }
+  .r-vocab { display:none; flex-wrap:wrap; gap:6px; margin-top:8px; }
+  .r-vocab.show { display:flex; }
+  .vocab-chip2 {
+    display:inline-flex; gap:4px; align-items:baseline;
+    background:white; border:1.5px solid var(--border);
+    border-radius:8px; padding:3px 10px; font-size:0.78rem;
+    cursor:pointer; transition:all 0.15s;
+  }
+  .vocab-chip2:hover { border-color:var(--primary); background:var(--primary-light); }
+  .vc2-jp { font-family:'Noto Sans JP',sans-serif; font-weight:500; }
+  .vc2-kr { color:var(--text-light); font-size:0.74rem; display:none; }
+  .vocab-chip2.vopen .vc2-kr { display:inline; }
+  .vocab-chip2.vopen { border-color:var(--green); background:#f0fff8; }
+  .mode-btn {
+    padding:7px 14px; border-radius:10px;
+    border:2px solid var(--border); background:white;
+    font-family:'Nunito','Noto Sans KR',sans-serif;
+    font-weight:700; font-size:0.8rem;
+    cursor:pointer; transition:all 0.18s; color:var(--text-light);
+  }
+  .mode-btn.active { background:var(--primary); color:white; border-color:var(--primary); }
+  .mode-btn:hover:not(.active) { border-color:var(--primary); color:var(--primary); }
+  .comp-q-item {
+    background:white; border:2px solid var(--border);
+    border-radius:14px; padding:14px 16px; margin-bottom:10px;
+    cursor:pointer; transition:all 0.18s;
+  }
+  .comp-q-item:hover { border-color:var(--primary); }
+  .comp-q-text2 { font-size:0.9rem; font-weight:600; display:flex; align-items:flex-start; gap:10px; }
+  .comp-num {
+    min-width:22px; height:22px; border-radius:50%;
+    background:var(--primary); color:white;
+    font-family:'Nunito',sans-serif; font-weight:900; font-size:0.72rem;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .comp-ans2 {
+    font-size:0.86rem; color:var(--primary);
+    background:var(--primary-light); border-radius:8px;
+    padding:8px 12px; margin-top:10px; display:none; line-height:1.6;
+  }
+  .comp-ans2.show { display:block; }
+
+  /* speaker chips */
+  .speaker-chip {
+    min-width:68px; max-width:68px; font-weight:700; font-size:0.8rem;
+    padding:4px 6px; border-radius:20px; text-align:center;
+    height:fit-content; white-space:nowrap; flex-shrink:0; margin-top:2px;
+  }
+  .sp-haruto { background:#E8D8FF; color:#5a1aa0; }
+  .sp-jiho   { background:#FFD6E7; color:#a01a4f; }
+  .sp-riko   { background:#C8F7E8; color:#0d6e4f; }
+  .sp-okaasan{ background:#FFF2B3; color:#7a5c00; }
+
+  /* PROGRESS */
+  .quiz-progress-wrap { background:#d8f5ec; border-radius:999px; height:8px; margin-bottom:14px; overflow:hidden; }
+  .quiz-progress-bar { height:100%; border-radius:999px; background:linear-gradient(90deg,var(--primary),var(--purple)); transition:width 0.4s; width:0%; }
+
+  /* ── 게임 ── */
+  .game-selector { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; }
+  .game-tab {
+    padding:9px 20px; border-radius:12px;
+    border:2px solid var(--border); background:white;
+    font-family:'Nunito','Noto Sans KR',sans-serif;
+    font-weight:700; font-size:0.88rem; cursor:pointer; transition:all 0.18s; color:var(--text-light);
+  }
+  .game-tab.active, .game-tab:hover { background:var(--primary); color:white; border-color:var(--primary); }
+  .game-area { display:none; }
+  .game-area.active { display:block; }
+
+  /* quiz */
+  .quiz-q-card {
+    background:linear-gradient(135deg,#E8FFF5,#F5F0FF);
+    border-radius:20px; padding:28px 24px; text-align:center;
+    margin-bottom:18px; border:2px solid var(--primary);
+  }
+  .quiz-q-text { font-family:'Noto Sans JP',sans-serif; font-size:2rem; font-weight:700; letter-spacing:4px; }
+  .quiz-q-hint { font-size:0.85rem; color:var(--text-light); margin-top:8px; }
+  .quiz-meta { display:flex; justify-content:space-between; font-size:0.82rem; color:var(--text-light); margin-bottom:8px; }
+  .quiz-options { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .quiz-opt {
+    background:white; border:2px solid var(--border);
+    border-radius:14px; padding:14px; font-size:0.95rem;
+    cursor:pointer; transition:all 0.18s; font-family:'Noto Sans KR',sans-serif; font-weight:600;
+  }
+  .quiz-opt:hover:not(:disabled) { border-color:var(--primary); background:var(--primary-light); }
+  .quiz-opt.correct { background:#E8FFF5; border-color:var(--green); color:#0d6e4f; }
+  .quiz-opt.wrong   { background:#FFF0F0; border-color:#FF6B6B; color:#cc0000; }
+  .quiz-feedback { text-align:center; padding:10px; border-radius:12px; font-weight:700; font-size:0.95rem; margin-top:10px; display:none; }
+  .quiz-feedback.show { display:block; }
+  .quiz-feedback.ok { background:#E8FFF5; color:#0d6e4f; }
+  .quiz-feedback.ng { background:#FFF0F0; color:#cc0000; }
+  .quiz-final { display:none; text-align:center; padding:32px; }
+  .quiz-final.show { display:block; }
+  .quiz-final-score { font-family:'Nunito',sans-serif; font-size:3.5rem; font-weight:900; color:var(--primary); }
+  .game-start-btn, .game-next-btn {
+    background:var(--primary); color:white; border:none; border-radius:14px;
+    padding:12px 28px; font-size:0.95rem; cursor:pointer;
+    font-family:'Nunito','Noto Sans KR',sans-serif; font-weight:700;
+    margin-top:12px; transition:all 0.18s;
+    box-shadow:0 3px 12px rgba(6,184,111,0.25); display:block; margin:12px auto 0;
+  }
+  .game-start-btn:hover, .game-next-btn:hover { transform:translateY(-2px); box-shadow:0 5px 18px rgba(6,184,111,0.4); }
+
+  /* match */
+  .match-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .match-col { display:flex; flex-direction:column; gap:8px; }
+  .match-item {
+    padding:12px 14px; border-radius:12px; border:2px solid var(--border);
+    background:white; cursor:pointer; font-weight:600; text-align:center;
+    transition:all 0.18s; font-size:0.95rem;
+  }
+  .match-item.jp-item { font-family:'Noto Sans JP',sans-serif; }
+  .match-item:hover:not(.matched) { border-color:var(--primary); background:var(--primary-light); }
+  .match-item.selected { border-color:var(--secondary); background:#FFF0F6; }
+  .match-item.matched  { border-color:var(--green); background:#E8FFF5; color:#0d6e4f; cursor:default; opacity:0.7; }
+  .match-item.wrong-flash { background:#FFF0F0; border-color:#FF6B6B; }
+  .match-meta { display:flex; gap:12px; margin-bottom:12px; font-size:0.88rem; }
+  .match-stat { background:var(--primary-light); padding:4px 14px; border-radius:8px; color:var(--primary); font-weight:700; }
+  .match-final { display:none; text-align:center; padding:24px; }
+  .match-final.show { display:block; }
+
+  /* fill */
+  .fill-sentence { background:white; border-radius:16px; padding:18px 20px; margin-bottom:14px; border:2px solid var(--border); }
+  .fill-jp { font-family:'Noto Sans JP',sans-serif; font-size:1.1rem; margin-bottom:8px; line-height:2; }
+  .fill-blank { display:inline-block; min-width:100px; border-bottom:3px solid var(--primary); margin:0 4px; text-align:center; color:var(--primary); font-weight:700; padding:0 6px; }
+  .fill-chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+  .chip { padding:7px 14px; border-radius:10px; border:2px solid var(--border); background:white; cursor:pointer; font-size:0.88rem; font-weight:600; font-family:'Noto Sans JP','Noto Sans KR',sans-serif; transition:all 0.15s; }
+  .chip:hover:not(.used) { border-color:var(--primary); background:var(--primary-light); }
+  .chip.used { opacity:0.35; cursor:not-allowed; }
+  .fill-fb { font-size:0.85rem; font-weight:700; padding:5px 10px; border-radius:8px; margin-top:6px; display:none; }
+  .fill-fb.show { display:block; }
+  .fill-fb.ok { background:#E8FFF5; color:#0d6e4f; }
+  .fill-fb.ng { background:#FFF0F0; color:#cc0000; }
+  .fill-final { display:none; text-align:center; padding:24px; }
+  .fill-final.show { display:block; }
+
+  .show-all-wrap { margin-bottom:14px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-emoji-row">🏠 👨‍👩‍👧‍👦 🌿 🐱 🏠</div>
+  <div class="header-badge">일본어 3단원</div>
+  <div class="header-title">おじゃまします</div>
+  <div class="header-sub">실례합니다 — 외출·귀가·방문 인사 · 가족 소개 · 형용사</div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('greet',this)">👋 인사말</button>
+    <button class="tab-btn" onclick="switchTab('family',this)">👨‍👩‍👧 가족 호칭</button>
+    <button class="tab-btn" onclick="switchTab('adj',this)">✨ 형용사</button>
+    <button class="tab-btn" onclick="switchTab('vocab',this)">📖 어휘</button>
+    <button class="tab-btn" onclick="switchTab('grammar',this)">📝 문법</button>
+    <button class="tab-btn" onclick="switchTab('reading',this)">📚 읽고 이해하기</button>
+    <button class="tab-btn" onclick="switchTab('game',this)">🎮 게임</button>
+  </div>
+</div>
+
+<!-- ═══ 1. 인사말 ═══ -->
+<div class="section active" id="sec-greet">
+  <div class="show-all-wrap">
+    <button class="toggle-all-btn" id="greet-toggle" onclick="toggleGreetAll()">🔍 번역 모두 보기</button>
+  </div>
+  <div class="greeting-grid">
+    <!-- 외출·귀가 -->
+    <div class="greeting-group outing">
+      <div class="group-label">🚪 외출 · 귀가</div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">いってきます。</span>
+        <div class="kr-hint">다녀오겠습니다.</div>
+      </div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">いってらっしゃい。</span>
+        <div class="kr-hint">잘 다녀와. / 다녀오세요.</div>
+      </div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">ただいま。</span>
+        <div class="kr-hint">다녀왔습니다. / 다녀왔어.</div>
+      </div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">おかえり。</span>
+        <div class="kr-hint">잘 다녀왔니?</div>
+      </div>
+    </div>
+    <!-- 방문 -->
+    <div class="greeting-group visit">
+      <div class="group-label">🏠 방문</div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">おじゃまします。</span>
+        <div class="kr-hint">실례합니다. (남의 집에 들어갈 때)</div>
+      </div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">いらっしゃい。</span>
+        <div class="kr-hint">어서 와. / 어서 오세요.</div>
+      </div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">どうぞ。</span>
+        <div class="kr-hint">드세요. / 들어오세요. / 받으세요.</div>
+      </div>
+      <div class="greeting-item" onclick="toggleKr(this)">
+        <span class="jp-main">はい。</span>
+        <div class="kr-hint">네.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-box" style="margin-top:16px;">
+    <div class="tip-icon">💡</div>
+    <div class="tip-body">
+      <strong>どうぞ</strong>는 상황에 따라 의미가 달라져요!<br>
+      음식을 권할 때 → <strong>드세요</strong> &nbsp;|&nbsp; 들어오라고 할 때 → <strong>들어오세요</strong> &nbsp;|&nbsp; 물건을 줄 때 → <strong>받으세요</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 2. 가족 호칭 ═══ -->
+<div class="section" id="sec-family">
+  <div class="card">
+    <div class="card-title"><span>👨‍👩‍👧</span> 가족 호칭 비교표</div>
+    <div style="overflow-x:auto;">
+      <table class="family-table">
+        <thead>
+          <tr>
+            <th>관계</th>
+            <th>나의 가족을 말할 때 <br><small>(겸양)</small></th>
+            <th>다른 사람 가족을 말할 때<br><small>(존경)</small></th>
+            <th>직접 부를 때</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="kr-col">아버지</td><td class="mine">ちち</td><td class="other">おとうさん</td><td class="call">おとうさん</td></tr>
+          <tr><td class="kr-col">어머니</td><td class="mine">はは</td><td class="other">おかあさん</td><td class="call">おかあさん</td></tr>
+          <tr><td class="kr-col">오빠·형</td><td class="mine">あに</td><td class="other">おにいさん</td><td class="call">おにいちゃん</td></tr>
+          <tr><td class="kr-col">언니·누나</td><td class="mine">あね</td><td class="other">おねえさん</td><td class="call">おねえちゃん</td></tr>
+          <tr><td class="kr-col">남동생</td><td class="mine">おとうと</td><td class="other">おとうとさん</td><td class="call">이름</td></tr>
+          <tr><td class="kr-col">여동생</td><td class="mine">いもうと</td><td class="other">いもうとさん</td><td class="call">이름</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:14px;font-size:0.85rem;color:var(--text-light);line-height:1.8;">
+      🟢 <strong style="color:var(--primary);">초록</strong> = 나의 가족을 남에게 말할 때 (낮춰서)&nbsp;&nbsp;
+      🟠 <strong style="color:var(--orange);">주황</strong> = 상대방 가족을 부를 때 (높여서)&nbsp;&nbsp;
+      🟣 <strong style="color:var(--purple);">보라</strong> = 직접 호칭
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span>💬</span> 가족 소개 연습 <small style="font-weight:400;color:#aaa;font-size:0.8rem;margin-left:4px;">클릭하면 번역</small></div>
+    <div class="example-list">
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">レオ：ソミさんの おねえさんですか。<br>ソミ：はい、わたしの あねです。</div>
+        <div class="ex-kr">레오: 소미 씨의 언니입니까?<br>소미: 네, 저의 언니입니다.</div>
+      </div>
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">はると：りこさんの おとうさんと おかあさんですか。<br>りこ：はい、わたしの ちちと ははです。</div>
+        <div class="ex-kr">하루토: 리코 씨의 아버지와 어머니입니까?<br>리코: 네, 저의 아버지와 어머니입니다.</div>
+      </div>
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">ちちと ははと あにです。</div>
+        <div class="ex-kr">아버지와 어머니와 오빠입니다.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-icon">💡</div>
+    <div class="tip-body">
+      <strong>일본인의 호칭</strong><br>
+      보통 성씨에 <strong>さん</strong>을 붙여 부르고, 친한 사이엔 이름에 <strong>ちゃん</strong>(여성·친근), <strong>くん</strong>(남성·친근)을 붙이기도 해요.<br>
+      예: 鈴木さん / なみちゃん / ゆうとくん
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3. 형용사 ═══ -->
+<div class="section" id="sec-adj">
+  <div class="card">
+    <div class="card-title"><span>✨</span> い형용사 vs な형용사</div>
+    <div class="adj-grid">
+      <div class="adj-block i-adj">
+        <div class="adj-block-title" style="color:#9B5DE5;">🔵 い형용사</div>
+        <div style="font-size:0.82rem;color:var(--text-light);margin-bottom:12px;">기본형이 い로 끝나요</div>
+        <div class="adj-pattern">
+          <span>まるい</span><span class="adj-arrow">→</span>
+          <span>まる<strong class="adj-result">いです</strong></span>
+        </div>
+        <div class="adj-pattern">
+          <span>かわいい</span><span class="adj-arrow">→</span>
+          <span>かわい<strong class="adj-result">いです</strong></span>
+        </div>
+        <div class="adj-pattern">
+          <span>おもしろい</span><span class="adj-arrow">→</span>
+          <span>おもしろ<strong class="adj-result">いです</strong></span>
+        </div>
+        <div class="adj-pattern">
+          <span>あおい</span><span class="adj-arrow">→</span>
+          <span>あお<strong class="adj-result">いです</strong></span>
+        </div>
+        <div class="adj-note">수식: まるい かお (둥근 얼굴)</div>
+      </div>
+      <div class="adj-block na-adj">
+        <div class="adj-block-title" style="color:#FF7BAC;">🩷 な형용사</div>
+        <div style="font-size:0.82rem;color:var(--text-light);margin-bottom:12px;">기본형이 だ로 끝나요</div>
+        <div class="adj-pattern">
+          <span>すきだ</span><span class="adj-arrow">→</span>
+          <span>すき<strong class="adj-result">です</strong></span>
+        </div>
+        <div class="adj-pattern">
+          <span>きれいだ</span><span class="adj-arrow">→</span>
+          <span>きれい<strong class="adj-result">です</strong></span>
+        </div>
+        <div class="adj-pattern">
+          <span>じょうずだ</span><span class="adj-arrow">→</span>
+          <span>じょうず<strong class="adj-result">です</strong></span>
+        </div>
+        <div class="adj-pattern">
+          <span>ゆうめいだ</span><span class="adj-arrow">→</span>
+          <span>ゆうめい<strong class="adj-result">です</strong></span>
+        </div>
+        <div class="adj-note">수식: きれい<strong>な</strong> へや (예쁜 방)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span>📋</span> 형용사 예문 <small style="font-weight:400;color:#aaa;font-size:0.8rem;margin-left:4px;">클릭하면 번역</small></div>
+    <div class="example-list">
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">この ゲームは おもしろいです。</div>
+        <div class="ex-kr">이 게임은 재미있습니다.</div>
+      </div>
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">まるい かおが かわいいです。</div>
+        <div class="ex-kr">동그란 얼굴이 귀엽습니다.</div>
+      </div>
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">にほんの まんがは とても おもしろいです。</div>
+        <div class="ex-kr">일본 만화는 아주 재미있습니다.</div>
+      </div>
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">ぼくは まんがが すきです。</div>
+        <div class="ex-kr">나는 만화를 좋아합니다.</div>
+      </div>
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">あねは ゆうめいな かしゅです。</div>
+        <div class="ex-kr">언니는 유명한 가수입니다.</div>
+      </div>
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">きれいな へやですね。</div>
+        <div class="ex-kr">예쁜 방이네요.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 4. 어휘 ═══ -->
+<div class="section" id="sec-vocab">
+  <div class="show-all-wrap">
+    <button class="toggle-all-btn" id="vocab-toggle" onclick="toggleVocabAll()">🔍 뜻 모두 보기</button>
+  </div>
+  <div class="vocab-grid" id="vocab-grid"></div>
+</div>
+
+<!-- ═══ 5. 문법 ═══ -->
+<div class="section" id="sec-grammar">
+
+  <div class="grammar-block">
+    <div class="grammar-pattern">N と N です。</div>
+    <div class="grammar-desc">
+      <strong>「~와/과 ~입니다」</strong> — と는 명사와 명사를 이어주는 조사예요.<br>
+      두 개 이상의 명사를 나열할 때 사용합니다.
+    </div>
+    <div class="example-list">
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">ちちと ははと あにです。</div>
+        <div class="ex-kr">아버지와 어머니와 오빠입니다.</div>
+      </div>
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">おとうさんと おかあさんですか。</div>
+        <div class="ex-kr">아버지와 어머니입니까?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grammar-block" style="border-left-color:#9B5DE5;">
+    <div class="grammar-pattern" style="background:#F5F0FF;color:#9B5DE5;">い형용사 + です</div>
+    <div class="grammar-desc">
+      <strong>「~합니다」</strong> — い형용사의 정중형이에요.<br>
+      い를 그대로 두고 뒤에 です를 붙입니다.
+    </div>
+    <div class="example-list">
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">まるいです。</div>
+        <div class="ex-kr">둥급니다.</div>
+      </div>
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">かわいいです。</div>
+        <div class="ex-kr">귀엽습니다.</div>
+      </div>
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">まるい かお。</div>
+        <div class="ex-kr">둥근 얼굴. (수식형 — い 그대로)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grammar-block" style="border-left-color:#FF7BAC;">
+    <div class="grammar-pattern" style="background:#FFF0F6;color:#FF7BAC;">な형용사 + です</div>
+    <div class="grammar-desc">
+      <strong>「~합니다」</strong> — な형용사의 정중형이에요.<br>
+      だ를 빼고 です를 붙입니다. 수식할 때는 だ→な로 바꿔요.
+    </div>
+    <div class="example-list">
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">きれいです。</div>
+        <div class="ex-kr">예쁩니다.</div>
+      </div>
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">じょうずです。</div>
+        <div class="ex-kr">잘합니다.</div>
+      </div>
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">きれいな へや。</div>
+        <div class="ex-kr">예쁜 방. (수식형 — だ→な)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grammar-block" style="border-left-color:var(--accent);">
+    <div class="grammar-pattern" style="background:#FFF9E0;color:#c8860a;">N が すきです。</div>
+    <div class="grammar-desc">
+      <strong>「~을/를 좋아합니다」</strong> — が는 대상을 나타내는 조사예요.<br>
+      すきだ(な형용사)와 함께 씁니다.
+    </div>
+    <div class="example-list">
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">ぼくは まんがが すきです。</div>
+        <div class="ex-kr">나는 만화를 좋아합니다.</div>
+      </div>
+      <div class="example-item" onclick="toggleEx(this)">
+        <div class="ex-jp">すきな まんがは なんですか。</div>
+        <div class="ex-kr">좋아하는 만화는 무엇입니까?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 6. 읽고 이해하기 ═══ -->
+<div class="section" id="sec-reading">
+
+  <div class="tip-box">
+    <div class="tip-icon">📱</div>
+    <div class="tip-body">
+      <strong>상황:</strong> 하루토와 지호는 영상 통화로 서로의 방을 소개합니다.<br>
+      <small style="color:#999;">각 대사를 클릭하면 번역이 나타납니다</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span>🎬</span> 대화 읽기</div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
+      <div style="display:flex;gap:8px;">
+        <button class="mode-btn active" id="rmode-read" onclick="setRMode('read')">📖 읽기</button>
+        <button class="mode-btn" id="rmode-pron" onclick="setRMode('pron')">🔊 발음</button>
+        <button class="mode-btn" id="rmode-vocab" onclick="setRMode('vocab')">📌 어휘</button>
+      </div>
+      <button class="toggle-all-btn" id="read-reveal-btn" onclick="toggleReadAll()" style="margin:0;">🔍 번역 모두 보기</button>
+    </div>
+
+    <div style="font-size:0.78rem;color:#b2bec3;text-align:right;margin-bottom:6px;">번역 확인: <span id="read-prog-count">0</span> / 14</div>
+    <div class="quiz-progress-wrap" style="margin-bottom:16px;"><div class="quiz-progress-bar" id="read-prog-bar" style="width:0%"></div></div>
+
+    <div class="scene-label">🎬 장면 1 — 귀가 & 방문</div>
+
+    <div class="r-line" onclick="toggleRLine(this)">
+      <div class="r-num">①</div>
+      <div class="speaker-chip sp-haruto">하루토</div>
+      <div class="r-body">
+        <div class="line-jp">ただいま。</div>
+        <div class="r-pron">타다이마.</div>
+        <div class="r-kr">다녀왔습니다.</div>
+        <div class="r-vocab">
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">ただいま</span><span class="vc2-kr">다녀왔습니다</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="r-line" onclick="toggleRLine(this)">
+      <div class="r-num">②</div>
+      <div class="speaker-chip sp-okaasan">어머니</div>
+      <div class="r-body">
+        <div class="line-jp">おかえり。</div>
+        <div class="r-pron">오카에리.</div>
+        <div class="r-kr">잘 다녀왔니?</div>
+        <div class="r-vocab">
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">おかえり</span><span class="vc2-kr">잘 다녀왔니?</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="r-line" onclick="toggleRLine(this)">
+      <div class="r-num">③</div>
+      <div class="speaker-chip sp-okaasan">어머니</div>
+      <div class="r-body">
+        <div class="line-jp">あら、りこちゃん。いらっしゃい。どうぞ。</div>
+        <div class="r-pron">아라, 리코챵. 이랏샤이. 도-조.</div>
+        <div class="r-kr">어머, 리코야. 어서 와. 들어오렴.</div>
+        <div class="r-vocab">
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">あら</span><span class="vc2-kr">어머(감탄)</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～ちゃん</span><span class="vc2-kr">~야(친근)</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">いらっしゃい</span><span class="vc2-kr">어서 와</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">どうぞ</span><span class="vc2-kr">들어오세요</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="r-line" onclick="toggleRLine(this)">
+      <div class="r-num">④</div>
+      <div class="speaker-chip sp-riko">리코</div>
+      <div class="r-body">
+        <div class="line-jp">おじゃまします。</div>
+        <div class="r-pron">오쟈마시마스.</div>
+        <div class="r-kr">실례합니다.</div>
+        <div class="r-vocab">
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">おじゃまします</span><span class="vc2-kr">실례합니다</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene-label">🎬 장면 2 — 영상 통화 & 방 소개</div>
+
+    <div class="r-line" onclick="toggleRLine(this)">
+      <div class="r-num">⑤</div>
+      <div class="speaker-chip sp-jiho">지호</div>
+      <div class="r-body">
+        <div class="line-jp">こんにちは。</div>
+        <div class="r-pron">콘니치와.</div>
+        <div class="r-kr">안녕하세요.</div>
+        <div class="r-vocab">
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">こんにちは</span><span class="vc2-kr">안녕하세요(낮)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="r-line" onclick="toggleRLine(this)">
+      <div class="r-num">⑥</div>
+      <div class="speaker-chip sp-haruto">하루토</div>
+      <div class="r-body">
+        <div class="line-jp">ジホくん、ひさしぶり！</div>
+        <div class="r-pron">지호쿤, 히사시부리!</div>
+        <div class="r-kr">지호야, 오랜만이야!</div>
+        <div class="r-vocab">
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～くん</span><span class="vc2-kr">~군(남성 친근)</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">ひさしぶり</span><span class="vc2-kr">오랜만</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="r-line" onclick="toggleRLine(this)">
+      <div class="r-num">⑦</div>
+      <div class="speaker-chip sp-jiho">지호</div>
+      <div class="r-body">
+        <div class="line-jp">それ、ぜんぶ まんがですか。</div>
+        <div class="r-pron">소레, 젬부 망가데스카.</div>
+        <div class="r-kr">그것, 전부 만화입니까?</div>
+        <div class="r-vocab">
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">それ</span><span class="vc2-kr">그것</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">ぜんぶ</span><span class="vc2-kr">전부</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">まんが</span><span class="vc2-kr">만화</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="r-line" onclick="toggleRLine(this)">
+      <div class="r-num">⑧</div>
+      <div class="speaker-chip sp-haruto">하루토</div>
+      <div class="r-body">
+        <div class="line-jp">はい、そうです。ぼくは まんがが すきです。</div>
+        <div class="r-pron">하이, 소-데스. 보쿠와 망가가 스키데스.</div>
+        <div class="r-kr">네, 그렇습니다. 나는 만화를 좋아합니다.</div>
+        <div class="r-vocab">
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">そうです</span><span class="vc2-kr">그렇습니다</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">すきです</span><span class="vc2-kr">좋아합니다</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="r-line" onclick="toggleRLine(this)">
+      <div class="r-num">⑨</div>
+      <div class="speaker-chip sp-jiho">지호</div>
+      <div class="r-body">
+        <div class="line-jp">ほんとう？ ぼくも！ にほんの まんがは とても おもしろいです。</div>
+        <div class="r-pron">혼토-? 보쿠모! 니혼노 망가와 토테모 오모시로이데스.</div>
+        <div class="r-kr">정말? 나도! 일본 만화는 아주 재미있습니다.</div>
+        <div class="r-vocab">
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">ほんとう</span><span class="vc2-kr">정말, 진짜</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～も</span><span class="vc2-kr">~도</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">とても</span><span class="vc2-kr">아주, 매우</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">おもしろい</span><span class="vc2-kr">재미있다</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene-label">🎬 장면 3 — 가족 소개 & 고양이</div>
+
+    <div class="r-line" onclick="toggleRLine(this)">
+      <div class="r-num">⑩</div>
+      <div class="speaker-chip sp-haruto">하루토</div>
+      <div class="r-body">
+        <div class="line-jp">その しゃしん、ジホさんの かぞくですか。</div>
+        <div class="r-pron">소노 샤싱, 지호상노 카조쿠데스카.</div>
+        <div class="r-kr">그 사진, 지호 씨의 가족입니까?</div>
+        <div class="r-vocab">
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">その</span><span class="vc2-kr">그</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">しゃしん</span><span class="vc2-kr">사진</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">かぞく</span><span class="vc2-kr">가족</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="r-line" onclick="toggleRLine(this)">
+      <div class="r-num">⑪</div>
+      <div class="speaker-chip sp-jiho">지호</div>
+      <div class="r-body">
+        <div class="line-jp">はい、ちちと ははと あにです。</div>
+        <div class="r-pron">하이, 치치토 하하토 아니데스.</div>
+        <div class="r-kr">네, 아버지와 어머니와 오빠입니다.</div>
+        <div class="r-vocab">
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">ちち</span><span class="vc2-kr">아버지(나의)</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">はは</span><span class="vc2-kr">어머니(나의)</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">あに</span><span class="vc2-kr">오빠·형(나의)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="r-line" onclick="toggleRLine(this)">
+      <div class="r-num">⑫</div>
+      <div class="speaker-chip sp-haruto">하루토</div>
+      <div class="r-body">
+        <div class="line-jp">あ、ねこだ！</div>
+        <div class="r-pron">아, 네코다!</div>
+        <div class="r-kr">아, 고양이다!</div>
+        <div class="r-vocab">
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">ねこ</span><span class="vc2-kr">고양이</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～だ</span><span class="vc2-kr">~(이)다</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="r-line" onclick="toggleRLine(this)">
+      <div class="r-num">⑬</div>
+      <div class="speaker-chip sp-jiho">지호</div>
+      <div class="r-body">
+        <div class="line-jp">この こも ぼくの かぞくです。</div>
+        <div class="r-pron">코노 코모 보쿠노 카조쿠데스.</div>
+        <div class="r-kr">이 아이도 나의 가족입니다.</div>
+        <div class="r-vocab">
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">この</span><span class="vc2-kr">이</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">こ</span><span class="vc2-kr">아이</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">～も</span><span class="vc2-kr">~도</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="r-line" onclick="toggleRLine(this)">
+      <div class="r-num">⑭</div>
+      <div class="speaker-chip sp-haruto">하루토</div>
+      <div class="r-body">
+        <div class="line-jp">わあ、かわいい！ まるい かお。</div>
+        <div class="r-pron">와-, 카와이-! 마루이 카오.</div>
+        <div class="r-kr">와, 귀여워! 동그란 얼굴.</div>
+        <div class="r-vocab">
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">わあ</span><span class="vc2-kr">와(감탄)</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">かわいい</span><span class="vc2-kr">귀엽다</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">まるい</span><span class="vc2-kr">둥글다</span></div>
+          <div class="vocab-chip2" onclick="toggleVc2(event,this)"><span class="vc2-jp">かお</span><span class="vc2-kr">얼굴</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 내용 확인 -->
+  <div class="card">
+    <div class="card-title"><span>📝</span> 내용 확인 <small style="font-weight:400;color:#aaa;font-size:0.8rem;">클릭하면 정답</small></div>
+    <div class="comp-q-item" onclick="this.querySelector('.comp-ans2').classList.toggle('show')">
+      <div class="comp-q-text2"><span class="comp-num">1</span>친구의 집을 방문할 때 하는 인사말은?</div>
+      <div class="comp-ans2"><span style="font-family:'Noto Sans JP',sans-serif;font-weight:600;">おじゃまします。</span> — 대화 ④에서 리코가 사용했어요.</div>
+    </div>
+    <div class="comp-q-item" onclick="this.querySelector('.comp-ans2').classList.toggle('show')">
+      <div class="comp-q-text2"><span class="comp-num">2</span>지호의 가족은 모두 몇 명입니까?</div>
+      <div class="comp-ans2">아버지(ちち), 어머니(はは), 오빠(あに), 지호, 그리고 고양이(ねこ)까지 포함하면 총 5명(마리)! 대화 ⑪⑬</div>
+    </div>
+    <div class="comp-q-item" onclick="this.querySelector('.comp-ans2').classList.toggle('show')">
+      <div class="comp-q-text2"><span class="comp-num">3</span>하루토의 취미는 무엇입니까?</div>
+      <div class="comp-ans2"><span style="font-family:'Noto Sans JP',sans-serif;font-weight:600;">まんが(만화)</span>를 좋아해요. 대화 ⑧에서 확인할 수 있어요.</div>
+    </div>
+    <div class="comp-q-item" onclick="this.querySelector('.comp-ans2').classList.toggle('show')">
+      <div class="comp-q-text2"><span class="comp-num">4</span>지호가 고양이에 대해 한 말은?</div>
+      <div class="comp-ans2"><span style="font-family:'Noto Sans JP',sans-serif;font-weight:600;">この こも ぼくの かぞくです。</span> — 이 아이도 나의 가족이라고 했어요. 대화 ⑬</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 7. 게임 ═══ -->
+<div class="section" id="sec-game">
+  <div class="game-selector">
+    <button class="game-tab active" onclick="switchGame('quiz',this)">❓ 퀴즈</button>
+    <button class="game-tab" onclick="switchGame('match',this)">🔗 매칭</button>
+    <button class="game-tab" onclick="switchGame('fill',this)">✏️ 빈칸 채우기</button>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="game-area active" id="game-quiz">
+    <div class="card">
+      <div class="quiz-meta"><span id="q-counter">1/10</span><span id="q-score">0점</span></div>
+      <div class="quiz-progress-wrap"><div class="quiz-progress-bar" id="q-bar" style="width:0%"></div></div>
+      <div class="quiz-q-card">
+        <div class="quiz-q-text" id="q-question">시작 버튼을 눌러주세요</div>
+        <div class="quiz-q-hint" id="q-hint"></div>
+      </div>
+      <div class="quiz-options" id="q-opts"></div>
+      <div class="quiz-feedback" id="q-fb"></div>
+      <div class="quiz-final" id="q-final">
+        <div style="font-size:2.5rem;" id="q-emoji">🎉</div>
+        <div class="quiz-final-score"><span id="q-final-num">0</span><span style="font-size:1.5rem;color:var(--text-light)">/10</span></div>
+        <div id="q-final-msg" style="margin-top:8px;color:var(--text-light);font-size:0.95rem;"></div>
+        <button class="game-start-btn" onclick="startQuiz()">🔄 다시 하기</button>
+      </div>
+      <button class="game-start-btn" id="q-start-btn" onclick="startQuiz()">▶ 퀴즈 시작</button>
+      <button class="game-next-btn" id="q-next-btn" onclick="nextQuiz()" style="display:none;">다음 문제 →</button>
+    </div>
+  </div>
+
+  <!-- MATCH -->
+  <div class="game-area" id="game-match">
+    <div class="card">
+      <div class="match-meta"><span class="match-stat">맞춘 쌍: <span id="m-score">0</span> / <span id="m-total">0</span></span></div>
+      <div class="match-grid">
+        <div class="match-col" id="m-left"></div>
+        <div class="match-col" id="m-right"></div>
+      </div>
+      <div class="match-final" id="m-final">
+        <div style="font-size:2.5rem;">🎊</div>
+        <div style="font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;color:var(--primary);margin-top:8px;">완성!</div>
+        <button class="game-start-btn" onclick="startMatch()">🔄 다시 하기</button>
+      </div>
+      <button class="game-start-btn" id="m-start-btn" onclick="startMatch()">▶ 매칭 시작</button>
+    </div>
+  </div>
+
+  <!-- FILL -->
+  <div class="game-area" id="game-fill">
+    <div class="card">
+      <div id="fill-qs"></div>
+      <div class="fill-final" id="fill-final">
+        <div style="font-size:2.5rem;" id="fill-emoji">🏆</div>
+        <div style="font-family:'Nunito',sans-serif;font-size:2rem;font-weight:900;color:var(--primary);">
+          <span id="fill-score">0</span> / <span id="fill-total">0</span>
+        </div>
+        <div id="fill-msg" style="margin-top:6px;color:var(--text-light);font-size:0.95rem;"></div>
+        <button class="game-start-btn" onclick="startFill()">🔄 다시 하기</button>
+      </div>
+      <button class="game-start-btn" id="fill-start-btn" onclick="startFill()">▶ 시작</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCRIPT ══════════ -->
+<script>
+const vocabulary = [
+  {jp:'ただいま',reading:'타다이마',kr:'다녀왔습니다',cat:'greeting'},
+  {jp:'おかえり',reading:'오카에리',kr:'잘 다녀왔니?',cat:'greeting'},
+  {jp:'いってきます',reading:'잇테키마스',kr:'다녀오겠습니다',cat:'greeting'},
+  {jp:'いってらっしゃい',reading:'잇테랏샤이',kr:'잘 다녀와/다녀오세요',cat:'greeting'},
+  {jp:'おじゃまします',reading:'오쟈마시마스',kr:'실례합니다(방문)',cat:'greeting'},
+  {jp:'いらっしゃい',reading:'이랏샤이',kr:'어서 와/어서 오세요',cat:'greeting'},
+  {jp:'どうぞ',reading:'도-조',kr:'드세요/들어오세요/받으세요',cat:'greeting'},
+  {jp:'ちち',reading:'치치',kr:'아버지(나의)',cat:'family'},
+  {jp:'はは',reading:'하하',kr:'어머니(나의)',cat:'family'},
+  {jp:'あに',reading:'아니',kr:'오빠·형(나의)',cat:'family'},
+  {jp:'あね',reading:'아네',kr:'언니·누나(나의)',cat:'family'},
+  {jp:'おとうと',reading:'오토-토',kr:'남동생(나의)',cat:'family'},
+  {jp:'いもうと',reading:'이모-토',kr:'여동생(나의)',cat:'family'},
+  {jp:'おとうさん',reading:'오토-상',kr:'아버지(상대방)',cat:'family'},
+  {jp:'おかあさん',reading:'오카-상',kr:'어머니(상대방)',cat:'family'},
+  {jp:'おにいさん',reading:'오니-상',kr:'오빠·형(상대방)',cat:'family'},
+  {jp:'おねえさん',reading:'오네-상',kr:'언니·누나(상대방)',cat:'family'},
+  {jp:'かぞく',reading:'카조쿠',kr:'가족',cat:'family'},
+  {jp:'まるい',reading:'마루이',kr:'둥글다',cat:'adj-i'},
+  {jp:'かわいい',reading:'카와이-',kr:'귀엽다',cat:'adj-i'},
+  {jp:'おもしろい',reading:'오모시로이',kr:'재미있다',cat:'adj-i'},
+  {jp:'あおい',reading:'아오이',kr:'파랗다',cat:'adj-i'},
+  {jp:'すきだ',reading:'스키다',kr:'좋아하다',cat:'adj-na'},
+  {jp:'きれいだ',reading:'키레이다',kr:'예쁘다/깨끗하다',cat:'adj-na'},
+  {jp:'じょうずだ',reading:'죠-즈다',kr:'잘하다',cat:'adj-na'},
+  {jp:'ゆうめいだ',reading:'유-메이다',kr:'유명하다',cat:'adj-na'},
+  {jp:'まんが',reading:'망가',kr:'만화',cat:'other'},
+  {jp:'ねこ',reading:'네코',kr:'고양이',cat:'other'},
+  {jp:'かお',reading:'카오',kr:'얼굴',cat:'other'},
+  {jp:'しゃしん',reading:'샤싱',kr:'사진',cat:'other'},
+  {jp:'へや',reading:'헤야',kr:'방',cat:'other'},
+  {jp:'とても',reading:'토테모',kr:'아주, 매우',cat:'other'},
+  {jp:'～も',reading:'모',kr:'~도',cat:'particle'},
+  {jp:'～と',reading:'토',kr:'~와/과',cat:'particle'},
+  {jp:'～が',reading:'가',kr:'~이/가',cat:'particle'},
+];
+
+const fillData = [
+  {jp:'___。(집에 돌아오며)',ans:'ただいま',choices:['ただいま','おかえり','いってきます','おじゃまします'],kr:'다녀왔습니다.'},
+  {jp:'___。(손님을 맞으며)',ans:'いらっしゃい',choices:['いらっしゃい','おかえり','ただいま','どうぞ'],kr:'어서 오세요.'},
+  {jp:'ちちと はは と ___です。',ans:'あに',choices:['あに','あね','おとうと','おにいさん'],kr:'아버지와 어머니와 오빠입니다.'},
+  {jp:'ぼくは まんがが ___です。',ans:'すき',choices:['すき','きれい','まるい','じょうず'],kr:'나는 만화를 좋아합니다.'},
+  {jp:'にほんの まんがは ___ おもしろいです。',ans:'とても',choices:['とても','ぜんぶ','ほんとう','この'],kr:'일본 만화는 아주 재미있습니다.'},
+  {jp:'きれい___ へやですね。',ans:'な',choices:['な','い','の','は'],kr:'예쁜 방이네요.'},
+];
+
+function renderVocab(){
+  const catLabel = {greeting:'인사',family:'가족',particle:'조사','adj-i':'い형용사','adj-na':'な형용사',other:'기타'};
+  const catClass = {greeting:'cat-greeting',family:'cat-family',particle:'cat-particle','adj-i':'cat-adj-i','adj-na':'cat-adj-na',other:'cat-other'};
+  document.getElementById('vocab-grid').innerHTML = vocabulary.map(v=>`
+    <div class="vocab-card" onclick="toggleVocab(this)">
+      <span class="vocab-cat ${catClass[v.cat]||'cat-other'}">${catLabel[v.cat]||v.cat}</span>
+      <div class="vocab-jp">${v.jp}</div>
+      <div class="vocab-reading">${v.reading}</div>
+      <div class="vocab-kr">${v.kr}</div>
+    </div>`).join('');
+}
+
+function switchTab(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+function switchGame(name,btn){
+  document.querySelectorAll('.game-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.game-area').forEach(a=>a.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('game-'+name).classList.add('active');
+}
+
+let greetAllShow=false;
+function toggleGreetAll(){
+  greetAllShow=!greetAllShow;
+  document.querySelectorAll('#sec-greet .kr-hint').forEach(el=>el.classList.toggle('show',greetAllShow));
+  document.getElementById('greet-toggle').textContent=greetAllShow?'🙈 번역 모두 숨기기':'🔍 번역 모두 보기';
+}
+function toggleKr(el){ el.querySelector('.kr-hint').classList.toggle('show'); }
+
+let vocabAllShow=false;
+function toggleVocabAll(){
+  vocabAllShow=!vocabAllShow;
+  document.querySelectorAll('.vocab-kr').forEach(el=>el.classList.toggle('show',vocabAllShow));
+  document.getElementById('vocab-toggle').textContent=vocabAllShow?'🙈 뜻 모두 숨기기':'🔍 뜻 모두 보기';
+}
+function toggleVocab(el){ el.querySelector('.vocab-kr').classList.toggle('show'); }
+function toggleEx(el){ el.querySelector('.ex-kr').classList.toggle('show'); }
+
+let readAllShow=false, readRevealCount=0;
+function toggleRLine(el){
+  const kr=el.querySelector('.r-kr');
+  const was=kr.classList.contains('show');
+  kr.classList.toggle('show');
+  readRevealCount=was?Math.max(readRevealCount-1,0):Math.min(readRevealCount+1,14);
+  updateReadProg();
+}
+function toggleReadAll(){
+  readAllShow=!readAllShow;
+  document.querySelectorAll('#sec-reading .r-kr').forEach(el=>el.classList.toggle('show',readAllShow));
+  document.getElementById('read-reveal-btn').textContent=readAllShow?'🙈 번역 모두 숨기기':'🔍 번역 모두 보기';
+  readRevealCount=readAllShow?14:0;
+  updateReadProg();
+}
+function updateReadProg(){
+  document.getElementById('read-prog-bar').style.width=(readRevealCount/14*100)+'%';
+  document.getElementById('read-prog-count').textContent=readRevealCount;
+}
+function setRMode(mode){
+  ['read','pron','vocab'].forEach(m=>document.getElementById('rmode-'+m).classList.toggle('active',m===mode));
+  document.querySelectorAll('#sec-reading .r-vocab').forEach(v=>v.classList.toggle('show',mode==='vocab'));
+  document.querySelectorAll('#sec-reading .r-pron').forEach(v=>v.classList.toggle('show',mode==='pron'));
+}
+function toggleVc2(e,el){ e.stopPropagation(); el.classList.toggle('vopen'); }
+
+// QUIZ
+let qQs=[],qIdx=0,qScore=0,qAnswered=false;
+function shuffle(a){ return [...a].sort(()=>Math.random()-.5); }
+function startQuiz(){
+  qQs=shuffle(vocabulary.filter(v=>v.cat!=='particle')).slice(0,10).map(v=>{
+    const wrongs=shuffle(vocabulary.filter(w=>w.kr!==v.kr)).slice(0,3).map(w=>w.kr);
+    return {q:v.jp,hint:v.reading,ans:v.kr,opts:shuffle([v.kr,...wrongs])};
+  });
+  qIdx=0;qScore=0;qAnswered=false;
+  document.getElementById('q-start-btn').style.display='none';
+  document.getElementById('q-next-btn').style.display='none';
+  document.getElementById('q-final').classList.remove('show');
+  document.getElementById('q-fb').className='quiz-feedback';
+  renderQ();
+}
+function renderQ(){
+  if(qIdx>=qQs.length){showQFinal();return;}
+  const q=qQs[qIdx];
+  document.getElementById('q-question').textContent=q.q;
+  document.getElementById('q-hint').textContent='읽기: '+q.hint;
+  document.getElementById('q-score').textContent=qScore+'점';
+  document.getElementById('q-bar').style.width=(qIdx/qQs.length*100)+'%';
+  document.getElementById('q-counter').textContent=(qIdx+1)+'/'+qQs.length;
+  document.getElementById('q-fb').className='quiz-feedback';
+  document.getElementById('q-next-btn').style.display='none';
+  qAnswered=false;
+  document.getElementById('q-opts').innerHTML=q.opts.map(o=>`
+    <button class="quiz-opt" onclick="answerQ(this,'${o.replace(/'/g,"\\'")}','${q.ans.replace(/'/g,"\\'")}')">
+      ${o}</button>`).join('');
+}
+function answerQ(btn,chosen,ans){
+  if(qAnswered)return;qAnswered=true;
+  document.querySelectorAll('.quiz-opt').forEach(o=>{o.disabled=true;if(o.textContent.trim()===ans)o.classList.add('correct');});
+  const fb=document.getElementById('q-fb');
+  if(chosen===ans){btn.classList.add('correct');qScore++;fb.textContent='🎉 정답!';fb.className='quiz-feedback show ok';}
+  else{btn.classList.add('wrong');fb.textContent=`❌ 정답: ${ans}`;fb.className='quiz-feedback show ng';}
+  document.getElementById('q-score').textContent=qScore+'점';
+  document.getElementById('q-next-btn').style.display='block';
+  qIdx++;
+}
+function nextQuiz(){ renderQ(); }
+function showQFinal(){
+  document.getElementById('q-opts').innerHTML='';
+  document.getElementById('q-fb').className='quiz-feedback';
+  document.getElementById('q-next-btn').style.display='none';
+  document.getElementById('q-final').classList.add('show');
+  document.getElementById('q-final-num').textContent=qScore;
+  const e=qScore>=9?'🏆':qScore>=7?'🎉':qScore>=5?'😊':'💪';
+  const m=qScore>=9?'완벽해요!':qScore>=7?'잘했어요!':qScore>=5?'절반 이상! 다시 도전!':'더 공부해봐요 💪';
+  document.getElementById('q-emoji').textContent=e;
+  document.getElementById('q-final-msg').textContent=m;
+}
+
+// MATCH
+let mSel=null,mMatched=0,mTotal=0;
+function startMatch(){
+  const pairs=shuffle(vocabulary.filter(v=>v.cat!=='particle')).slice(0,7);
+  mTotal=pairs.length;mMatched=0;mSel=null;
+  document.getElementById('m-score').textContent=0;
+  document.getElementById('m-total').textContent=mTotal;
+  document.getElementById('m-final').classList.remove('show');
+  document.getElementById('m-start-btn').style.display='none';
+  const left=shuffle(pairs),right=shuffle(pairs);
+  document.getElementById('m-left').innerHTML=left.map(p=>`
+    <div class="match-item jp-item" data-id="${vocabulary.indexOf(p)}" data-side="L" onclick="mClick(this)">${p.jp}</div>`).join('');
+  document.getElementById('m-right').innerHTML=right.map(p=>`
+    <div class="match-item" data-id="${vocabulary.indexOf(p)}" data-side="R" onclick="mClick(this)">${p.kr}</div>`).join('');
+}
+function mClick(el){
+  if(el.classList.contains('matched'))return;
+  if(mSel&&mSel.dataset.side===el.dataset.side){mSel.classList.remove('selected');mSel=el;el.classList.add('selected');return;}
+  if(!mSel){mSel=el;el.classList.add('selected');return;}
+  if(mSel.dataset.id===el.dataset.id){
+    mSel.classList.remove('selected');mSel.classList.add('matched');el.classList.add('matched');
+    mMatched++;document.getElementById('m-score').textContent=mMatched;mSel=null;
+    if(mMatched>=mTotal)setTimeout(()=>document.getElementById('m-final').classList.add('show'),500);
+  } else {
+    const a=mSel,b=el;mSel.classList.remove('selected');mSel.classList.add('wrong-flash');el.classList.add('wrong-flash');
+    setTimeout(()=>{a.classList.remove('wrong-flash');b.classList.remove('wrong-flash');},500);mSel=null;
+  }
+}
+
+// FILL
+let fillDone=[],fillScore2=0;
+function startFill(){
+  fillDone=new Array(fillData.length).fill(false);fillScore2=0;
+  document.getElementById('fill-final').classList.remove('show');
+  document.getElementById('fill-start-btn').style.display='none';
+  document.getElementById('fill-qs').innerHTML=fillData.map((q,i)=>{
+    const sent=q.jp.replace('___',`<span class="fill-blank" id="fb-blank-${i}">　　　</span>`);
+    return `<div class="fill-sentence" id="fill-s-${i}">
+      <div class="fill-jp">${sent}</div>
+      <div style="font-size:0.82rem;color:#aaa;margin-bottom:8px;">${q.kr}</div>
+      <div class="fill-chips" id="fill-chips-${i}">
+        ${shuffle(q.choices).map(c=>`<div class="chip" onclick="pickChip(${i},'${c.replace(/'/g,"\\'")}','${q.ans.replace(/'/g,"\\'")}')">
+          ${c}</div>`).join('')}
+      </div>
+      <div class="fill-fb" id="fill-fb-${i}"></div>
+    </div>`;
+  }).join('');
+}
+function pickChip(i,chosen,ans){
+  if(fillDone[i])return;
+  fillDone[i]=true;
+  document.querySelectorAll(`#fill-chips-${i} .chip`).forEach(c=>c.classList.add('used'));
+  const blank=document.getElementById('fb-blank-'+i);
+  blank.textContent=chosen;
+  const fb=document.getElementById('fill-fb-'+i);
+  if(chosen===ans){blank.style.color='#06D6A0';blank.style.borderColor='#06D6A0';fb.textContent='✅ 정답!';fb.className='fill-fb show ok';fillScore2++;}
+  else{blank.style.color='#FF6B6B';blank.style.borderColor='#FF6B6B';fb.textContent=`❌ 정답: ${ans}`;fb.className='fill-fb show ng';}
+  if(fillDone.every(Boolean)){
+    setTimeout(()=>{
+      const f=document.getElementById('fill-final');f.classList.add('show');
+      document.getElementById('fill-score').textContent=fillScore2;
+      document.getElementById('fill-total').textContent=fillData.length;
+      const e=fillScore2>=fillData.length?'🏆':fillScore2>=Math.floor(fillData.length*.7)?'🎉':'💪';
+      const m=fillScore2>=fillData.length?'완벽해요!':fillScore2>=Math.floor(fillData.length*.7)?'잘했어요!':'다시 한번!';
+      document.getElementById('fill-emoji').textContent=e;
+      document.getElementById('fill-msg').textContent=m;
+    },600);
+  }
+}
+
+renderVocab();
+</script>
+</body>
+</html>
