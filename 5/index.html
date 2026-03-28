@@ -135,6 +135,8 @@
   .exist-example:hover { background:white; }
   .exist-kr { font-size:0.82rem; color:var(--text-light); margin-top:4px; display:none; }
   .exist-kr.show { display:block; }
+  .exist-pron { font-size:0.8rem; color:#9B5DE5; font-style:italic; margin-top:4px; display:none; }
+  .exist-pron.show { display:block; }
 
   /* 선택 표현 */
   .select-box { background:linear-gradient(135deg,#FFF0E0,#FFF8F0); border:2px solid var(--primary); border-radius:18px; padding:20px 22px; margin-bottom:16px; }
@@ -329,20 +331,27 @@
 <!-- ═══ 2. 존재·장소 ═══ -->
 <div class="section" id="sec-exist">
 
+  <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
+    <button class="toggle-all-btn" id="exist-pron-btn" onclick="toggleExistPron()" style="background:var(--purple);box-shadow:0 3px 12px rgba(155,93,229,0.25);">🔊 발음 모두 보기</button>
+  </div>
+
   <div class="exist-grid">
     <div class="exist-block arimasu">
       <div class="exist-title a">あります</div>
       <div class="exist-sub">사물·식물 등 (움직이지 않는 것)</div>
       <div class="exist-example" onclick="toggleExist(this)">
         <div style="font-family:'Noto Sans JP',sans-serif;"><ruby class="kata">トイレ<rt>といれ</rt></ruby>は <ruby class="kata">コンビニ<rt>こんびに</rt></ruby>の となりに あります。</div>
+        <div class="exist-pron">토이레와 콘비니노 토나리니 아리마스.</div>
         <div class="exist-kr">화장실은 편의점 옆에 있습니다.</div>
       </div>
       <div class="exist-example" onclick="toggleExist(this)">
         <div style="font-family:'Noto Sans JP',sans-serif;"><ruby class="kata">コタツ<rt>こたつ</rt></ruby>の <ruby>上<rt>うえ</rt></ruby>に みかんが あります。</div>
+        <div class="exist-pron">코타츠노 우에니 미칸가 아리마스.</div>
         <div class="exist-kr">코타츠 위에 귤이 있습니다.</div>
       </div>
       <div class="exist-example" onclick="toggleExist(this)">
         <div style="font-family:'Noto Sans JP',sans-serif;">としょかんは <ruby>学校<rt>がっこう</rt></ruby>の となりに あります。</div>
+        <div class="exist-pron">토쇼칸와 갓코-노 토나리니 아리마스.</div>
         <div class="exist-kr">도서관은 학교 옆에 있습니다.</div>
       </div>
     </div>
@@ -351,14 +360,17 @@
       <div class="exist-sub">사람·동물 등 (살아서 움직이는 것)</div>
       <div class="exist-example" onclick="toggleExist(this)">
         <div style="font-family:'Noto Sans JP',sans-serif;"><ruby>山田<rt>やまだ</rt></ruby>さんは としょかんの <ruby>前<rt>まえ</rt></ruby>に います。</div>
+        <div class="exist-pron">야마다상와 토쇼칸노 마에니 이마스.</div>
         <div class="exist-kr">야마다 씨는 도서관 앞에 있습니다.</div>
       </div>
       <div class="exist-example" onclick="toggleExist(this)">
         <div style="font-family:'Noto Sans JP',sans-serif;"><ruby class="kata">テレビ<rt>てれび</rt></ruby>の となりに ねこが います。</div>
+        <div class="exist-pron">테레비노 토나리니 네코가 이마스.</div>
         <div class="exist-kr">TV 옆에 고양이가 있습니다.</div>
       </div>
       <div class="exist-example" onclick="toggleExist(this)">
         <div style="font-family:'Noto Sans JP',sans-serif;">いぬは こうえんの <ruby>中<rt>なか</rt></ruby>に います。</div>
+        <div class="exist-pron">이누와 코-엔노 나카니 이마스.</div>
         <div class="exist-kr">개는 공원 안에 있습니다.</div>
       </div>
     </div>
@@ -1026,13 +1038,13 @@ const vocabulary = [
 ];
 
 const fillData = [
-  {jp:'<ruby class="kata">トイレ<rt>といれ</rt></ruby>は <ruby class="kata">コンビニ<rt>こんびに</rt></ruby>の ___ に あります。',ans:'となり',choices:['となり','まえ','うえ','なか'],kr:'화장실은 편의점 ___ 에 있습니다.'},
-  {jp:'<ruby>山田<rt>やまだ</rt></ruby>さんは としょかんの ___ に います。',ans:'まえ',choices:['まえ','となり','した','うしろ'],kr:'야마다 씨는 도서관 ___ 에 있습니다.'},
+  {jp:'<ruby class="kata">トイレ<rt>といれ</rt></ruby>は <ruby class="kata">コンビニ<rt>こんびに</rt></ruby>の ___ に あります。',ans:'となり',choices:['となり','まえ','うえ','なか'],kr:'화장실은 편의점 <strong>옆</strong>에 있습니다.'},
+  {jp:'<ruby>山田<rt>やまだ</rt></ruby>さんは としょかんの ___ に います。',ans:'まえ',choices:['まえ','となり','した','うしろ'],kr:'야마다 씨는 도서관 <strong>앞</strong>에 있습니다.'},
   {jp:'わたしは そばに ___。',ans:'します',choices:['します','あります','います','ありますか'],kr:'저는 메밀국수로 ___.'},
   {jp:'この <ruby class="kata">ラーメン<rt>らーめん</rt></ruby>は からく ___。',ans:'ないです',choices:['ないです','じゃないです','でした','です'],kr:'이 라멘은 맵지 ___. (い형용사 부정)'},
   {jp:'あの <ruby>店<rt>みせ</rt></ruby>は しずかじゃ ___。',ans:'ないです',choices:['ないです','くないです','でした','です'],kr:'저 가게는 조용하지 ___. (な형용사 부정)'},
   {jp:'<ruby>安<rt>やす</rt></ruby>___ おいしいです。',ans:'くて',choices:['くて','で','いて','なで'],kr:'싸___ 맛있습니다. (い형용사 연결형)'},
-  {jp:'しんせつ___ すてきです。',ans:'で',choices:['で','くて','いで','なくて'],kr:'친절하___ 멋집니다. (な형용사 연결형)'},
+  {jp:'しんせつ___ すてきです。',ans:'で',choices:['で','くて','いで','なくて'],kr:'친절하___ 멋습니다. (な형용사 연결형)'},
 ];
 
 // ── RENDER ──
@@ -1084,6 +1096,15 @@ function switchGame(name, btn){
 }
 
 function toggleExist(el){ el.querySelector('.exist-kr').classList.toggle('show'); }
+
+let existPronShow = false;
+function toggleExistPron(){
+  existPronShow = !existPronShow;
+  document.querySelectorAll('#sec-exist .exist-pron').forEach(el => el.classList.toggle('show', existPronShow));
+  const btn = document.getElementById('exist-pron-btn');
+  btn.textContent = existPronShow ? '🙈 발음 모두 숨기기' : '🔊 발음 모두 보기';
+  btn.classList.toggle('active', existPronShow);
+}
 function toggleSelect(el){ el.querySelector('.sel-a').classList.toggle('show'); }
 function toggleEx(el){ el.querySelector('.ex-kr').classList.toggle('show'); }
 
@@ -1222,22 +1243,28 @@ function startFill(){
       <div class="fill-jp">${sent}</div>
       <div style="font-size:0.82rem;color:#aaa;margin-bottom:8px;">${q.kr}</div>
       <div class="fill-chips" id="fill-chips-${i}">
-        ${shuffle(q.choices).map(c=>`<div class="chip" onclick="pickChip(${i},'${c.replace(/'/g,"\\'")}','${q.ans.replace(/'/g,"\\'")}')">
+        ${shuffle(q.choices).map(c=>`<div class="chip" onclick="pickChip(${i},'${c.replace(/'/g,"\'")}')">
           ${c}</div>`).join('')}
       </div>
       <div class="fill-fb" id="fill-fb-${i}"></div>
     </div>`;
   }).join('');
 }
-function pickChip(i,chosen,ans){
+function pickChip(i,chosen){
   if(fillDone[i])return;
+  const q=fillData[i];
   fillDone[i]=true;
   document.querySelectorAll(`#fill-chips-${i} .chip`).forEach(c=>c.classList.add('used'));
   const blank=document.getElementById('fb-blank-'+i);
   blank.textContent=chosen;
   const fb=document.getElementById('fill-fb-'+i);
-  if(chosen===ans){ blank.style.color='#06D6A0'; blank.style.borderColor='#06D6A0'; fb.textContent='✅ 정답!'; fb.className='fill-fb show ok'; fillScore++; }
-  else { blank.style.color='#FF6B6B'; blank.style.borderColor='#FF6B6B'; fb.textContent=`❌ 정답: ${ans}`; fb.className='fill-fb show ng'; }
+  if(chosen===q.ans){
+    blank.style.color='#06D6A0'; blank.style.borderColor='#06D6A0';
+    fb.textContent='✅ 정답!'; fb.className='fill-fb show ok'; fillScore++;
+  } else {
+    blank.style.color='#FF6B6B'; blank.style.borderColor='#FF6B6B';
+    fb.textContent=`❌ 정답: ${q.ans}`; fb.className='fill-fb show ng';
+  }
   if(fillDone.every(Boolean)){
     setTimeout(()=>{
       const f=document.getElementById('fill-final'); f.classList.add('show');
