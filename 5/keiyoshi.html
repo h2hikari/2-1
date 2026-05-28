@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6단원 형용사 단어 암기</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans KR', 'Noto Sans JP', sans-serif; background: #f8f7f4; color: #1a1a1a; min-height: 100vh; }
+.container { max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+h1 { font-size: 18px; font-weight: 600; margin-bottom: 1.5rem; color: #1a1a1a; }
+h1 span { font-size: 13px; font-weight: 400; color: #888; margin-left: 8px; }
+
+.tabs { display: flex; gap: 8px; margin-bottom: 1.5rem; }
+.tab-btn {
+  padding: 8px 24px; border-radius: 20px; border: 1px solid #ddd;
+  background: transparent; cursor: pointer; font-size: 14px; font-weight: 500;
+  color: #666; transition: all 0.2s; font-family: inherit;
+}
+.tab-btn.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.view-toggle { display: flex; gap: 8px; margin-bottom: 1rem; }
+.view-btn {
+  padding: 5px 14px; border-radius: 14px; border: 1px solid #ddd;
+  background: transparent; cursor: pointer; font-size: 12px; color: #666;
+  transition: all 0.15s; font-family: inherit;
+}
+.view-btn.active { background: #eee; color: #1a1a1a; }
+
+.memo-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.progress-text { font-size: 13px; color: #888; }
+.nav-btns { display: flex; gap: 8px; align-items: center; }
+.nav-btn {
+  width: 36px; height: 36px; border-radius: 50%; border: 1px solid #ddd;
+  background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: #1a1a1a; transition: background 0.15s; font-family: inherit;
+}
+.nav-btn:hover { background: #eee; }
+.shuffle-btn {
+  padding: 6px 14px; border-radius: 16px; border: 1px solid #ddd;
+  background: transparent; cursor: pointer; font-size: 12px; color: #666;
+  transition: background 0.15s; font-family: inherit;
+}
+.shuffle-btn:hover { background: #eee; }
+
+.card-wrap { perspective: 1000px; height: 220px; cursor: pointer; user-select: none; }
+.card-inner {
+  width: 100%; height: 100%; position: relative;
+  transform-style: preserve-3d; transition: transform 0.5s ease;
+}
+.card-wrap.flipped .card-inner { transform: rotateY(180deg); }
+.card-face {
+  position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
+  background: #fff; border: 1px solid #e8e8e8; border-radius: 14px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+}
+.card-back { transform: rotateY(180deg); }
+.card-jp { font-size: 36px; font-weight: 600; color: #1a1a1a; letter-spacing: 2px; }
+.card-kana { font-size: 15px; color: #666; }
+.card-hint { font-size: 12px; color: #aaa; margin-top: 4px; }
+.card-meaning { font-size: 28px; font-weight: 600; color: #1a1a1a; }
+.card-type { font-size: 12px; padding: 3px 10px; border-radius: 10px; font-weight: 500; }
+.type-i { background: #e6f1fb; color: #185fa5; }
+.type-na { background: #eaf3de; color: #3b6d11; }
+.speak-btn {
+  margin-top: 8px; padding: 6px 16px; border-radius: 16px;
+  border: 1px solid #ddd; background: transparent;
+  cursor: pointer; font-size: 12px; color: #666;
+  display: flex; align-items: center; gap: 5px; transition: background 0.15s; font-family: inherit;
+}
+.speak-btn:hover { background: #eee; }
+
+.dots { display: flex; justify-content: center; gap: 6px; margin-top: 14px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: #ddd; }
+.dot.active { background: #1a1a1a; }
+
+.grid-cards {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-top: 0.5rem;
+}
+.mini-card {
+  border: 1px solid #e8e8e8; border-radius: 10px;
+  padding: 12px; text-align: center; cursor: pointer; transition: all 0.15s;
+  background: #fff;
+}
+.mini-card:hover { background: #f5f5f5; border-color: #ccc; }
+.mini-jp { font-size: 18px; font-weight: 600; color: #1a1a1a; }
+.mini-kana { font-size: 11px; color: #888; margin-top: 3px; }
+.mini-meaning { font-size: 12px; color: #aaa; margin-top: 2px; }
+
+.match-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
+.reset-btn {
+  padding: 6px 16px; border-radius: 16px; border: 1px solid #ddd;
+  background: transparent; cursor: pointer; font-size: 12px; color: #666;
+  transition: background 0.15s; font-family: inherit;
+}
+.reset-btn:hover { background: #eee; }
+.match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.match-col { display: flex; flex-direction: column; gap: 8px; }
+.match-item {
+  padding: 10px 14px; border-radius: 10px; border: 1px solid #e8e8e8;
+  background: #fff; cursor: pointer; font-size: 14px; font-weight: 500;
+  text-align: center; transition: all 0.2s; min-height: 44px;
+  display: flex; align-items: center; justify-content: center; font-family: inherit;
+}
+.match-item:hover:not(.matched):not(.wrong) { background: #f5f5f5; border-color: #ccc; }
+.match-item.selected { border-color: #378add; background: #e6f1fb; color: #185fa5; }
+.match-item.matched { border-color: #639922; background: #eaf3de; color: #3b6d11; pointer-events: none; }
+.match-item.wrong { border-color: #e24b4a; background: #fcebeb; color: #a32d2d; }
+.match-jp { font-size: 16px; letter-spacing: 1px; }
+.match-kana { font-size: 11px; color: #888; margin-top: 2px; }
+.complete-msg { text-align: center; padding: 2rem; font-size: 18px; font-weight: 600; color: #1a1a1a; }
+.complete-sub { font-size: 14px; color: #888; margin-top: 8px; font-weight: 400; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>6단원 형용사 단어 <span>14개</span></h1>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('memo')">암기</button>
+    <button class="tab-btn" onclick="switchTab('quiz')">퀴즈</button>
+  </div>
+
+  <div id="tab-memo" class="tab-content active">
+    <div class="view-toggle">
+      <button class="view-btn active" onclick="setView('card', this)">카드</button>
+      <button class="view-btn" onclick="setView('grid', this)">목록</button>
+    </div>
+
+    <div id="card-view">
+      <div class="memo-header">
+        <span class="progress-text" id="card-progress">1 / 14</span>
+        <div class="nav-btns">
+          <button class="shuffle-btn" onclick="shuffleCards()">셔플</button>
+          <button class="nav-btn" onclick="prevCard()">&#8249;</button>
+          <button class="nav-btn" onclick="nextCard()">&#8250;</button>
+        </div>
+      </div>
+      <div class="card-wrap" id="flashcard" onclick="flipCard()">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="card-jp" id="front-jp"></div>
+            <div class="card-kana" id="front-kana"></div>
+            <div class="card-hint">탭하여 뜻 보기</div>
+            <button class="speak-btn" onclick="speakWord(event)">&#128266; 발음 듣기</button>
+          </div>
+          <div class="card-face card-back">
+            <div class="card-meaning" id="back-meaning"></div>
+            <div class="card-kana" id="back-kana"></div>
+            <span class="card-type" id="back-type"></span>
+          </div>
+        </div>
+      </div>
+      <div class="dots" id="dots"></div>
+    </div>
+
+    <div id="grid-view" style="display:none;">
+      <div class="grid-cards" id="grid-container"></div>
+    </div>
+  </div>
+
+  <div id="tab-quiz" class="tab-content">
+    <div class="match-header">
+      <div>
+        <div style="font-size:14px; font-weight:600;">매칭 게임</div>
+        <div style="font-size:12px; color:#888; margin-top:2px;">일본어와 한국어 뜻을 연결하세요</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="font-size:13px; color:#888;" id="match-score">0 / 7</span>
+        <button class="reset-btn" onclick="initQuiz()">다시 시작</button>
+      </div>
+    </div>
+    <div id="quiz-area"></div>
+  </div>
+</div>
+
+<script>
+const words = [
+  { jp: "安(やす)い", kana: "야스이", meaning: "싸다", type: "い형용사", speech: "やすい" },
+  { jp: "おもい", kana: "오모이", meaning: "무겁다", type: "い형용사", speech: "おもい" },
+  { jp: "大(おお)きい", kana: "오-키-", meaning: "크다", type: "い형용사", speech: "おおきい" },
+  { jp: "白(しろ)い", kana: "시로이", meaning: "하얗다", type: "い형용사", speech: "しろい" },
+  { jp: "からい", kana: "카라이", meaning: "맵다", type: "い형용사", speech: "からい" },
+  { jp: "広(ひろ)い", kana: "히로이", meaning: "넓다", type: "い형용사", speech: "ひろい" },
+  { jp: "高(たか)い", kana: "타카이", meaning: "높다/비싸다", type: "い형용사", speech: "たかい" },
+  { jp: "しずかだ", kana: "시즈카다", meaning: "조용하다", type: "な형용사", speech: "しずかだ" },
+  { jp: "しんせつだ", kana: "신세츠다", meaning: "친절하다", type: "な형용사", speech: "しんせつだ" },
+  { jp: "かんたんだ", kana: "칸탄다", meaning: "간단하다", type: "な형용사", speech: "かんたんだ" },
+  { jp: "とくいだ", kana: "토쿠이다", meaning: "잘하다", type: "な형용사", speech: "とくいだ" },
+  { jp: "だいじょうぶだ", kana: "다이죠-부다", meaning: "괜찮다", type: "な형용사", speech: "だいじょうぶだ" },
+  { jp: "すてきだ", kana: "스테키다", meaning: "멋지다", type: "な형용사", speech: "すてきだ" },
+  { jp: "好(す)きだ", kana: "스키다", meaning: "좋아하다", type: "な형용사", speech: "すきだ" }
+];
+
+let cardOrder = [...Array(words.length).keys()];
+let currentIdx = 0;
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', (i === 0 && tab === 'memo') || (i === 1 && tab === 'quiz'));
+  });
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  if (tab === 'quiz') initQuiz();
+}
+
+function setView(view, btn) {
+  document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('card-view').style.display = view === 'card' ? 'block' : 'none';
+  document.getElementById('grid-view').style.display = view === 'grid' ? 'block' : 'none';
+  if (view === 'grid') renderGrid();
+}
+
+function renderCard() {
+  const w = words[cardOrder[currentIdx]];
+  document.getElementById('front-jp').textContent = w.jp;
+  document.getElementById('front-kana').textContent = w.kana;
+  document.getElementById('back-meaning').textContent = w.meaning;
+  document.getElementById('back-kana').textContent = w.kana;
+  const typeEl = document.getElementById('back-type');
+  typeEl.textContent = w.type;
+  typeEl.className = 'card-type ' + (w.type === 'い형용사' ? 'type-i' : 'type-na');
+  document.getElementById('card-progress').textContent = (currentIdx + 1) + ' / ' + words.length;
+  const dots = document.getElementById('dots');
+  dots.innerHTML = cardOrder.map((_, i) =>
+    `<div class="dot${i === currentIdx ? ' active' : ''}"></div>`).join('');
+  document.getElementById('flashcard').classList.remove('flipped');
+}
+
+function flipCard() { document.getElementById('flashcard').classList.toggle('flipped'); }
+function prevCard() { currentIdx = (currentIdx - 1 + words.length) % words.length; renderCard(); }
+function nextCard() { currentIdx = (currentIdx + 1) % words.length; renderCard(); }
+function shuffleCards() {
+  for (let i = cardOrder.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cardOrder[i], cardOrder[j]] = [cardOrder[j], cardOrder[i]];
+  }
+  currentIdx = 0; renderCard();
+}
+
+function speakWord(e) {
+  e.stopPropagation();
+  const w = words[cardOrder[currentIdx]];
+  if ('speechSynthesis' in window) {
+    const u = new SpeechSynthesisUtterance(w.speech);
+    u.lang = 'ja-JP'; u.rate = 0.85;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }
+}
+
+function renderGrid() {
+  document.getElementById('grid-container').innerHTML = words.map(w => `
+    <div class="mini-card" onclick="speakMini('${w.speech}')">
+      <div class="mini-jp">${w.jp}</div>
+      <div class="mini-kana">${w.kana}</div>
+      <div class="mini-meaning">${w.meaning}</div>
+      <span class="card-type ${w.type === 'い형용사' ? 'type-i' : 'type-na'}" style="margin-top:6px;font-size:10px;display:inline-block;">${w.type}</span>
+    </div>`).join('');
+}
+
+function speakMini(text) {
+  if ('speechSynthesis' in window) {
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'ja-JP'; u.rate = 0.85;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }
+}
+
+let selectedLeft = null, selectedRight = null, matchedCount = 0;
+const totalPairs = 7;
+
+function initQuiz() {
+  const shuffled = [...words].sort(() => Math.random() - 0.5).slice(0, totalPairs);
+  const leftItems = shuffled.map((w, i) => ({ id: i, text: w.jp, kana: w.kana, speech: w.speech }));
+  const rightItems = shuffled.map((w, i) => ({ id: i, text: w.meaning })).sort(() => Math.random() - 0.5);
+  selectedLeft = null; selectedRight = null; matchedCount = 0;
+  document.getElementById('match-score').textContent = '0 / ' + totalPairs;
+  document.getElementById('quiz-area').innerHTML = `
+    <div class="match-grid">
+      <div class="match-col" id="left-col">
+        ${leftItems.map(item => `
+          <div class="match-item" id="left-${item.id}" onclick="selectLeft(${item.id}, '${item.speech}')">
+            <div><div class="match-jp">${item.text}</div><div class="match-kana">${item.kana}</div></div>
+          </div>`).join('')}
+      </div>
+      <div class="match-col" id="right-col">
+        ${rightItems.map(item => `
+          <div class="match-item" id="right-${item.id}" onclick="selectRight(${item.id})">
+            ${item.text}
+          </div>`).join('')}
+      </div>
+    </div>`;
+}
+
+function selectLeft(id, speech) {
+  if (document.getElementById('left-' + id).classList.contains('matched')) return;
+  document.querySelectorAll('#left-col .match-item').forEach(el => {
+    if (!el.classList.contains('matched')) el.classList.remove('selected', 'wrong');
+  });
+  document.getElementById('left-' + id).classList.add('selected');
+  selectedLeft = id;
+  if ('speechSynthesis' in window) {
+    const u = new SpeechSynthesisUtterance(speech);
+    u.lang = 'ja-JP'; u.rate = 0.85;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }
+  if (selectedRight !== null) checkMatch();
+}
+
+function selectRight(id) {
+  if (document.getElementById('right-' + id).classList.contains('matched')) return;
+  document.querySelectorAll('#right-col .match-item').forEach(el => {
+    if (!el.classList.contains('matched')) el.classList.remove('selected', 'wrong');
+  });
+  document.getElementById('right-' + id).classList.add('selected');
+  selectedRight = id;
+  if (selectedLeft !== null) checkMatch();
+}
+
+function checkMatch() {
+  const lEl = document.getElementById('left-' + selectedLeft);
+  const rEl = document.getElementById('right-' + selectedRight);
+  if (selectedLeft === selectedRight) {
+    lEl.classList.remove('selected'); lEl.classList.add('matched');
+    rEl.classList.remove('selected'); rEl.classList.add('matched');
+    matchedCount++;
+    document.getElementById('match-score').textContent = matchedCount + ' / ' + totalPairs;
+    if (matchedCount === totalPairs) {
+      setTimeout(() => {
+        document.getElementById('quiz-area').innerHTML = `
+          <div class="complete-msg">🎉 완성!<div class="complete-sub">모두 맞혔어요! 다시 시작을 눌러보세요.</div></div>`;
+      }, 400);
+    }
+  } else {
+    lEl.classList.remove('selected'); lEl.classList.add('wrong');
+    rEl.classList.remove('selected'); rEl.classList.add('wrong');
+    setTimeout(() => { lEl.classList.remove('wrong'); rEl.classList.remove('wrong'); }, 700);
+  }
+  selectedLeft = null; selectedRight = null;
+}
+
+renderCard();
+</script>
+</body>
+</html>
