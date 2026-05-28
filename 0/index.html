@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>일본어 기본표현 활용 수행평가 연습</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #f3f0fa;
+    --panel:     #ffffff;
+    --purple-1:  #7c5cbf;
+    --purple-2:  #9b7dd4;
+    --purple-3:  #c9b8e8;
+    --purple-4:  #f0ecfa;
+    --dark:      #4a2d7a;
+    --text:      #3a2860;
+    --sub:       #9b7dd4;
+    --green:     #00c853;
+    --red:       #f44336;
+    --yellow:    #ffd54f;
+    --radius:    16px;
+    --shadow:    0 2px 12px rgba(108,63,197,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px 48px;
+  }
+
+  /* 헤더 */
+  .header {
+    width: 100%;
+    max-width: 900px;
+    background: var(--dark);
+    color: white;
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .header h1 {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  .header p {
+    font-size: 12px;
+    color: #d8c8f0;
+    margin-top: 0;
+    margin-left: auto;
+  }
+
+  /* 상태바 */
+  .status-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    background: var(--panel);
+    border-radius: var(--radius);
+    padding: 14px 28px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .timer-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .timer {
+    font-family: 'Nunito', sans-serif;
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--purple-1);
+    line-height: 1;
+    transition: color 0.3s;
+    min-width: 90px;
+    text-align: center;
+  }
+
+  .timer.danger { color: var(--red); animation: pulse 0.5s infinite alternate; }
+  @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.05); } }
+
+  .timer-label {
+    font-size: 11px;
+    color: var(--sub);
+    margin-top: 2px;
+  }
+
+  .divider { width: 1px; height: 40px; background: var(--purple-3); }
+
+  .score-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .score-num {
+    font-family: 'Nunito', sans-serif;
+    font-size: 38px;
+    font-weight: 900;
+    color: var(--yellow);
+    line-height: 1;
+  }
+
+  .score-label { font-size: 11px; color: var(--sub); margin-top: 2px; }
+
+  .progress-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .progress-text {
+    font-size: 12px;
+    color: var(--sub);
+    text-align: right;
+  }
+
+  .progress-bar {
+    height: 8px;
+    background: var(--purple-4);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple-1), var(--purple-2));
+    border-radius: 99px;
+    transition: width 0.3s;
+    width: 0%;
+  }
+
+  /* 버튼들 */
+  .btn-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .btn {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-start {
+    background: var(--green);
+    color: white;
+    box-shadow: 0 4px 14px rgba(58,196,125,0.35);
+  }
+
+  .btn-start:hover { background: #2db368; transform: translateY(-1px); }
+  .btn-start.running { background: var(--red); box-shadow: 0 4px 14px rgba(240,80,80,0.35); }
+  .btn-start.running:hover { background: #d93f3f; }
+
+  .btn-reset {
+    background: var(--purple-4);
+    color: var(--purple-1);
+    flex: 0 0 auto;
+    padding: 14px 18px;
+    font-size: 14px;
+  }
+
+  .btn-reset:hover { background: var(--purple-3); }
+
+  /* 카드 행 구분 */
+  .row-band {
+    width: 100%;
+    max-width: 900px;
+    background: #9b7dd4;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+
+  /* 카드 그리드 */
+  .verb-row {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 14px;
+  }
+
+  .verb-card {
+    flex: 1;
+    background: var(--panel);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.15s;
+  }
+
+  .verb-card:hover { transform: translateY(-2px); }
+
+  .card-header {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 7px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .card-img {
+    padding: 10px;
+    background: #f8f4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 130px;
+  }
+
+  .card-img img {
+    max-width: 100%;
+    max-height: 120px;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  .card-img .no-img {
+    font-size: 11px;
+    color: var(--sub);
+    text-align: center;
+  }
+
+  .card-body {
+    padding: 10px 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* OX 행 */
+  .ox-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ox-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--sub);
+    width: 42px;
+    flex-shrink: 0;
+  }
+
+  .ox-btns { display: flex; gap: 5px; }
+
+  .ox-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #e0d8f0;
+    background: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ox-btn.O-btn:hover { border-color: var(--green); background: #eafaf3; }
+  .ox-btn.X-btn:hover { border-color: var(--red); background: #fef0f0; }
+  .ox-btn.O-btn.selected { background: var(--green); border-color: var(--green); color: white; }
+  .ox-btn.X-btn.selected { background: var(--red); border-color: var(--red); color: white; }
+
+  /* 결과 화면 */
+  .result-screen {
+    display: none;
+    width: 100%;
+    max-width: 480px;
+    background: var(--panel);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    padding: 36px 28px;
+    text-align: center;
+    animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.85); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .result-screen.show { display: block; }
+
+  .result-emoji { font-size: 56px; margin-bottom: 12px; }
+
+  .result-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+
+  .result-score {
+    font-family: 'Nunito', sans-serif;
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--purple-1);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .result-max { font-size: 14px; color: var(--sub); margin-bottom: 20px; }
+
+  .result-detail {
+    background: var(--purple-4);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 24px;
+    line-height: 2;
+  }
+
+  .btn-retry-result {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: var(--radius);
+    background: var(--purple-1);
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 1px;
+  }
+
+  .btn-retry-result:hover { background: var(--dark); transform: translateY(-1px); }
+
+  /* 비활성 */
+  .inactive { opacity: 0.35; pointer-events: none; }
+
+  /* 완료 뱃지 */
+  .done-badge {
+    display: none;
+    background: var(--green);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 99px;
+    margin-left: 6px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🇯🇵 일본어 기본표현 활용 수행평가 연습</h1>
+  <p>START를 누르고 그림을 보며 말해보세요!</p>
+</div>
+
+<!-- 상태바 -->
+<div class="status-bar">
+  <div class="timer-wrap">
+    <div class="timer" id="timerDisplay">30.0</div>
+    <div class="timer-label">초 남음</div>
+  </div>
+  <div class="divider"></div>
+  <div class="progress-wrap">
+    <div class="progress-text" id="progressText">0 / 12 체크</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div class="divider"></div>
+  <div class="score-wrap">
+    <div class="score-num" id="scoreNum">8</div>
+    <div class="score-label">점수</div>
+  </div>
+</div>
+
+<!-- 버튼 -->
+<div class="btn-row">
+  <button class="btn btn-start" id="startBtn" onclick="toggleTimer()">▶ START</button>
+  <button class="btn btn-reset" onclick="resetAll()">🔄 새 문제</button>
+</div>
+
+<!-- 문제 영역 -->
+<div id="quizArea"></div>
+
+<!-- 결과 화면 -->
+<div class="result-screen" id="resultScreen">
+  <div class="result-emoji" id="resultEmoji">🎉</div>
+  <div class="result-title" id="resultTitle">잘했어요!</div>
+  <div class="result-score" id="resultScore">20</div>
+  <div class="result-max">/ 20점</div>
+  <div class="result-detail" id="resultDetail"></div>
+  <button class="btn-retry-result" onclick="resetAll()">🔄 다시 연습하기</button>
+</div>
+
+<script>
+const VERBS = [
+  { kr:'가다',     img:'https://docs.google.com/drawings/d/e/2PACX-1vRuekNtisI4YG9FRwpKalex2KJYJCA2NyCjhfY9xoqw_cKn5T-ydjc46tVf4L_Ck1bAhS-tXwBOTmMu/pub?w=480&h=360', base:'いく',           masu:'いきます',         past:'いきました' },
+  { kr:'돌아가다', img:'https://docs.google.com/drawings/d/e/2PACX-1vQU0wpZsz7QufgA1nQtut0ewJW3Q0ksttlUbqRwd_EDlmG1PD03ZE4d7DusIODxQsk7v3n6jQRABR-V/pub?w=415&h=416', base:'かえる',         masu:'かえります',       past:'かえりました' },
+  { kr:'공부하다', img:'https://docs.google.com/drawings/d/e/2PACX-1vTsso_lYW1vtGvBxBvJytCWbscrjukT090Hx9XMX6B5FARCrbjXJhJBRXXv9PMbS-od3U2Y80Jcg5rU/pub?w=357&h=355', base:'べんきょうする', masu:'べんきょうします',   past:'べんきょうしました' },
+  { kr:'마시다',   img:'https://docs.google.com/drawings/d/e/2PACX-1vRn7KPPQkY8meaxpFAzIQTiPPGpIN8cFeletyg5_dG6P77FIbYjv6jlNheS7klMGkn5GwMljuVr0EuC/pub?w=512&h=513', base:'のむ',           masu:'のみます',         past:'のみました' },
+  { kr:'보다',     img:'https://docs.google.com/drawings/d/e/2PACX-1vSH4YqigPgppKIQpZ6BQTPLJh5VX5k3VpCZgaHXCePMP_r_H-TbNODserEJnE7ByiBulClzzlgHMaJg/pub?w=414&h=417', base:'みる',           masu:'みます',           past:'みました' },
+  { kr:'기다리다', img:'https://docs.google.com/drawings/d/e/2PACX-1vRkwSNk_7Q51MojAXWh0JvZBGVSwsIv8uIa3NeGCqq-njXq4N2906_cb3OLBpR3pU3Bm6E6bTrCUk43/pub?w=392&h=394', base:'まつ',           masu:'まちます',         past:'まちました' },
+  { kr:'사다',     img:'https://docs.google.com/drawings/d/e/2PACX-1vT6TETJtVRL9oaG2E6Mr59wa_cw7ri2huyra8eQOCGkCk-03QryrlaVrLq7alJgEKE35SE5tbMcSXme/pub?w=481&h=479', base:'かう',           masu:'かいます',         past:'かいました' },
+  { kr:'이야기하다',img:'https://docs.google.com/drawings/d/e/2PACX-1vRAHfIynOXCIzPiUTEfTmJro8H6qPuIX5j0o8iY-O65UXnyyFZQ8R9rNGCAy6L8dddTHapehclLRXxa/pub?w=414&h=414', base:'はなす',         masu:'はなします',       past:'はなしました' },
+  { kr:'놀다',     img:'https://docs.google.com/drawings/d/e/2PACX-1vSnAUoQkKYRh8IeJjrX2jJb__u2ecH6zL6_cvF4HfkFENFnAtBbG9bCfsW4EGZ4j51XMM8CEnNEtuep/pub?w=390&h=395', base:'あそぶ',         masu:'あそびます',       past:'あそびました' },
+  { kr:'먹다',     img:'https://docs.google.com/drawings/d/e/2PACX-1vTlvCWVaNa9l6nLRKph7hYJDRDosb1Sf0OK0jCHVkM6887cJ0p9zVsXXoEniSMhhhlwUCNMUk2EL-Y9/pub?w=447&h=447', base:'たべる',         masu:'たべます',         past:'たべました' },
+  { kr:'일어나다', img:'https://docs.google.com/drawings/d/e/2PACX-1vR-YGXCPxkYyDn0z0MkS3eiZcaIoa5XzcZcZsBXGtHS64wUyCwr-kChKjgeG-rBnakA7SyMpNSZJnBc/pub?w=414&h=414', base:'おきる',         masu:'おきます',         past:'おきました' },
+  { kr:'쉬다',     img:'https://docs.google.com/drawings/d/e/2PACX-1vSTAbmxRL7Hsf2NZNqufsq-Oss4VA1-IgaDbRJcCG_i5Zdfq7pNcRtg_5K_wTvb7CZVdWaaSr94z-Kh/pub?w=391&h=389', base:'やすむ',         masu:'やすみます',       past:'やすみました' },
+  { kr:'자다',     img:'https://docs.google.com/drawings/d/e/2PACX-1vSo1ttK2f-wH1de7Q_K-wf_vIYSUaYliZL_Nstku7A9gnsctmDEGSUY1cAdg4axXV0pSsdztBIersMy/pub?w=513&h=512', base:'ねる',           masu:'ねます',           past:'ねました' },
+  { kr:'앉다',     img:'https://docs.google.com/drawings/d/e/2PACX-1vTMBuOqvDB8ypnQbNYIgOUPuQ_lj7QdJYWKC33sA5iU6F35fHbwE9a5_qINp4VX0qoGcTSY1I-s6vHW/pub?w=960&h=720', base:'すわる',         masu:'すわります',       past:'すわりました' },
+  { kr:'오다',     img:'https://docs.google.com/drawings/d/e/2PACX-1vTnfCom77U44NEsQKkykkn7RSiuevUdFkV6L627FdfcwH45sPBh8XBIVdyf3Glz9-hAb8Slgf4aw7Nj/pub?w=392&h=392', base:'くる',           masu:'きます',           past:'きました' },
+  { kr:'만나다',   img:'https://docs.google.com/drawings/d/e/2PACX-1vRWShTNwLncMDu6XCAdvkMI5T9JLTCiR5g5z_D7cTL0wSf6nvOtHvtUQrAyl5lcZnjN0nwAKCgu8gFA/pub?w=447&h=449', base:'あう',           masu:'あいます',         past:'あいました' },
+  { kr:'듣다',     img:'https://docs.google.com/drawings/d/e/2PACX-1vTIMkumL2zJdhqj0SW9Ymmq1CYPKkg3pdfnPEUSXaT1-TSFgYmEuEzsKmyqutqQptJddVgQvwTR5rHM/pub?w=392&h=391', base:'きく',           masu:'ききます',         past:'ききました' },
+  { kr:'읽다',     img:'https://docs.google.com/drawings/d/e/2PACX-1vT-Z7-RSAI8uK5fXB4PHiqrKL4MnN-m56_KjGTnA-4pNlGsP2Yy1aWscsaYDN8e-8xNV1nonvGf1HNP/pub?w=393&h=389', base:'よむ',           masu:'よみます',         past:'よみました' },
+];
+
+let currentVerbs = [];
+let oxState = new Array(12).fill(null);
+let timerInterval = null;
+let remainMs = 30000;
+let timerRunning = false;
+let startTime = null;
+let elapsed = 0;
+
+// 초기 렌더
+window.onload = () => resetAll();
+
+function resetAll() {
+  stopTimer();
+  remainMs = 30000;
+  elapsed = 0;
+  oxState = new Array(12).fill(null);
+
+  const shuffled = [...VERBS].sort(() => Math.random() - 0.5);
+  currentVerbs = shuffled.slice(0, 6);
+
+  document.getElementById('resultScreen').classList.remove('show');
+  document.getElementById('quizArea').style.display = '';
+  document.getElementById('startBtn').textContent = '▶ START';
+  document.getElementById('startBtn').classList.remove('running');
+  drawTimer();
+  updateProgress();
+  updateScore();
+  renderCards();
+}
+
+function renderCards() {
+  const area = document.getElementById('quizArea');
+
+  function makeCard(verb, vi, labels, oxIndices) {
+    const h = `
+      <div class="verb-card">
+        <div class="card-header">문제 ${vi+1}</div>
+        <div class="card-img">
+          <img src="${verb.img}" alt="${verb.kr}"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <div class="no-img" style="display:none">🖼 그림 없음</div>
+        </div>
+        <div class="card-body">
+          ${labels.map((lbl, li) => {
+            const ci = oxIndices[li];
+            return `<div class="ox-row">
+              <div class="ox-label">${lbl}</div>
+              <div class="ox-btns" id="ox-wrap-${ci}">
+                <button class="ox-btn O-btn" onclick="pressOX(${ci},'O')">○</button>
+                <button class="ox-btn X-btn" onclick="pressOX(${ci},'X')">✕</button>
+              </div>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>`;
+    return h;
+  }
+
+  let html = `<div class="row-band">📝 1~3번 : 기본형 · 정중형</div>`;
+  html += `<div class="verb-row">`;
+  for (let vi = 0; vi < 3; vi++) {
+    html += makeCard(currentVerbs[vi], vi, ['기본형','정중형'], [vi*2, vi*2+1]);
+  }
+  html += `</div>`;
+
+  html += `<div class="row-band">📝 4~6번 : 기본형 · 과거형</div>`;
+  html += `<div class="verb-row">`;
+  for (let vi = 3; vi < 6; vi++) {
+    html += makeCard(currentVerbs[vi], vi, ['기본형','과거형'], [6+(vi-3)*2, 6+(vi-3)*2+1]);
+  }
+  html += `</div>`;
+
+  area.innerHTML = html;
+}
+
+function pressOX(ci, val) {
+  if (!timerRunning && elapsed === 0) return; // 시작 전 막기
+  oxState[ci] = (oxState[ci] === val) ? null : val;
+
+  const wrap = document.getElementById(`ox-wrap-${ci}`);
+  wrap.querySelectorAll('.ox-btn').forEach(b => b.classList.remove('selected'));
+  if (oxState[ci]) {
+    wrap.querySelector(`.${oxState[ci]}-btn`).classList.add('selected');
+  }
+
+  updateProgress();
+  updateScore();
+
+  // 12개 다 채우면 자동 종료
+  if (oxState.every(v => v !== null)) {
+    stopTimer();
+    showResult();
+  }
+}
+
+function updateProgress() {
+  const filled = oxState.filter(v => v !== null).length;
+  document.getElementById('progressText').textContent = `${filled} / 12 체크`;
+  document.getElementById('progressFill').style.width = `${(filled/12)*100}%`;
+}
+
+function updateScore() {
+  const oCount = oxState.filter(v => v === 'O').length;
+  document.getElementById('scoreNum').textContent = 8 + oCount;
+}
+
+// 타이머
+function toggleTimer() {
+  timerRunning ? stopTimer() : startTimer();
+}
+
+function startTimer() {
+  timerRunning = true;
+  startTime = Date.now() - elapsed;
+  document.getElementById('startBtn').textContent = '■ STOP';
+  document.getElementById('startBtn').classList.add('running');
+
+  timerInterval = setInterval(() => {
+    elapsed = Date.now() - startTime;
+    remainMs = Math.max(0, 30000 - elapsed);
+    drawTimer();
+
+    if (remainMs <= 0) {
+      stopTimer();
+      // 미채점 → X
+      oxState = oxState.map(v => v === null ? 'X' : v);
+      renderOXState();
+      updateProgress();
+      updateScore();
+      showResult();
+    }
+  }, 100);
+}
+
+function stopTimer() {
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = null;
+  timerRunning = false;
+  document.getElementById('startBtn').textContent = '▶ START';
+  document.getElementById('startBtn').classList.remove('running');
+}
+
+function drawTimer() {
+  const sec = (remainMs / 1000).toFixed(1);
+  const el = document.getElementById('timerDisplay');
+  el.textContent = sec;
+  el.classList.toggle('danger', remainMs <= 10000);
+}
+
+function renderOXState() {
+  oxState.forEach((val, ci) => {
+    const wrap = document.getElementById(`ox-wrap-${ci}`);
+    if (!wrap) return;
+    wrap.querySelectorAll('.ox-btn').forEach(b => b.classList.remove('selected'));
+    if (val) wrap.querySelector(`.${val}-btn`).classList.add('selected');
+  });
+}
+
+// 결과 화면
+function showResult() {
+  const oCount = oxState.filter(v => v === 'O').length;
+  const total = 8 + oCount;
+  const pct = (total / 20) * 100;
+
+  let emoji, title;
+  if (pct === 100)     { emoji = '🏆'; title = '완벽해요! 만점!'; }
+  else if (pct >= 80)  { emoji = '🌟'; title = '훌륭해요!'; }
+  else if (pct >= 60)  { emoji = '😊'; title = '잘했어요!'; }
+  else if (pct >= 40)  { emoji = '💪'; title = '조금 더 연습해봐요!'; }
+  else                 { emoji = '📖'; title = '다시 한번 도전!'; }
+
+  // 틀린 동사 정리
+  const wrongs = [];
+  for (let vi = 0; vi < 6; vi++) {
+    const verb = currentVerbs[vi];
+    const isFirst3 = vi < 3;
+    const i1 = isFirst3 ? vi*2 : 6+(vi-3)*2;
+    const i2 = i1 + 1;
+    const lbl1 = '기본형';
+    const lbl2 = isFirst3 ? '정중형' : '과거형';
+    const ans1 = verb.base;
+    const ans2 = isFirst3 ? verb.masu : verb.past;
+
+    if (oxState[i1] === 'X') wrongs.push(`${verb.kr} ${lbl1} → ${ans1}`);
+    if (oxState[i2] === 'X') wrongs.push(`${verb.kr} ${lbl2} → ${ans2}`);
+  }
+
+  document.getElementById('resultEmoji').textContent = emoji;
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultScore').textContent = total;
+  document.getElementById('resultDetail').innerHTML =
+    wrongs.length === 0
+      ? '✅ 모두 맞았어요!'
+      : `<strong>틀린 항목:</strong><br>${wrongs.join('<br>')}`;
+
+  document.getElementById('quizArea').style.display = 'none';
+  document.getElementById('resultScreen').classList.add('show');
+}
+</script>
+</body>
+</html>
