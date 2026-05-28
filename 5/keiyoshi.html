@@ -125,7 +125,7 @@ h1 span { font-size: 13px; font-weight: 400; color: #888; margin-left: 8px; }
 
   <div id="tab-memo" class="tab-content active">
     <div class="view-toggle">
-      <button class="view-btn active" onclick="setView('grid', this)">카드</button>
+      <button class="view-btn" onclick="setView('card', this)">카드</button>
       <button class="view-btn active" onclick="setView('grid', this)">목록</button>
     </div>
 
@@ -343,6 +343,7 @@ function checkMatch() {
 }
 
 renderCard();
+renderGrid();
 </script>
 </body>
 </html>
