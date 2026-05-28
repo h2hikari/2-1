@@ -125,11 +125,11 @@ h1 span { font-size: 13px; font-weight: 400; color: #888; margin-left: 8px; }
 
   <div id="tab-memo" class="tab-content active">
     <div class="view-toggle">
-      <button class="view-btn active" onclick="setView('card', this)">카드</button>
-      <button class="view-btn" onclick="setView('grid', this)">목록</button>
+      <button class="view-btn active" onclick="setView('grid', this)">카드</button>
+      <button class="view-btn active" onclick="setView('grid', this)">목록</button>
     </div>
 
-    <div id="card-view">
+    <div id="card-view" style="display:none;">
       <div class="memo-header">
         <span class="progress-text" id="card-progress">1 / 14</span>
         <div class="nav-btns">
@@ -156,7 +156,7 @@ h1 span { font-size: 13px; font-weight: 400; color: #888; margin-left: 8px; }
       <div class="dots" id="dots"></div>
     </div>
 
-    <div id="grid-view" style="display:none;">
+    <div id="grid-view">
       <div class="grid-cards" id="grid-container"></div>
     </div>
   </div>
