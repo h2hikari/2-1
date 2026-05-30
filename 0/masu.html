@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>일본어 기본표현 활용 수행평가 연습</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #f3f0fa;
+    --panel:    #ffffff;
+    --dark:     #4a2d7a;
+    --purple-1: #7c5cbf;
+    --purple-2: #9b7dd4;
+    --purple-3: #c9b8e8;
+    --purple-4: #f0ecfa;
+    --sub:      #9b7dd4;
+    --radius:   14px;
+    --shadow:   0 2px 12px rgba(108,63,197,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 16px 48px;
+  }
+
+  /* 헤더 */
+  .header {
+    width: 100%;
+    max-width: 960px;
+    background: var(--dark);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 0 0 var(--radius) var(--radius);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .header h1 {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  .header p {
+    font-size: 12px;
+    color: #d8c8f0;
+    margin-left: auto;
+  }
+
+  /* 컨트롤 바 */
+  .control-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+    width: 100%;
+    max-width: 960px;
+  }
+
+  .btn-new {
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--radius);
+    background: var(--purple-1);
+    color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 1px;
+  }
+
+  .btn-new:hover { background: var(--dark); }
+
+  .btn-reveal-all {
+    padding: 12px 24px;
+    border: 2px solid var(--purple-3);
+    border-radius: var(--radius);
+    background: white;
+    color: var(--purple-1);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .btn-reveal-all:hover { background: var(--purple-4); }
+
+  /* 행 구분 */
+  .row-band {
+    width: 100%;
+    max-width: 960px;
+    background: var(--purple-2);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px 14px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+
+  /* 카드 행 */
+  .verb-row {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    max-width: 960px;
+    margin-bottom: 14px;
+  }
+
+  /* 카드 */
+  .verb-card {
+    flex: 1;
+    background: var(--panel);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-header {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 7px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  .card-img {
+    padding: 10px;
+    background: #f8f4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 130px;
+  }
+
+  .card-img img {
+    max-width: 100%;
+    max-height: 120px;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  .card-img .no-img {
+    font-size: 11px;
+    color: var(--sub);
+    text-align: center;
+  }
+
+  /* 답 영역 */
+  .card-body {
+    padding: 10px 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* 답 행 */
+  .ans-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .ans-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--sub);
+  }
+
+  /* 확인 버튼 */
+  .btn-reveal {
+    width: 100%;
+    padding: 9px 0;
+    border: 2px solid var(--purple-3);
+    border-radius: 10px;
+    background: white;
+    color: var(--purple-1);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-reveal:hover { background: var(--purple-4); border-color: var(--purple-2); }
+
+  .btn-reveal.revealed {
+    border-color: var(--purple-1);
+    background: var(--purple-4);
+    cursor: default;
+  }
+
+  /* 정답 표시 */
+  .ans-content {
+    display: none;
+    text-align: center;
+    animation: fadeIn 0.25s ease;
+  }
+
+  .ans-content.show { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .ans-jp {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: 1px;
+  }
+
+  .ans-kr {
+    font-size: 12px;
+    color: var(--sub);
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+  }
+
+  .ans-masu {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--purple-1);
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🇯🇵 일본어 기본표현 활용 수행평가 연습</h1>
+  <p>버튼을 눌러 정답을 확인하세요!</p>
+</div>
+
+<div class="control-bar">
+  <button class="btn-new" onclick="resetAll()">🔀 새 문제</button>
+  <button class="btn-reveal-all" onclick="revealAll()">👁 전체 정답 보기</button>
+</div>
+
+<div id="quizArea"></div>
+
+<script>
+const VERBS = [
+  { kr:'가다',       read:'이쿠',     img:'https://docs.google.com/drawings/d/e/2PACX-1vRuekNtisI4YG9FRwpKalex2KJYJCA2NyCjhfY9xoqw_cKn5T-ydjc46tVf4L_Ck1bAhS-tXwBOTmMu/pub?w=480&h=360', base:'いく',           masu:'いきます',         past:'いきました' },
+  { kr:'돌아가다',   read:'카에루',   img:'https://docs.google.com/drawings/d/e/2PACX-1vQU0wpZsz7QufgA1nQtut0ewJW3Q0ksttlUbqRwd_EDlmG1PD03ZE4d7DusIODxQsk7v3n6jQRABR-V/pub?w=415&h=416', base:'かえる',         masu:'かえります',       past:'かえりました' },
+  { kr:'공부하다',   read:'벤쿄-스루',img:'https://docs.google.com/drawings/d/e/2PACX-1vTsso_lYW1vtGvBxBvJytCWbscrjukT090Hx9XMX6B5FARCrbjXJhJBRXXv9PMbS-od3U2Y80Jcg5rU/pub?w=357&h=355', base:'べんきょうする', masu:'べんきょうします',   past:'べんきょうしました' },
+  { kr:'마시다',     read:'노무',     img:'https://docs.google.com/drawings/d/e/2PACX-1vRn7KPPQkY8meaxpFAzIQTiPPGpIN8cFeletyg5_dG6P77FIbYjv6jlNheS7klMGkn5GwMljuVr0EuC/pub?w=512&h=513', base:'のむ',           masu:'のみます',         past:'のみました' },
+  { kr:'보다',       read:'미루',     img:'https://docs.google.com/drawings/d/e/2PACX-1vSH4YqigPgppKIQpZ6BQTPLJh5VX5k3VpCZgaHXCePMP_r_H-TbNODserEJnE7ByiBulClzzlgHMaJg/pub?w=414&h=417', base:'みる',           masu:'みます',           past:'みました' },
+  { kr:'기다리다',   read:'마츠',     img:'https://docs.google.com/drawings/d/e/2PACX-1vRkwSNk_7Q51MojAXWh0JvZBGVSwsIv8uIa3NeGCqq-njXq4N2906_cb3OLBpR3pU3Bm6E6bTrCUk43/pub?w=392&h=394', base:'まつ',           masu:'まちます',         past:'まちました' },
+  { kr:'사다',       read:'카우',     img:'https://docs.google.com/drawings/d/e/2PACX-1vT6TETJtVRL9oaG2E6Mr59wa_cw7ri2huyra8eQOCGkCk-03QryrlaVrLq7alJgEKE35SE5tbMcSXme/pub?w=481&h=479', base:'かう',           masu:'かいます',         past:'かいました' },
+  { kr:'이야기하다', read:'하나스',   img:'https://docs.google.com/drawings/d/e/2PACX-1vRAHfIynOXCIzPiUTEfTmJro8H6qPuIX5j0o8iY-O65UXnyyFZQ8R9rNGCAy6L8dddTHapehclLRXxa/pub?w=414&h=414', base:'はなす',         masu:'はなします',       past:'はなしました' },
+  { kr:'놀다',       read:'아소부',   img:'https://docs.google.com/drawings/d/e/2PACX-1vSnAUoQkKYRh8IeJjrX2jJb__u2ecH6zL6_cvF4HfkFENFnAtBbG9bCfsW4EGZ4j51XMM8CEnNEtuep/pub?w=390&h=395', base:'あそぶ',         masu:'あそびます',       past:'あそびました' },
+  { kr:'먹다',       read:'타베루',   img:'https://docs.google.com/drawings/d/e/2PACX-1vTlvCWVaNa9l6nLRKph7hYJDRDosb1Sf0OK0jCHVkM6887cJ0p9zVsXXoEniSMhhhlwUCNMUk2EL-Y9/pub?w=447&h=447', base:'たべる',         masu:'たべます',         past:'たべました' },
+  { kr:'일어나다',   read:'오키루',   img:'https://docs.google.com/drawings/d/e/2PACX-1vR-YGXCPxkYyDn0z0MkS3eiZcaIoa5XzcZcZsBXGtHS64wUyCwr-kChKjgeG-rBnakA7SyMpNSZJnBc/pub?w=414&h=414', base:'おきる',         masu:'おきます',         past:'おきました' },
+  { kr:'쉬다',       read:'야스무',   img:'https://docs.google.com/drawings/d/e/2PACX-1vSTAbmxRL7Hsf2NZNqufsq-Oss4VA1-IgaDbRJcCG_i5Zdfq7pNcRtg_5K_wTvb7CZVdWaaSr94z-Kh/pub?w=391&h=389', base:'やすむ',         masu:'やすみます',       past:'やすみました' },
+  { kr:'자다',       read:'네루',     img:'https://docs.google.com/drawings/d/e/2PACX-1vSo1ttK2f-wH1de7Q_K-wf_vIYSUaYliZL_Nstku7A9gnsctmDEGSUY1cAdg4axXV0pSsdztBIersMy/pub?w=513&h=512', base:'ねる',           masu:'ねます',           past:'ねました' },
+  { kr:'앉다',       read:'스와루',   img:'https://docs.google.com/drawings/d/e/2PACX-1vTMBuOqvDB8ypnQbNYIgOUPuQ_lj7QdJYWKC33sA5iU6F35fHbwE9a5_qINp4VX0qoGcTSY1I-s6vHW/pub?w=960&h=720', base:'すわる',         masu:'すわります',       past:'すわりました' },
+  { kr:'오다',       read:'쿠루',     img:'https://docs.google.com/drawings/d/e/2PACX-1vTnfCom77U44NEsQKkykkn7RSiuevUdFkV6L627FdfcwH45sPBh8XBIVdyf3Glz9-hAb8Slgf4aw7Nj/pub?w=392&h=392', base:'くる',           masu:'きます',           past:'きました' },
+  { kr:'만나다',     read:'아우',     img:'https://docs.google.com/drawings/d/e/2PACX-1vRWShTNwLncMDu6XCAdvkMI5T9JLTCiR5g5z_D7cTL0wSf6nvOtHvtUQrAyl5lcZnjN0nwAKCgu8gFA/pub?w=447&h=449', base:'あう',           masu:'あいます',         past:'あいました' },
+  { kr:'듣다',       read:'키쿠',     img:'https://docs.google.com/drawings/d/e/2PACX-1vTIMkumL2zJdhqj0SW9Ymmq1CYPKkg3pdfnPEUSXaT1-TSFgYmEuEzsKmyqutqQptJddVgQvwTR5rHM/pub?w=392&h=391', base:'きく',           masu:'ききます',         past:'ききました' },
+  { kr:'읽다',       read:'요무',     img:'https://docs.google.com/drawings/d/e/2PACX-1vT-Z7-RSAI8uK5fXB4PHiqrKL4MnN-m56_KjGTnA-4pNlGsP2Yy1aWscsaYDN8e-8xNV1nonvGf1HNP/pub?w=393&h=389', base:'よむ',           masu:'よみます',         past:'よみました' },
+];
+
+let currentVerbs = [];
+
+window.onload = () => resetAll();
+
+function resetAll() {
+  const shuffled = [...VERBS].sort(() => Math.random() - 0.5);
+  currentVerbs = shuffled.slice(0, 6);
+  renderCards();
+}
+
+function renderCards() {
+  const area = document.getElementById('quizArea');
+
+  function makeCard(verb, vi, type) {
+    // type: 'masu' or 'past'
+    const actLabel = type === 'masu' ? 'ます형 확인' : 'ました형 확인';
+    const actJp    = type === 'masu' ? verb.masu : verb.past;
+
+    return `
+      <div class="verb-card">
+        <div class="card-header">문제 ${vi + 1}</div>
+        <div class="card-img">
+          <img src="${verb.img}" alt="${verb.kr}"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <div class="no-img" style="display:none">🖼 그림 없음</div>
+        </div>
+        <div class="card-body">
+
+          <!-- 원형 확인 -->
+          <div class="ans-row">
+            <button class="btn-reveal" id="btn-base-${vi}"
+              onclick="reveal('base',${vi})">원형 확인</button>
+            <div class="ans-content" id="ans-base-${vi}">
+              <div class="ans-jp">${verb.base}</div>
+              <div class="ans-kr">${verb.read} · ${verb.kr}</div>
+            </div>
+          </div>
+
+          <!-- 활용형 확인 -->
+          <div class="ans-row">
+            <button class="btn-reveal" id="btn-act-${vi}"
+              onclick="reveal('act',${vi})">${actLabel}</button>
+            <div class="ans-content" id="ans-act-${vi}">
+              <div class="ans-masu">${actJp}</div>
+            </div>
+          </div>
+
+        </div>
+      </div>`;
+  }
+
+  let html = `<div class="row-band">📝 1~3번 : 원형 · ます형</div>`;
+  html += `<div class="verb-row">`;
+  for (let vi = 0; vi < 3; vi++) {
+    html += makeCard(currentVerbs[vi], vi, 'masu');
+  }
+  html += `</div>`;
+
+  html += `<div class="row-band">📝 4~6번 : 원형 · ました형</div>`;
+  html += `<div class="verb-row">`;
+  for (let vi = 3; vi < 6; vi++) {
+    html += makeCard(currentVerbs[vi], vi, 'past');
+  }
+  html += `</div>`;
+
+  area.innerHTML = html;
+}
+
+function reveal(type, vi) {
+  const ansId = `ans-${type}-${vi}`;
+  const btnId = `btn-${type}-${vi}`;
+  document.getElementById(ansId).classList.add('show');
+  const btn = document.getElementById(btnId);
+  btn.classList.add('revealed');
+  btn.textContent = '✓ 확인 완료';
+}
+
+function revealAll() {
+  for (let vi = 0; vi < 6; vi++) {
+    reveal('base', vi);
+    reveal('act', vi);
+  }
+}
+</script>
+</body>
+</html>
