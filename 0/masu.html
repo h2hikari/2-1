@@ -262,24 +262,24 @@
 
 <script>
 const VERBS = [
-  { kr:'가다',       read:'이쿠',     img:'https://docs.google.com/drawings/d/e/2PACX-1vRuekNtisI4YG9FRwpKalex2KJYJCA2NyCjhfY9xoqw_cKn5T-ydjc46tVf4L_Ck1bAhS-tXwBOTmMu/pub?w=480&h=360', base:'いく',           masu:'いきます',         past:'いきました' },
-  { kr:'돌아가다',   read:'카에루',   img:'https://docs.google.com/drawings/d/e/2PACX-1vQU0wpZsz7QufgA1nQtut0ewJW3Q0ksttlUbqRwd_EDlmG1PD03ZE4d7DusIODxQsk7v3n6jQRABR-V/pub?w=415&h=416', base:'かえる',         masu:'かえります',       past:'かえりました' },
-  { kr:'공부하다',   read:'벤쿄-스루',img:'https://docs.google.com/drawings/d/e/2PACX-1vTsso_lYW1vtGvBxBvJytCWbscrjukT090Hx9XMX6B5FARCrbjXJhJBRXXv9PMbS-od3U2Y80Jcg5rU/pub?w=357&h=355', base:'べんきょうする', masu:'べんきょうします',   past:'べんきょうしました' },
-  { kr:'마시다',     read:'노무',     img:'https://docs.google.com/drawings/d/e/2PACX-1vRn7KPPQkY8meaxpFAzIQTiPPGpIN8cFeletyg5_dG6P77FIbYjv6jlNheS7klMGkn5GwMljuVr0EuC/pub?w=512&h=513', base:'のむ',           masu:'のみます',         past:'のみました' },
-  { kr:'보다',       read:'미루',     img:'https://docs.google.com/drawings/d/e/2PACX-1vSH4YqigPgppKIQpZ6BQTPLJh5VX5k3VpCZgaHXCePMP_r_H-TbNODserEJnE7ByiBulClzzlgHMaJg/pub?w=414&h=417', base:'みる',           masu:'みます',           past:'みました' },
-  { kr:'기다리다',   read:'마츠',     img:'https://docs.google.com/drawings/d/e/2PACX-1vRkwSNk_7Q51MojAXWh0JvZBGVSwsIv8uIa3NeGCqq-njXq4N2906_cb3OLBpR3pU3Bm6E6bTrCUk43/pub?w=392&h=394', base:'まつ',           masu:'まちます',         past:'まちました' },
-  { kr:'사다',       read:'카우',     img:'https://docs.google.com/drawings/d/e/2PACX-1vT6TETJtVRL9oaG2E6Mr59wa_cw7ri2huyra8eQOCGkCk-03QryrlaVrLq7alJgEKE35SE5tbMcSXme/pub?w=481&h=479', base:'かう',           masu:'かいます',         past:'かいました' },
-  { kr:'이야기하다', read:'하나스',   img:'https://docs.google.com/drawings/d/e/2PACX-1vRAHfIynOXCIzPiUTEfTmJro8H6qPuIX5j0o8iY-O65UXnyyFZQ8R9rNGCAy6L8dddTHapehclLRXxa/pub?w=414&h=414', base:'はなす',         masu:'はなします',       past:'はなしました' },
-  { kr:'놀다',       read:'아소부',   img:'https://docs.google.com/drawings/d/e/2PACX-1vSnAUoQkKYRh8IeJjrX2jJb__u2ecH6zL6_cvF4HfkFENFnAtBbG9bCfsW4EGZ4j51XMM8CEnNEtuep/pub?w=390&h=395', base:'あそぶ',         masu:'あそびます',       past:'あそびました' },
-  { kr:'먹다',       read:'타베루',   img:'https://docs.google.com/drawings/d/e/2PACX-1vTlvCWVaNa9l6nLRKph7hYJDRDosb1Sf0OK0jCHVkM6887cJ0p9zVsXXoEniSMhhhlwUCNMUk2EL-Y9/pub?w=447&h=447', base:'たべる',         masu:'たべます',         past:'たべました' },
-  { kr:'일어나다',   read:'오키루',   img:'https://docs.google.com/drawings/d/e/2PACX-1vR-YGXCPxkYyDn0z0MkS3eiZcaIoa5XzcZcZsBXGtHS64wUyCwr-kChKjgeG-rBnakA7SyMpNSZJnBc/pub?w=414&h=414', base:'おきる',         masu:'おきます',         past:'おきました' },
-  { kr:'쉬다',       read:'야스무',   img:'https://docs.google.com/drawings/d/e/2PACX-1vSTAbmxRL7Hsf2NZNqufsq-Oss4VA1-IgaDbRJcCG_i5Zdfq7pNcRtg_5K_wTvb7CZVdWaaSr94z-Kh/pub?w=391&h=389', base:'やすむ',         masu:'やすみます',       past:'やすみました' },
-  { kr:'자다',       read:'네루',     img:'https://docs.google.com/drawings/d/e/2PACX-1vSo1ttK2f-wH1de7Q_K-wf_vIYSUaYliZL_Nstku7A9gnsctmDEGSUY1cAdg4axXV0pSsdztBIersMy/pub?w=513&h=512', base:'ねる',           masu:'ねます',           past:'ねました' },
-  { kr:'앉다',       read:'스와루',   img:'https://docs.google.com/drawings/d/e/2PACX-1vTMBuOqvDB8ypnQbNYIgOUPuQ_lj7QdJYWKC33sA5iU6F35fHbwE9a5_qINp4VX0qoGcTSY1I-s6vHW/pub?w=960&h=720', base:'すわる',         masu:'すわります',       past:'すわりました' },
-  { kr:'오다',       read:'쿠루',     img:'https://docs.google.com/drawings/d/e/2PACX-1vTnfCom77U44NEsQKkykkn7RSiuevUdFkV6L627FdfcwH45sPBh8XBIVdyf3Glz9-hAb8Slgf4aw7Nj/pub?w=392&h=392', base:'くる',           masu:'きます',           past:'きました' },
-  { kr:'만나다',     read:'아우',     img:'https://docs.google.com/drawings/d/e/2PACX-1vRWShTNwLncMDu6XCAdvkMI5T9JLTCiR5g5z_D7cTL0wSf6nvOtHvtUQrAyl5lcZnjN0nwAKCgu8gFA/pub?w=447&h=449', base:'あう',           masu:'あいます',         past:'あいました' },
-  { kr:'듣다',       read:'키쿠',     img:'https://docs.google.com/drawings/d/e/2PACX-1vTIMkumL2zJdhqj0SW9Ymmq1CYPKkg3pdfnPEUSXaT1-TSFgYmEuEzsKmyqutqQptJddVgQvwTR5rHM/pub?w=392&h=391', base:'きく',           masu:'ききます',         past:'ききました' },
-  { kr:'읽다',       read:'요무',     img:'https://docs.google.com/drawings/d/e/2PACX-1vT-Z7-RSAI8uK5fXB4PHiqrKL4MnN-m56_KjGTnA-4pNlGsP2Yy1aWscsaYDN8e-8xNV1nonvGf1HNP/pub?w=393&h=389', base:'よむ',           masu:'よみます',         past:'よみました' },
+  { kr:'가다',       read:'이쿠', masu_read:'이키마스', past_read:'이키마시타',     img:'https://docs.google.com/drawings/d/e/2PACX-1vRuekNtisI4YG9FRwpKalex2KJYJCA2NyCjhfY9xoqw_cKn5T-ydjc46tVf4L_Ck1bAhS-tXwBOTmMu/pub?w=480&h=360', base:'いく',           masu:'いきます',         past:'いきました' },
+  { kr:'돌아가다',   read:'카에루', masu_read:'카에리마스', past_read:'카에리마시타',   img:'https://docs.google.com/drawings/d/e/2PACX-1vQU0wpZsz7QufgA1nQtut0ewJW3Q0ksttlUbqRwd_EDlmG1PD03ZE4d7DusIODxQsk7v3n6jQRABR-V/pub?w=415&h=416', base:'かえる',         masu:'かえります',       past:'かえりました' },
+  { kr:'공부하다',   read:'벤쿄-스루', masu_read:'벤쿄-시마스', past_read:'벤쿄-시마시타',img:'https://docs.google.com/drawings/d/e/2PACX-1vTsso_lYW1vtGvBxBvJytCWbscrjukT090Hx9XMX6B5FARCrbjXJhJBRXXv9PMbS-od3U2Y80Jcg5rU/pub?w=357&h=355', base:'べんきょうする', masu:'べんきょうします',   past:'べんきょうしました' },
+  { kr:'마시다',     read:'노무', masu_read:'노미마스', past_read:'노미마시타',     img:'https://docs.google.com/drawings/d/e/2PACX-1vRn7KPPQkY8meaxpFAzIQTiPPGpIN8cFeletyg5_dG6P77FIbYjv6jlNheS7klMGkn5GwMljuVr0EuC/pub?w=512&h=513', base:'のむ',           masu:'のみます',         past:'のみました' },
+  { kr:'보다',       read:'미루', masu_read:'미마스', past_read:'미마시타',     img:'https://docs.google.com/drawings/d/e/2PACX-1vSH4YqigPgppKIQpZ6BQTPLJh5VX5k3VpCZgaHXCePMP_r_H-TbNODserEJnE7ByiBulClzzlgHMaJg/pub?w=414&h=417', base:'みる',           masu:'みます',           past:'みました' },
+  { kr:'기다리다',   read:'마츠', masu_read:'마치마스', past_read:'마치마시타',     img:'https://docs.google.com/drawings/d/e/2PACX-1vRkwSNk_7Q51MojAXWh0JvZBGVSwsIv8uIa3NeGCqq-njXq4N2906_cb3OLBpR3pU3Bm6E6bTrCUk43/pub?w=392&h=394', base:'まつ',           masu:'まちます',         past:'まちました' },
+  { kr:'사다',       read:'카우', masu_read:'카이마스', past_read:'카이마시타',     img:'https://docs.google.com/drawings/d/e/2PACX-1vT6TETJtVRL9oaG2E6Mr59wa_cw7ri2huyra8eQOCGkCk-03QryrlaVrLq7alJgEKE35SE5tbMcSXme/pub?w=481&h=479', base:'かう',           masu:'かいます',         past:'かいました' },
+  { kr:'이야기하다', read:'하나스', masu_read:'하나시마스', past_read:'하나시마시타',   img:'https://docs.google.com/drawings/d/e/2PACX-1vRAHfIynOXCIzPiUTEfTmJro8H6qPuIX5j0o8iY-O65UXnyyFZQ8R9rNGCAy6L8dddTHapehclLRXxa/pub?w=414&h=414', base:'はなす',         masu:'はなします',       past:'はなしました' },
+  { kr:'놀다',       read:'아소부', masu_read:'아소비마스', past_read:'아소비마시타',   img:'https://docs.google.com/drawings/d/e/2PACX-1vSnAUoQkKYRh8IeJjrX2jJb__u2ecH6zL6_cvF4HfkFENFnAtBbG9bCfsW4EGZ4j51XMM8CEnNEtuep/pub?w=390&h=395', base:'あそぶ',         masu:'あそびます',       past:'あそびました' },
+  { kr:'먹다',       read:'타베루', masu_read:'타베마스', past_read:'타베마시타',   img:'https://docs.google.com/drawings/d/e/2PACX-1vTlvCWVaNa9l6nLRKph7hYJDRDosb1Sf0OK0jCHVkM6887cJ0p9zVsXXoEniSMhhhlwUCNMUk2EL-Y9/pub?w=447&h=447', base:'たべる',         masu:'たべます',         past:'たべました' },
+  { kr:'일어나다',   read:'오키루', masu_read:'오키마스', past_read:'오키마시타',   img:'https://docs.google.com/drawings/d/e/2PACX-1vR-YGXCPxkYyDn0z0MkS3eiZcaIoa5XzcZcZsBXGtHS64wUyCwr-kChKjgeG-rBnakA7SyMpNSZJnBc/pub?w=414&h=414', base:'おきる',         masu:'おきます',         past:'おきました' },
+  { kr:'쉬다',       read:'야스무', masu_read:'야스미마스', past_read:'야스미마시타',   img:'https://docs.google.com/drawings/d/e/2PACX-1vSTAbmxRL7Hsf2NZNqufsq-Oss4VA1-IgaDbRJcCG_i5Zdfq7pNcRtg_5K_wTvb7CZVdWaaSr94z-Kh/pub?w=391&h=389', base:'やすむ',         masu:'やすみます',       past:'やすみました' },
+  { kr:'자다',       read:'네루', masu_read:'네마스', past_read:'네마시타',     img:'https://docs.google.com/drawings/d/e/2PACX-1vSo1ttK2f-wH1de7Q_K-wf_vIYSUaYliZL_Nstku7A9gnsctmDEGSUY1cAdg4axXV0pSsdztBIersMy/pub?w=513&h=512', base:'ねる',           masu:'ねます',           past:'ねました' },
+  { kr:'앉다',       read:'스와루', masu_read:'스와리마스', past_read:'스와리마시타',   img:'https://docs.google.com/drawings/d/e/2PACX-1vTMBuOqvDB8ypnQbNYIgOUPuQ_lj7QdJYWKC33sA5iU6F35fHbwE9a5_qINp4VX0qoGcTSY1I-s6vHW/pub?w=960&h=720', base:'すわる',         masu:'すわります',       past:'すわりました' },
+  { kr:'오다',       read:'쿠루', masu_read:'키마스', past_read:'키마시타',     img:'https://docs.google.com/drawings/d/e/2PACX-1vTnfCom77U44NEsQKkykkn7RSiuevUdFkV6L627FdfcwH45sPBh8XBIVdyf3Glz9-hAb8Slgf4aw7Nj/pub?w=392&h=392', base:'くる',           masu:'きます',           past:'きました' },
+  { kr:'만나다',     read:'아우', masu_read:'아이마스', past_read:'아이마시타',     img:'https://docs.google.com/drawings/d/e/2PACX-1vRWShTNwLncMDu6XCAdvkMI5T9JLTCiR5g5z_D7cTL0wSf6nvOtHvtUQrAyl5lcZnjN0nwAKCgu8gFA/pub?w=447&h=449', base:'あう',           masu:'あいます',         past:'あいました' },
+  { kr:'듣다',       read:'키쿠', masu_read:'키키마스', past_read:'키키마시타',     img:'https://docs.google.com/drawings/d/e/2PACX-1vTIMkumL2zJdhqj0SW9Ymmq1CYPKkg3pdfnPEUSXaT1-TSFgYmEuEzsKmyqutqQptJddVgQvwTR5rHM/pub?w=392&h=391', base:'きく',           masu:'ききます',         past:'ききました' },
+  { kr:'읽다',       read:'요무', masu_read:'요미마스', past_read:'요미마시타',     img:'https://docs.google.com/drawings/d/e/2PACX-1vT-Z7-RSAI8uK5fXB4PHiqrKL4MnN-m56_KjGTnA-4pNlGsP2Yy1aWscsaYDN8e-8xNV1nonvGf1HNP/pub?w=393&h=389', base:'よむ',           masu:'よみます',         past:'よみました' },
 ];
 
 let currentVerbs = [];
@@ -326,6 +326,7 @@ function renderCards() {
               onclick="reveal('act',${vi})">${actLabel}</button>
             <div class="ans-content" id="ans-act-${vi}">
               <div class="ans-masu">${actJp}</div>
+              <div class="ans-kr">${type === 'masu' ? verb.masu_read : verb.past_read}</div>
             </div>
           </div>
 
